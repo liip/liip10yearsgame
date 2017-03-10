@@ -16,15 +16,15 @@ const text = {
 	},
 	md: {
 		font: '16px Liip Etica Bd',
-		fill: config.webBlack
+		fill: css.webBlack
 	},
 	lg: {
 		font: '20px Liip Etica Bd',
-		fill: config.webBlack
+		fill: css.webBlack
 	},
 	xl: {
 		font: '26px Liip Etica Bd',
-		fill: config.webBlack
+		fill: css.webBlack
 	}
 }
 
