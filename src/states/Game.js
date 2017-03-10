@@ -32,10 +32,10 @@ export default class extends Phaser.State {
 		let playerDuckImg = this.game.cache.getImage('playerDuck')
 		this.player.duckedDimensions = { width: playerDuckImg.width, height: playerDuckImg.height }
 		this.player.standDimensions = { width: this.player.width, height: this.player.height }
-		this.player.anchor.setTo(0.5, 1);
+		this.player.anchor.setTo(0.5, 1)
 
 		// make the player move sideways continuously
-		this.player.body.velocity.x = 200;
+		this.player.body.velocity.x = 200
 	}
 
 	update () {
