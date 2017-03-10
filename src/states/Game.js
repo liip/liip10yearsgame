@@ -27,7 +27,7 @@ export default class extends Phaser.State {
 		// setup player
 		this.player = this.game.add.sprite(100, 200, 'player')
 		this.game.physics.arcade.enable(this.player)
-		this.player.body.gravity.y = 1500
+		this.player.body.gravity.y = config.player.weight
 		this.game.camera.follow(this.player)
 
 		// score
@@ -52,7 +52,7 @@ export default class extends Phaser.State {
 		this.player.anchor.setTo(0.5, 1)
 
 		// make the player move sideways continuously
-		this.player.body.velocity.x = 200
+		this.player.body.velocity.x = config.player.speed
 	}
 
 	update() {

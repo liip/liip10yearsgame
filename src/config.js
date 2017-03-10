@@ -34,5 +34,9 @@ export default {
 	localStorageName: 'liip10yearsgame',
 	text,
 	css,
-	backendDomain: 'http://localhost:3002'
+	backendDomain: 'http://localhost:3002',
+	player: {
+		speed: 300,
+		weight: 2000
+	}
 }
