@@ -3,7 +3,7 @@ import WebFont from 'webfontloader'
 
 export default class extends Phaser.State {
   init () {
-    this.stage.backgroundColor = '#EDEEC9'
+    this.stage.backgroundColor = '#fff'
     this.fontsReady = false
     this.fontsLoaded = this.fontsLoaded.bind(this)
   }
@@ -11,6 +11,7 @@ export default class extends Phaser.State {
   preload () {
     WebFont.load({
       google: {
+      	// @todo add liip font
         families: ['Bangers']
       },
       active: this.fontsLoaded
@@ -21,6 +22,14 @@ export default class extends Phaser.State {
 
     this.load.image('loaderBg', './assets/images/loader-bg.png')
     this.load.image('loaderBar', './assets/images/loader-bar.png')
+  }
+
+  create () {
+  	this.scale.pageAlignHorizontally = true
+	this.scale.pageAlignVertically = true
+	this.scale.setScreenSize(true)
+
+	this.game.physics.startSystem(Phaser.Physics.ARCADE)
   }
 
   render () {
