@@ -54,43 +54,47 @@ export default class extends Phaser.State {
 		// make the player move sideways continuously
 		this.player.body.velocity.x = config.player.speed
 
+		// load sounds
+		this.soundCoin = this.game.add.audio('coin');
+		this.soundOuch = this.game.add.audio('ouch');
+		this.soundJump = this.game.add.audio('jump');
+
 		// add objects
-		this.soundCoin = this.game.add.audio('coin')
-		this.soundOuch = this.game.add.audio('ouch')
-		this.createBeers()
-		this.createAwards()
+		this.createBeers();
+		this.createAwards();
 	}
 
 	update() {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this)
 
-		if (this.keys.space.isDown) {
-			this.playerJump()
-		} else if (this.keys.down.isDown) {
-			this.playerDuck()
+		if(this.player.alive) {
+			if (this.keys.space.isDown) {
+				this.playerJump()
+			} else if (this.keys.down.isDown) {
+				this.playerDuck()
+			}
+
+			this.updateScore(5)
+
+			if (!this.keys.down.isDown && this.player.isDucked) {
+				// change image and update the body size for the physics engine
+				this.player.loadTexture('player')
+				this.player.body.setSize(this.player.standDimensions.width, this.player.standDimensions.height)
+				this.player.isDucked = false
+			}
+
+			// Update position label depending on the position of the player
+			this.updatePositionLabel(this.player.x);
 		}
-
-		this.updateScore(5)
-
-		if (!this.keys.down.isDown && this.player.isDucked) {
-			// change image and update the body size for the physics engine
-			this.player.loadTexture('player')
-			this.player.body.setSize(this.player.standDimensions.width, this.player.standDimensions.height)
-			this.player.isDucked = false
-		}
-
-		// restart the game if reaching the edge
-
-		if (this.player.x >= this.game.world.width) {
-			this.game.time.events.add(1500, this.restart, this)
-		}
-
-		// Update position label depending on the position of the player
-		this.updatePositionLabel(this.player.x);
 
 		// make obejects collectable
 		this.game.physics.arcade.overlap(this.player, this.beers, this.collect, null, this);
 		this.game.physics.arcade.overlap(this.player, this.awards, this.collect, null, this);
+
+		// restart the game if reaching the edge
+		if (this.player.x >= this.game.world.width) {
+			this.game.time.events.add(1500, this.restart, this)
+		}
 	}
 
 	updatePositionLabel(playerPositionX) {
@@ -119,6 +123,7 @@ export default class extends Phaser.State {
 
 	playerJump() {
 		if (this.player.body.blocked.down) {
+			this.soundJump.play();
 			this.player.body.velocity.y -= 900
 		}
 	}

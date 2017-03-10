@@ -34,6 +34,7 @@ export default class extends Phaser.State {
 
 		this.load.audio('coin', './assets/audio/coin.wav')
 		this.load.audio('ouch', 'assets/audio/ouch.wav')
+		this.load.audio('jump', 'assets/audio/jump.ogg')
 	}
 
 	create() {
