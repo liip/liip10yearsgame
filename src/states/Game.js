@@ -35,8 +35,8 @@ export default class extends Phaser.State {
 		// init keys
 		// this.cursors = this.game.input.keyboard.createCursorKeys()
 		this.keys = this.game.input.keyboard.addKeys({
-			'space': Phaser.KeyCode.SPACEBAR,
-			'down': Phaser.KeyCode.DOWN
+			space: Phaser.KeyCode.SPACEBAR,
+			down: Phaser.KeyCode.DOWN
 		})
 
 		let playerDuckImg = this.game.cache.getImage('playerDuck')
