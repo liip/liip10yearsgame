@@ -4,7 +4,7 @@ import config from '../config'
 
 export default class extends Phaser.State {
 	init() {
-		this.game.state.start('HighScore')
+		// this.game.state.start('HighScore')
 	}
 
 	preload() {
@@ -55,9 +55,10 @@ export default class extends Phaser.State {
 		this.player.body.velocity.x = config.player.speed
 
 		// add objects
-		this.coinSound = this.game.add.audio('coin');
-		this.createBeers();
-		this.createAwards();
+		this.soundCoin = this.game.add.audio('coin')
+		this.soundOuch = this.game.add.audio('ouch')
+		this.createBeers()
+		this.createAwards()
 	}
 
 	update() {
@@ -134,6 +135,7 @@ export default class extends Phaser.State {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer)
 
 		if (player.body.blocked.right) {
+			this.soundOuch.play()
 			// set to dead (this doesn't affect rendering)
 			this.player.alive = false
 			// stop moving to the right
@@ -167,11 +169,11 @@ export default class extends Phaser.State {
 	}
 
 	createFromTiledObject(element, group) {
-		let sprite = group.create(element.x, element.y, element.properties.sprite);
-		//copy all properties to the sprite
-		Object.keys(element.properties).forEach(function(key){
-			sprite[key] = element.properties[key];
-		});
+		let sprite = group.create(element.x, element.y, element.properties.sprite)
+		// copy all properties to the sprite
+		Object.keys(element.properties).forEach(key => {
+			sprite[key] = element.properties[key]
+		})
 	}
 
 	createBeers() {
@@ -179,26 +181,26 @@ export default class extends Phaser.State {
 		this.beers.enableBody = true;
 		let result = this.findObjectsByType('beer', this.map, 'objectsLayer');
 
-		result.forEach(function(element){
-			this.createFromTiledObject(element, this.beers);
-		}, this);
+		result.forEach((element) => {
+			this.createFromTiledObject(element, this.beers)
+		})
 	}
 
 	createAwards() {
-		this.awards = this.game.add.group();
-		this.awards.enableBody = true;
-		let result = this.findObjectsByType('award', this.map, 'objectsLayer');
+		this.awards = this.game.add.group()
+		this.awards.enableBody = true
+		let result = this.findObjectsByType('award', this.map, 'objectsLayer')
 
-		result.forEach(function(element){
-			this.createFromTiledObject(element, this.awards);
-		}, this);
+		result.forEach((element) => {
+			this.createFromTiledObject(element, this.awards)
+		})
 	}
 
 	collect(player, collectable) {
-		//play audio
-		this.coinSound.play();
-		//remove sprite
-		collectable.destroy();
+		// play audio
+		this.soundCoin.play()
+		// remove sprite
+		collectable.destroy()
 	}
 
 	render() {
