@@ -29,7 +29,7 @@ export default class extends Phaser.State {
 		})
 
 		// player ducks
-		var playerDuckImg = this.game.cache.getImage('playerDuck')
+		let playerDuckImg = this.game.cache.getImage('playerDuck')
 		this.player.duckedDimensions = { width: playerDuckImg.width, height: playerDuckImg.height }
 		this.player.standDimensions = { width: this.player.width, height: this.player.height }
 		this.player.anchor.setTo(0.5, 1);
@@ -57,7 +57,7 @@ export default class extends Phaser.State {
 
 	playerJump () {
 		if (this.player.body.blocked.down) {
-			this.player.body.velocity.y -= 700;
+			this.player.body.velocity.y -= 600
 		}
 	}
 
