@@ -28,13 +28,14 @@ export default class extends Phaser.State {
 			'space': Phaser.KeyCode.SPACEBAR
 		})
 
+		// player ducks
 		var playerDuckImg = this.game.cache.getImage('playerDuck')
 		this.player.duckedDimensions = { width: playerDuckImg.width, height: playerDuckImg.height }
 		this.player.standDimensions = { width: this.player.width, height: this.player.height }
 		this.player.anchor.setTo(0.5, 1);
 
 		// make the player move sideways continuously
-		this.player.body.velocity.x = 150;
+		this.player.body.velocity.x = 200;
 	}
 
 	update () {
@@ -46,6 +47,11 @@ export default class extends Phaser.State {
 		}
 		else if (this.cursors.down.isDown) {
 			this.playerDuck()
+		}
+		if (!this.cursors.down.isDown && this.player.isDucked) {
+			this.player.loadTexture('player')
+			this.player.body.setSize(this.player.standDimensions.width, this.player.standDimensions.height)
+			this.player.isDucked = false
 		}
 	}
 
