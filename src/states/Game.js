@@ -32,7 +32,7 @@ export default class extends Phaser.State {
 		// score
 		this.scoreLabel = game.add.text(config.gameWidth - 70, 30, '0', {
 			font: '16px Open Sans',
-			fill: '#414141'
+			fill: config.webBlack
 		})
 		this.scoreLabel.fixedToCamera = true
 

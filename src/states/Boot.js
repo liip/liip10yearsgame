@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
+import config from '../config'
 
 export default class extends Phaser.State {
 	init() {
@@ -10,8 +11,8 @@ export default class extends Phaser.State {
 
 	preload() {
 		WebFont.load({
-			google: {
-				families: ['Open Sans']
+			custom: {
+				families: ['Liip Etica Bd']
 			},
 			active: this.fontsLoaded
 		})
@@ -19,7 +20,7 @@ export default class extends Phaser.State {
 
 		let text = this.add.text(this.world.centerX, this.world.centerY, 'loading fonts', {
 			font: '16px Arial',
-			fill: '#dddddd',
+			fill: config.webBlack,
 			align: 'center'
 		})
 		text.anchor.setTo(0.5, 0.5)
@@ -34,11 +35,11 @@ export default class extends Phaser.State {
 		this.load.image('liipLogo', './assets/images/liip_logo.png')
 
 		this.load.image('goldCoin', './assets/images/goldCoin.png')
-		this.load.audio('coin', './assets/audio/coin.wav')
 
 		this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.image('gameTiles', 'assets/images/tiles_spritesheet.png')
 
+		this.load.audio('coin', './assets/audio/coin.wav')
 		this.load.audio('ouch', 'assets/audio/ouch.wav')
 	}
 
