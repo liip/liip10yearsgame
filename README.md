@@ -36,6 +36,6 @@ npm start
 ```
 
 ```bash
-nodemon -w ./ -x bin/www.js
-curl localhost:3000/scores
+npm run dev
+curl localhost:3002/scores
 ```
