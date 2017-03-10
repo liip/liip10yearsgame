@@ -15,6 +15,11 @@ export default class extends Phaser.State {
 		this.keys = this.game.input.keyboard.addKeys({
 			space: Phaser.KeyCode.SPACEBAR,
 		})
+
+		intro.inputEnabled = true
+		intro.events.onInputDown.add(() => {
+			this.game.state.start('Game')
+		})
 	}
 
 	update () {
