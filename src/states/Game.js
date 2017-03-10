@@ -53,6 +53,13 @@ export default class extends Phaser.State {
 
 		// make the player move sideways continuously
 		this.player.body.velocity.x = config.player.speed
+
+		// add objects
+		this.coinSound = this.game.add.audio('coin');
+		this.createBeers();
+		this.game.physics.arcade.overlap(this.player, this.beers, this.collect, null, this);
+		this.createAwards();
+		this.game.physics.arcade.overlap(this.player, this.awards, this.collect, null, this);
 	}
 
 	update() {
@@ -140,6 +147,58 @@ export default class extends Phaser.State {
 		// this.score = newScore
 		let score = parseInt(this.scoreLabel.text) + newScore
 		this.scoreLabel.text = score
+	}
+
+	findObjectsByType(type, map, layerName) {
+		let result = new Array();
+		map.objects[layerName].forEach(function(element){
+			if(element.properties.type === type) {
+				//Phaser uses top left, Tiled bottom left so we have to adjust
+				//also keep in mind that some images could be of different size as the tile size
+				//so they might not be placed in the exact position as in Tiled
+				element.y -= map.tileHeight;
+				result.push(element);
+			}
+		});
+
+		return result;
+	}
+
+	createFromTiledObject(element, group) {
+		let sprite = group.create(element.x, element.y, element.properties.sprite);
+		//copy all properties to the sprite
+		Object.keys(element.properties).forEach(function(key){
+			sprite[key] = element.properties[key];
+		});
+	}
+
+	createBeers() {
+		this.beers = this.game.add.group();
+		this.beers.enableBody = true;
+		let result = this.findObjectsByType('beer', this.map, 'objectsLayer');
+
+		result.forEach(function(element){
+			console.log(element);
+			this.createFromTiledObject(element, this.beers);
+		}, this);
+	}
+
+	createAwards() {
+		this.awards = this.game.add.group();
+		this.awards.enableBody = true;
+		let result = this.findObjectsByType('award', this.map, 'objectsLayer');
+
+		result.forEach(function(element){
+			console.log(element);
+			this.createFromTiledObject(element, this.awards);
+		}, this);
+	}
+
+	collect(player, collectable) {
+		//play audio
+		this.coinSound.play();
+		//remove sprite
+		collectable.destroy();
 	}
 
 	render() {
