@@ -25,6 +25,8 @@
     "webpack": "^2.2.0"
   },
   "dependencies": {
+    "axios": "^0.15.3",
+    "lodash": "^4.17.4",
     "phaser-ce": "^2.7.3",
     "webfontloader": "^1.6.27"
   }

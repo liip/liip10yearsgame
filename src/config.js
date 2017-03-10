@@ -6,6 +6,7 @@ const css = {
 	black: '#000000',
 	webWhite: '#F7F7F5',
 	white: '#FFFFFF',
+	orange: '#F8C026'
 }
 
 export default {
@@ -15,5 +16,7 @@ export default {
 	hud: {
 		font: '14px Open Sans',
 		fill: css.webBlack
-	}
+	},
+	css,
+	backendDomain: 'http://localhost:3002'
 }

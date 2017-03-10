@@ -26,7 +26,7 @@ export default class extends Phaser.State {
 		text.anchor.setTo(0.5, 0.5)
 
 		this.load.image('loaderBg', './assets/images/loader-bg.png')
-		this.load.image('loaderBar', './assets/images/loader-bar.png')
+		this.load.image('loaderBar', './assets/images/preloader.gif')
 
 		this.load.image('player', './assets/images/player.png')
 		this.load.image('playerDuck', './assets/images/player_duck.png')
@@ -36,7 +36,7 @@ export default class extends Phaser.State {
 
 		this.load.image('goldCoin', './assets/images/goldCoin.png')
 
-		this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
+		this.load.tilemap('liip', 'assets/tilemaps/liip.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.image('gameTiles', 'assets/images/tiles_spritesheet.png')
 
 		this.load.audio('coin', './assets/audio/coin.wav')
