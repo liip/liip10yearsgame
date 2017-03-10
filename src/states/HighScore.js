@@ -11,17 +11,16 @@ export default class extends Phaser.State {
 	}
 
 	preload() {
-		this.load.image('liipLogo', './assets/images/liip_logo.png')
 	}
 
 	create() {
-		this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 100, 'liipLogo')
+		const logo = this.game.add.sprite(100, 200, 'liipLogo')
+		logo.scale.setTo(0.5)
 
-		const player = this.game.add.sprite(this.game.world.centerX - 300, this.game.world.centerY, 'player')
+		const player = this.game.add.sprite(150, 200, 'player')
 		this.game.physics.arcade.enable(player)
 		this.game.add.text(100, 100, 'High Scores:', config.text.xl)
 
-		// centerGameObjects([logo, player])
 		setTimeout(() => {
 			player.body.velocity.x = config.player.speed * 2
 		}, 500)
