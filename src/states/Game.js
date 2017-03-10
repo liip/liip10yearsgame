@@ -6,6 +6,8 @@ import _ from 'lodash'
 
 export default class extends Phaser.State {
 	init() {
+		this.years = 11
+		this.startYear = 2007
 	}
 
 	preload() {
@@ -27,7 +29,7 @@ export default class extends Phaser.State {
 		this.logo.fixedToCamera = true
 
 		// setup player
-		this.player = this.game.add.sprite(100, 250, 'player')
+		this.player = this.game.add.sprite(0, 250, 'player')
 		this.game.physics.arcade.enable(this.player)
 		this.player.body.gravity.y = config.player.weight
 		this.game.camera.follow(this.player)
@@ -85,7 +87,7 @@ export default class extends Phaser.State {
 			}
 
 			// Update position label depending on the position of the player
-			this.updatePositionLabel(this.player.x)
+			this.positionLabel.text = this.getCurrentYear(this.player.x);
 		}
 
 		// make obejects collectable
@@ -98,17 +100,14 @@ export default class extends Phaser.State {
 		}
 	}
 
-	updatePositionLabel(playerPositionX) {
-		const years = 11
-		const startYear = 2007
-		const pixelsPerYear = this.mapWidthInPixels / years
-
-		for (let i = 0; i < years; i++) {
-			let currentYear = startYear + i
-			if (playerPositionX > (pixelsPerYear * i)) {
-				this.positionLabel.text = currentYear.toString()
-			}
+	getCurrentYear(playerPositionX) {
+		const pixelsPerYear = this.mapWidthInPixels / this.years
+		let relativeYear = Math.floor(playerPositionX / pixelsPerYear);
+		console.log(relativeYear);
+		if(relativeYear > this.years - 1) {
+			relativeYear = this.years - 1;
 		}
+		return this.startYear + relativeYear;
 	}
 
 	gameOver() {
