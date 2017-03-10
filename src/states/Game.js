@@ -31,15 +31,11 @@ export default class extends Phaser.State {
 		this.game.camera.follow(this.player)
 
 		// score
-		this.scoreLabel = game.add.text(config.gameWidth - 70, 30, '0', {
-			font: '16px Liip Etica Bd',
-			fill: config.webBlack
-		})
+		this.scoreLabel = game.add.text(config.gameWidth - 70, 30, '0', config.text.md)
 		this.scoreLabel.fixedToCamera = true
 
 		// current position
-		let positionLabelstyle = { font: "32px Liip Etica Bd", fill: config.webBlack, boundsAlignH: "center" };
-		this.positionLabel = game.add.text(0, 0, '2007', positionLabelstyle)
+		this.positionLabel = game.add.text(0, 0, '2007', Object.assign(config.text.xl, ({ boundsAlignH: "center" })))
 		this.positionLabel.setTextBounds(0, 30, config.gameWidth, 30);
 		this.positionLabel.fixedToCamera = true
 
