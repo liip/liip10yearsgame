@@ -3,10 +3,13 @@ import Phaser from 'phaser'
 import config from '../config'
 
 export default class extends Phaser.State {
-	init () {}
-	preload () {}
+	init() {
+	}
 
-	create () {
+	preload() {
+	}
+
+	create() {
 		this.map = this.game.add.tilemap('level1');
 		this.map.addTilesetImage('tiles_spritesheet', 'gameTiles');
 
@@ -30,54 +33,77 @@ export default class extends Phaser.State {
 		this.score = 0;
 
 		// init keys
-		this.cursors = this.game.input.keyboard.createCursorKeys()
+		// this.cursors = this.game.input.keyboard.createCursorKeys()
 		this.keys = this.game.input.keyboard.addKeys({
-			'space': Phaser.KeyCode.SPACEBAR
+			'space': Phaser.KeyCode.SPACEBAR,
+			'down': Phaser.KeyCode.DOWN
 		})
 
-		// player ducks
-		var playerDuckImg = this.game.cache.getImage('playerDuck')
-		this.player.duckedDimensions = { width: playerDuckImg.width, height: playerDuckImg.height }
-		this.player.standDimensions = { width: this.player.width, height: this.player.height }
+		var playerDuckImg = this.game.cache.getImage('playerDuck');
+		this.player.duckedDimensions = {width: playerDuckImg.width, height: playerDuckImg.height};
+		this.player.standDimensions = {width: this.player.width, height: this.player.height};
 		this.player.anchor.setTo(0.5, 1);
 
 		// make the player move sideways continuously
 		// this.player.body.velocity.x = 200;
 	}
 
-	update () {
+	update() {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this)
 
-		// this.player.body.velocity.x = 300;
 		if (this.keys.space.isDown) {
-			this.playerJump()
+			this.playerJump();
+		} else if (this.keys.down.isDown) {
+			this.playerDuck();
 		}
-		else if (this.cursors.down.isDown) {
-			this.playerDuck()
+
+		if (!this.keys.down.isDown && this.player.isDucked) {
+			//change image and update the body size for the physics engine
+			this.player.loadTexture('player');
+			this.player.body.setSize(this.player.standDimensions.width, this.player.standDimensions.height);
+			this.player.isDucked = false;
 		}
-		if (!this.cursors.down.isDown && this.player.isDucked) {
-			this.player.loadTexture('player')
-			this.player.body.setSize(this.player.standDimensions.width, this.player.standDimensions.height)
-			this.player.isDucked = false
+
+		//restart the game if reaching the edge
+
+		if (this.player.x >= this.game.world.width) {
+			this.game.time.events.add(1500, this.gameOver, this);
 		}
 	}
 
-	playerJump () {
+	gameOver() {
+		this.game.state.start('Game');
+	}
+
+	playerJump() {
 		if (this.player.body.blocked.down) {
 			this.player.body.velocity.y -= 700;
 		}
 	}
 
-	playerDuck () {
-		this.player.loadTexture('playerDuck')
-		this.player.body.setSize(this.player.duckedDimensions.width, this.player.duckedDimensions.height)
-		this.player.isDucked = true
+	playerDuck() {
+		//change image and update the body size for the physics engine
+		this.player.loadTexture('playerDuck');
+		this.player.body.setSize(this.player.duckedDimensions.width, this.player.duckedDimensions.height);
+		//we use this to keep track whether it's ducked or not
+		this.player.isDucked = true;
 	}
 
-	playerHit (player, blockedLayer) {
+	playerHit(player, blockedLayer) {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer)
+
+		if (player.body.blocked.right) {
+			//set to dead (this doesn't affect rendering)
+			this.player.alive = false;
+			//stop moving to the right
+			this.player.body.velocity.x = 0;
+			//change sprite image
+			this.player.loadTexture('playerDead');
+			//go to gameover after a few miliseconds
+			this.game.time.events.add(1500, this.gameOver, this);
+		}
 	}
 
-	render () {
+	render() {
 	}
 }
