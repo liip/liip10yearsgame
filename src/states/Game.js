@@ -1,6 +1,6 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
-import Mushroom from '../sprites/Mushroom'
+import config from '../config'
 
 export default class extends Phaser.State {
 	init () {}
@@ -16,11 +16,18 @@ export default class extends Phaser.State {
 		this.map.setCollisionBetween(1, 100000, true, 'blockedLayer')
 		this.backgroundLayer.resizeWorld()
 
+		this.logo = this.game.add.sprite(20, 30, 'liipLogo')
+		this.logo.scale.setTo(0.2)
+
 		// setup player
 		this.player = this.game.add.sprite(100, 200, 'player')
 		this.game.physics.arcade.enable(this.player)
-		this.player.body.gravity.y = 1000
+		this.player.body.gravity.y = 1500
 		this.game.camera.follow(this.player)
+
+		// score
+		this.scoreLabel = game.add.text(config.gameWidth-70, 30, 'score: 0', { font: '14px Open Sans', fill: '#414141' });
+		this.score = 0;
 
 		// init keys
 		this.cursors = this.game.input.keyboard.createCursorKeys()
@@ -35,7 +42,7 @@ export default class extends Phaser.State {
 		this.player.anchor.setTo(0.5, 1);
 
 		// make the player move sideways continuously
-		this.player.body.velocity.x = 200;
+		// this.player.body.velocity.x = 200;
 	}
 
 	update () {
