@@ -30,7 +30,10 @@ export default class extends Phaser.State {
 		this.game.camera.follow(this.player)
 
 		// score
-		this.scoreLabel = game.add.text(config.gameWidth-70, 30, 'score: 0', { font: '14px Open Sans', fill: '#414141' })
+		this.scoreLabel = game.add.text(config.gameWidth - 70, 30, 'score: 0', {
+			font: '14px Open Sans',
+			fill: '#414141'
+		})
 		this.score = 0
 		this.scoreLabel.fixedToCamera = true
 
@@ -95,13 +98,13 @@ export default class extends Phaser.State {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer)
 
 		if (player.body.blocked.right) {
-			//set to dead (this doesn't affect rendering)
+			// set to dead (this doesn't affect rendering)
 			this.player.alive = false
-			//stop moving to the right
+			// stop moving to the right
 			this.player.body.velocity.x = 0
-			//change sprite image
+			// change sprite image
 			this.player.loadTexture('playerDead')
-			//go to gameover after a few miliseconds
+			// go to gameover after a few miliseconds
 			this.game.time.events.add(1500, this.gameOver, this)
 		}
 	}
