@@ -25,7 +25,7 @@ const text = {
 	xl: {
 		font: '26px Liip Etica Bd',
 		fill: css.webBlack,
-		tabs: [150, 150, 200]
+		tabs: [100, 200, 100, 150]
 	}
 }
 
