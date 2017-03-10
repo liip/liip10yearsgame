@@ -16,12 +16,12 @@ export default class extends Phaser.State {
 	create() {
 		this.map = this.game.add.tilemap('liip')
 		this.map.addTilesetImage('tiles_spritesheet', 'gameTiles')
-		this.mapWidthInPixels = this.map.widthInPixels;
+		this.mapWidthInPixels = this.map.widthInPixels
 
 		// create layers
 		this.backgroundLayer = this.map.createLayer('backgroundLayer')
 		this.blockedLayer = this.map.createLayer('blockedLayer')
-		this.map.setCollisionBetween(1, 100000, true, 'blockedLayer')
+		this.map.setCollisionBetween(1, 200000, true, 'blockedLayer', true)
 		this.backgroundLayer.resizeWorld()
 
 		this.logo = this.game.add.sprite(20, 35, 'liipLogoSmall')
@@ -207,6 +207,12 @@ export default class extends Phaser.State {
 
 	collect(player, collectable) {
 		// show +500 notice
+		if(collectable.type === 'beer') {
+			this.player.body.velocity.x += 100
+		} else if(collectable.type === 'coffee') {
+			this.player.body.velocity.x -= 100
+		}
+
 		let oneUp = this.game.add.text(
 			collectable.x,
 			collectable.y,
