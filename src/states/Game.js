@@ -63,22 +63,25 @@ export default class extends Phaser.State {
 		}
 
 		if (!this.keys.down.isDown && this.player.isDucked) {
-			//change image and update the body size for the physics engine
+			// change image and update the body size for the physics engine
 			this.player.loadTexture('player')
 			this.player.body.setSize(this.player.standDimensions.width, this.player.standDimensions.height)
 			this.player.isDucked = false
 		}
 
-		//restart the game if reaching the edge
+		// restart the game if reaching the edge
 
 		if (this.player.x >= this.game.world.width) {
-			this.game.time.events.add(1500, this.gameOver, this)
+			this.game.time.events.add(1500, this.restart, this)
 		}
 	}
 
 	gameOver() {
-		// this.game.state.start('Game')
 		this.game.state.start('HighScore')
+	}
+
+	restart() {
+		this.game.state.start('Game')
 	}
 
 	playerJump() {
