@@ -24,7 +24,8 @@ const text = {
 	},
 	xl: {
 		font: '26px Liip Etica Bd',
-		fill: css.webBlack
+		fill: css.webBlack,
+		tabs: [150, 150, 200]
 	}
 }
 
@@ -38,5 +39,6 @@ export default {
 	player: {
 		speed: 300,
 		weight: 2000
-	}
+	},
+	backGround: css.webWhite
 }

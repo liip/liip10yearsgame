@@ -4,7 +4,7 @@ import config from '../config'
 
 export default class extends Phaser.State {
 	init() {
-		// this.game.state.start('HighScore')
+		this.game.state.start('HighScore')
 	}
 
 	preload() {
@@ -85,17 +85,17 @@ export default class extends Phaser.State {
 
 	updatePositionLabel(playerPositionX) {
 		if(playerPositionX > 3000) {
-			this.positionLabel.text = '2017';
+			this.positionLabel.text = '2017'
 		} else if(playerPositionX > 2500) {
-			this.positionLabel.text = '2016';
+			this.positionLabel.text = '2016'
 		} else if(playerPositionX > 2000) {
-			this.positionLabel.text = '2015';
+			this.positionLabel.text = '2015'
 		} else if(playerPositionX > 1500) {
-			this.positionLabel.text = '2014';
+			this.positionLabel.text = '2014'
 		} else if(playerPositionX > 1000) {
-			this.positionLabel.text = '2013';
+			this.positionLabel.text = '2013'
 		} else if(playerPositionX > 500) {
-			this.positionLabel.text = '2012';
+			this.positionLabel.text = '2012'
 		}
 	}
 
