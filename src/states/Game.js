@@ -32,13 +32,13 @@ export default class extends Phaser.State {
 
 		// score
 		this.scoreLabel = game.add.text(config.gameWidth - 70, 30, '0', {
-			font: '16px Open Sans',
+			font: '16px Liip Etica Bd',
 			fill: config.webBlack
 		})
 		this.scoreLabel.fixedToCamera = true
 
 		// current position
-		let positionLabelstyle = { font: "bold 32px Arial", fill: "#000", boundsAlignH: "center" };
+		let positionLabelstyle = { font: "32px Liip Etica Bd", fill: config.webBlack, boundsAlignH: "center" };
 		this.positionLabel = game.add.text(0, 0, '2007', positionLabelstyle)
 		this.positionLabel.setTextBounds(0, 30, config.gameWidth, 30);
 		this.positionLabel.fixedToCamera = true
