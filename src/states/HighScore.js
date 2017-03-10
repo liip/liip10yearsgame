@@ -1,19 +1,18 @@
 import Phaser from 'phaser'
 import axios from 'axios'
 import _ from 'lodash'
-import WebFont from 'webfontloader'
 import config from '../config'
-import {centerGameObjects} from '../utils'
 
 export default class extends Phaser.State {
 	init() {
-		this.stage.backgroundColor = '#fff'
+		this.stage.backgroundColor = config.css.webWhite
 	}
 
 	preload() {
 	}
 
 	create() {
+		console.log('started')
 		const leftMargin = 50
 		this.game.add.text(leftMargin, 50, 'High Scores:', config.text.xl)
 		const logo = this.game.add.sprite(leftMargin, 100, 'liipLogo')
@@ -28,6 +27,12 @@ export default class extends Phaser.State {
 			this.game.physics.arcade.enable(this.player)
 			this.player.body.velocity.x = config.player.speed * 2
 		}, 1000)
+
+		const replay = this.game.add.sprite(leftMargin, 300, 'replay')
+		replay.inputEnabled = true
+		replay.events.onInputDown.add(() => {
+			this.game.state.start('Game')
+		})
 
 		axios.get(config.backendDomain + '/scores')
 			.then(({data}) => data)

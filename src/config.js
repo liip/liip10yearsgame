@@ -29,9 +29,13 @@ const text = {
 	}
 }
 
+const {gameWidth, gameHeight} = screen.orientation.angle
+	? {gameWidth: 760, gameHeight: 400}
+	: {gameWidth: 400, gameHeight: 760}
+
 export default {
-	gameWidth: 760,
-	gameHeight: 400,
+	gameWidth,
+	gameHeight,
 	localStorageName: 'liip10yearsgame',
 	text,
 	css,

@@ -4,7 +4,6 @@ import config from '../config'
 
 export default class extends Phaser.State {
 	init() {
-		// this.game.state.start('HighScore')
 	}
 
 	preload() {
