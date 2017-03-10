@@ -17,5 +17,6 @@ export default {
 		font: '14px Open Sans',
 		fill: css.webBlack
 	},
-	css
+	css,
+	backendDomain: 'http://localhost:3002'
 }
