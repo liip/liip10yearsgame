@@ -29,9 +29,10 @@ const text = {
 	}
 }
 
-const {gameWidth, gameHeight} = screen.orientation.angle
-	? {gameWidth: 760, gameHeight: 400}
-	: {gameWidth: 400, gameHeight: 760}
+const isPortrait = screen.orientation.type.includes('portrait')
+const {gameWidth, gameHeight} = isPortrait
+	? {gameWidth: 400, gameHeight: 760}
+	: {gameWidth: 760, gameHeight: 400}
 
 export default {
 	gameWidth,
