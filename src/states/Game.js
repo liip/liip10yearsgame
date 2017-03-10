@@ -24,8 +24,8 @@ export default class extends Phaser.State {
 		this.map.setCollisionBetween(1, 100000, true, 'blockedLayer')
 		this.backgroundLayer.resizeWorld()
 
-		this.logo = this.game.add.sprite(20, 35, 'liipLogo')
-		this.logo.scale.setTo(0.2)
+		this.logo = this.game.add.sprite(20, 35, 'liipLogoSmall')
+		this.logo.scale.setTo(0.5)
 		this.logo.fixedToCamera = true
 
 		// setup player
@@ -40,7 +40,7 @@ export default class extends Phaser.State {
 
 		// current position
 		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, ({boundsAlignH: "center"})))
-		this.positionLabel.setTextBounds(0, 30, config.gameWidth, 30);
+		this.positionLabel.setTextBounds(0, 30, config.gameWidth, 30)
 		this.positionLabel.fixedToCamera = true
 
 		// init keys
@@ -146,7 +146,6 @@ export default class extends Phaser.State {
 			// go to gameover after a few miliseconds
 			this.game.time.events.add(1500, this.gameOver, this)
 		}
-		console.log(player, blockedLayer)
 	}
 
 	updateScore(newScore) {
