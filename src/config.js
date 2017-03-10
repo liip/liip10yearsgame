@@ -20,12 +20,12 @@ const text = {
 	},
 	lg: {
 		font: '20px Liip Etica Bd',
-		fill: css.webBlack
+		fill: css.webBlack,
+		tabs: [80, 80, 80, 100]
 	},
 	xl: {
 		font: '26px Liip Etica Bd',
 		fill: css.webBlack,
-		tabs: [100, 200, 100, 150]
 	}
 }
 

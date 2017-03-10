@@ -14,20 +14,19 @@ export default class extends Phaser.State {
 	}
 
 	create() {
-		const logo = this.game.add.sprite(100, 200, 'liipLogo')
+		const leftMargin = 50
+		this.game.add.text(leftMargin, 50, 'High Scores:', config.text.xl)
+		const logo = this.game.add.sprite(leftMargin, 100, 'liipLogo')
 		logo.scale.setTo(0.62)
-		this.game.add.text(100, 100, 'High Scores:', config.text.xl)
 
 		setTimeout(() => {
-			this.player = this.game.add.sprite(150, 200, 'player')
+			this.player = this.game.add.sprite(leftMargin * 2, 100, 'player')
 			this.game.add.tween(logo).to({alpha: 0}, 300, Phaser.Easing.Linear.None, true)
 		}, 500)
 
 		setTimeout(() => {
 			this.game.physics.arcade.enable(this.player)
 			this.player.body.velocity.x = config.player.speed * 2
-			logo.alpha = 0
-
 		}, 1000)
 
 		axios.get(config.backendDomain + '/scores')
@@ -38,7 +37,7 @@ export default class extends Phaser.State {
 				.value())
 			.then(winners => {
 				winners.map(([score, w], i) => {
-					const text = this.game.add.text(100, 300 + i * 40, `Person:\t${w}\tScore:\t${1111}`, config.text.xl)
+					const text = this.game.add.text(leftMargin, 200 + i * 40, `Person:\t${w}\tScore:\t${1111}`, config.text.lg)
 					text.setShadow(-1, 1, 'rgba(0,0,0,0.5)', 0)
 				})
 			})
