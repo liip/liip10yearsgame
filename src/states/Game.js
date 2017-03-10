@@ -2,6 +2,7 @@
 import Phaser from 'phaser'
 import config from '../config'
 import { makeGreen } from '../utils'
+import _ from 'lodash'
 
 export default class extends Phaser.State {
 	init() {
@@ -156,18 +157,14 @@ export default class extends Phaser.State {
 	}
 
 	findObjectsByType(type, map, layerName) {
-		let result = new Array();
-		map.objects[layerName].forEach(function(element){
-			if(element.properties.type === type) {
-				//Phaser uses top left, Tiled bottom left so we have to adjust
-				//also keep in mind that some images could be of different size as the tile size
-				//so they might not be placed in the exact position as in Tiled
-				element.y -= map.tileHeight;
-				result.push(element);
-			}
-		});
-
-		return result;
+		return _
+			.chain(map.objects[layerName])
+			.filter(element => element.properties.type === type)
+			.map((element) => {
+				element.y -= map.tileHeight
+				return element
+			})
+			.value()
 	}
 
 	createFromTiledObject(element, group) {
