@@ -36,6 +36,12 @@ export default class extends Phaser.State {
 		})
 		this.scoreLabel.fixedToCamera = true
 
+		// current position
+		var positionLabelstyle = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center" };
+		this.positionLabel = game.add.text(0, 0, '2007', positionLabelstyle)
+		this.positionLabel.setTextBounds(0, 30, config.gameWidth, 30);
+		this.positionLabel.fixedToCamera = true
+
 		// init keys
 		// this.cursors = this.game.input.keyboard.createCursorKeys()
 		this.keys = this.game.input.keyboard.addKeys({
@@ -64,22 +70,44 @@ export default class extends Phaser.State {
 		this.updateScore(5)
 
 		if (!this.keys.down.isDown && this.player.isDucked) {
-			//change image and update the body size for the physics engine
+			// change image and update the body size for the physics engine
 			this.player.loadTexture('player')
 			this.player.body.setSize(this.player.standDimensions.width, this.player.standDimensions.height)
 			this.player.isDucked = false
 		}
 
-		//restart the game if reaching the edge
+		// restart the game if reaching the edge
 
 		if (this.player.x >= this.game.world.width) {
-			this.game.time.events.add(1500, this.gameOver, this)
+			this.game.time.events.add(1500, this.restart, this)
+		}
+
+		// Update position label depending on the position of the player
+		this.updatePositionLabel(this.player.x);
+	}
+
+	updatePositionLabel(playerPositionX) {
+		if(playerPositionX > 3000) {
+			this.positionLabel.text = '2017';
+		} else if(playerPositionX > 2500) {
+			this.positionLabel.text = '2016';
+		} else if(playerPositionX > 2000) {
+			this.positionLabel.text = '2015';
+		} else if(playerPositionX > 1500) {
+			this.positionLabel.text = '2014';
+		} else if(playerPositionX > 1000) {
+			this.positionLabel.text = '2013';
+		} else if(playerPositionX > 500) {
+			this.positionLabel.text = '2012';
 		}
 	}
 
 	gameOver() {
-		// this.game.state.start('Game')
 		this.game.state.start('HighScore')
+	}
+
+	restart() {
+		this.game.state.start('Game')
 	}
 
 	playerJump() {

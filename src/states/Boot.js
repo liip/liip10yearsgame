@@ -37,8 +37,9 @@ export default class extends Phaser.State {
 		this.load.audio('coin', './assets/audio/coin.wav')
 
 		this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
-		this.load.image('gameTiles', 'assets/images/tiles_spritesheet.png');
+		this.load.image('gameTiles', 'assets/images/tiles_spritesheet.png')
 
+		this.load.audio('ouch', 'assets/audio/ouch.wav')
 	}
 
 	create() {
