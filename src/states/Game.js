@@ -34,7 +34,7 @@ export default class extends Phaser.State {
 		this.player.anchor.setTo(0.5, 1);
 
 		// make the player move sideways continuously
-		this.player.body.velocity.x = 120;
+		this.player.body.velocity.x = 150;
 	}
 
 	update () {
@@ -55,10 +55,10 @@ export default class extends Phaser.State {
 		}
 	}
 
-	playerJump () {
-		if (this.player.body.blocked.down) {
-			this.player.body.velocity.y -= 700;
-		}
+	playerDuck () {
+		this.player.loadTexture('playerDuck')
+		this.player.body.setSize(this.player.duckedDimensions.width, this.player.duckedDimensions.height)
+		this.player.isDucked = true
 	}
 
 	playerHit (player, blockedLayer) {
