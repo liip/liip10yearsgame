@@ -45,5 +45,6 @@ export default {
 		speed: 300,
 		weight: 2000
 	},
+	coinValue: 500,
 	backGround: css.webWhite
 }

@@ -195,8 +195,24 @@ export default class extends Phaser.State {
 	}
 
 	collect(player, collectable) {
+		// show +500 notice
+		let oneUp = this.game.add.text(
+			this.player.x,
+			this.player.y,
+			'+' + config.coinValue,
+			makeGreen(config.text.xl)
+			)
+		oneUp.fixedToCamera = true
+		// destroy it shortly thereafter
+		setTimeout(() => {
+			oneUp.destroy()
+		}, 500)
+
 		// play audio
 		this.soundCoin.play()
+		// update score
+		// @todo different bonuses per collectable?
+		this.updateScore(config.coinValue)
 		// remove sprite
 		collectable.destroy()
 	}
