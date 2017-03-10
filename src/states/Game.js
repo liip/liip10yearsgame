@@ -30,11 +30,10 @@ export default class extends Phaser.State {
 		this.game.camera.follow(this.player)
 
 		// score
-		this.scoreLabel = game.add.text(config.gameWidth - 70, 30, 'score: 0', {
-			font: '14px Open Sans',
+		this.scoreLabel = game.add.text(config.gameWidth - 70, 30, '0', {
+			font: '16px Open Sans',
 			fill: '#414141'
 		})
-		this.score = 0
 		this.scoreLabel.fixedToCamera = true
 
 		// current position
@@ -67,6 +66,8 @@ export default class extends Phaser.State {
 		} else if (this.keys.down.isDown) {
 			this.playerDuck()
 		}
+
+		this.updateScore(5)
 
 		if (!this.keys.down.isDown && this.player.isDucked) {
 			// change image and update the body size for the physics engine
@@ -136,6 +137,12 @@ export default class extends Phaser.State {
 			// go to gameover after a few miliseconds
 			this.game.time.events.add(1500, this.gameOver, this)
 		}
+	}
+
+	updateScore (newScore) {
+		// this.score = newScore
+		let score = parseInt(this.scoreLabel.text) + newScore
+		this.scoreLabel.text = score
 	}
 
 	render() {
