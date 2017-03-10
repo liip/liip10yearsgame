@@ -1,6 +1,7 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
 import config from '../config'
+import { makeGreen } from '../utils'
 
 export default class extends Phaser.State {
 	init() {
@@ -20,7 +21,7 @@ export default class extends Phaser.State {
 		this.map.setCollisionBetween(1, 100000, true, 'blockedLayer')
 		this.backgroundLayer.resizeWorld()
 
-		this.logo = this.game.add.sprite(20, 30, 'liipLogo')
+		this.logo = this.game.add.sprite(20, 35, 'liipLogo')
 		this.logo.scale.setTo(0.2)
 		this.logo.fixedToCamera = true
 
@@ -31,7 +32,7 @@ export default class extends Phaser.State {
 		this.game.camera.follow(this.player)
 
 		// score
-		this.scoreLabel = this.game.add.text(config.gameWidth - 70, 30, '0', config.text.md)
+		this.scoreLabel = this.game.add.text(config.gameWidth - 70, 30, '0', makeGreen(config.text.xl))
 		this.scoreLabel.fixedToCamera = true
 
 		// current position
