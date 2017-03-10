@@ -133,7 +133,7 @@ export default class extends Phaser.State {
 	}
 
 	playerHit(player, blockedLayer) {
-		this.game.physics.arcade.collide(this.player, this.blockedLayer)
+		this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this)
 
 		if (player.body.blocked.right) {
 			this.soundOuch.play()
