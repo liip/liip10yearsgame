@@ -65,6 +65,7 @@ export default class extends Phaser.State {
 		// add objects
 		this.createBeers()
 		this.createAwards()
+		this.createCoffees()
 	}
 
 	update() {
@@ -93,6 +94,7 @@ export default class extends Phaser.State {
 		// make obejects collectable
 		this.game.physics.arcade.overlap(this.player, this.beers, this.collect, null, this);
 		this.game.physics.arcade.overlap(this.player, this.awards, this.collect, null, this);
+		this.game.physics.arcade.overlap(this.player, this.coffees, this.collect, null, this);
 
 		// restart the game if reaching the edge
 		if (this.player.x >= this.game.world.width) {
@@ -190,6 +192,16 @@ export default class extends Phaser.State {
 
 		result.forEach((element) => {
 			this.createFromTiledObject(element, this.awards)
+		})
+	}
+
+	createCoffees() {
+		this.coffees = this.game.add.group()
+		this.coffees.enableBody = true
+		let result = this.findObjectsByType('coffee', this.map, 'objectsLayer')
+
+		result.forEach((element) => {
+			this.createFromTiledObject(element, this.coffees)
 		})
 	}
 
