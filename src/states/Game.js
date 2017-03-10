@@ -37,6 +37,12 @@ export default class extends Phaser.State {
 		this.score = 0
 		this.scoreLabel.fixedToCamera = true
 
+		// current position
+		var positionLabelstyle = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center" };
+		this.positionLabel = game.add.text(0, 0, '2007', positionLabelstyle)
+		this.positionLabel.setTextBounds(0, 30, config.gameWidth, 30);
+		this.positionLabel.fixedToCamera = true
+
 		// init keys
 		// this.cursors = this.game.input.keyboard.createCursorKeys()
 		this.keys = this.game.input.keyboard.addKeys({
@@ -73,6 +79,25 @@ export default class extends Phaser.State {
 
 		if (this.player.x >= this.game.world.width) {
 			this.game.time.events.add(1500, this.restart, this)
+		}
+
+		// Update position label depending on the position of the player
+		this.updatePositionLabel(this.player.x);
+	}
+
+	updatePositionLabel(playerPositionX) {
+		if(playerPositionX > 3000) {
+			this.positionLabel.text = '2017';
+		} else if(playerPositionX > 2500) {
+			this.positionLabel.text = '2016';
+		} else if(playerPositionX > 2000) {
+			this.positionLabel.text = '2015';
+		} else if(playerPositionX > 1500) {
+			this.positionLabel.text = '2014';
+		} else if(playerPositionX > 1000) {
+			this.positionLabel.text = '2013';
+		} else if(playerPositionX > 500) {
+			this.positionLabel.text = '2012';
 		}
 	}
 
