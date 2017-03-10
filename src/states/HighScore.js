@@ -37,6 +37,11 @@ export default class extends Phaser.State {
 		replay.scale.setTo(0.61)
 		replay.anchor.setTo(0.5)
 
+		// init keys
+		this.keys = this.game.input.keyboard.addKeys({
+			space: Phaser.KeyCode.SPACEBAR,
+		})
+
 		axios.get(config.backendDomain + '/scores')
 			.then(({data}) => data)
 			.then(winners => _(winners)
@@ -52,7 +57,10 @@ export default class extends Phaser.State {
 			.catch(console.warn)
 	}
 
-	render() {
+	update() {
+		if (this.keys.space.isDown) {
+			this.state.start('Game')
+		}
 	}
 
 }
