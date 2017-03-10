@@ -25,3 +25,17 @@ This will optimize and minimize the compiled bundle.
 ## Credits
 
 Built with [Phaser+ES6+Webpack](https://github.com/lean/phaser-es6-webpack).
+
+# Server
+
+Required for storing `highscores`
+```sh
+cd src/server
+npm i
+npm start
+```
+
+```bash
+nodemon -w ./ -x bin/www.js
+curl localhost:3000/scores
+```
