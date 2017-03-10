@@ -1,27 +1,25 @@
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
+import config from '../config'
 
 export default class extends Phaser.State {
 	init() {
-		console.warn('HighScore Loaded')
 		this.stage.backgroundColor = '#fff'
+		this.highScores = null
 	}
 
 	preload() {
-		console.warn('loaded')
-
-		// this.load.image('liipLogo', './assets/images/liip_logo.png')
-
-		// this.load.image('loaderBar', './assets/images/loader-bar.png')
-		// this.game.add.sprite(1000, 1000, 'liipLogo')
+		this.load.image('liipLogo', './assets/images/liip_logo.png')
 	}
 
 	create() {
-		console.warn('loaded')
+		const winners = ['Levente 10000', 'Rita 1000'].join(' | ')
+		this.game.add.sprite(0, 0, 'liipLogo')
+		this.game.add.sprite(100, 200, 'player')
+		this.highScores = this.game.add.text(300, 300, `score: ${winners}`, config.hud)
 	}
 
 	render() {
-		console.warn('loaded')
 	}
 
 

@@ -1,6 +1,5 @@
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
-import HighScore from './HighScore'
 
 export default class extends Phaser.State {
 	init() {

@@ -77,7 +77,8 @@ export default class extends Phaser.State {
 	}
 
 	gameOver() {
-		this.game.state.start('Game')
+		// this.game.state.start('Game')
+		this.game.state.start('HighScore')
 	}
 
 	playerJump() {
