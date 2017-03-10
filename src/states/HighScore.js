@@ -12,7 +12,6 @@ export default class extends Phaser.State {
 	}
 
 	create() {
-		console.log('started')
 		const leftMargin = 50
 		this.game.add.text(leftMargin, 50, 'High Scores:', config.text.xl)
 		const logo = this.game.add.sprite(leftMargin, 100, 'liipLogo')
@@ -31,6 +30,7 @@ export default class extends Phaser.State {
 		const replay = this.game.add.sprite(leftMargin, 300, 'replay')
 		replay.inputEnabled = true
 		replay.events.onInputDown.add(() => {
+			// logo.alpha = 0
 			this.game.state.start('Game')
 		})
 

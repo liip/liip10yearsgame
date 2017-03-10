@@ -8,6 +8,7 @@ export default class extends Phaser.State {
 	}
 
 	preload() {
+		// this.state.start('HighScore')
 	}
 
 	create() {
