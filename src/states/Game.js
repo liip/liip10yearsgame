@@ -55,9 +55,9 @@ export default class extends Phaser.State {
 		this.player.body.velocity.x = config.player.speed
 
 		// load sounds
-		this.soundCoin = this.game.add.audio('coin');
-		this.soundOuch = this.game.add.audio('ouch');
-		this.soundJump = this.game.add.audio('jump');
+		this.soundCoin = this.game.add.audio('coin')
+		this.soundOuch = this.game.add.audio('ouch')
+		this.soundJump = this.game.add.audio('jump')
 
 		// add objects
 		this.createBeers();
@@ -84,7 +84,7 @@ export default class extends Phaser.State {
 			}
 
 			// Update position label depending on the position of the player
-			this.updatePositionLabel(this.player.x);
+			this.updatePositionLabel(this.player.x)
 		}
 
 		// make obejects collectable
