@@ -57,9 +57,7 @@ export default class extends Phaser.State {
 		// add objects
 		this.coinSound = this.game.add.audio('coin');
 		this.createBeers();
-		this.game.physics.arcade.overlap(this.player, this.beers, this.collect, null, this);
 		this.createAwards();
-		this.game.physics.arcade.overlap(this.player, this.awards, this.collect, null, this);
 	}
 
 	update() {
@@ -88,6 +86,10 @@ export default class extends Phaser.State {
 
 		// Update position label depending on the position of the player
 		this.updatePositionLabel(this.player.x);
+
+		// make obejects collectable
+		this.game.physics.arcade.overlap(this.player, this.beers, this.collect, null, this);
+		this.game.physics.arcade.overlap(this.player, this.awards, this.collect, null, this);
 	}
 
 	updatePositionLabel(playerPositionX) {
@@ -178,7 +180,6 @@ export default class extends Phaser.State {
 		let result = this.findObjectsByType('beer', this.map, 'objectsLayer');
 
 		result.forEach(function(element){
-			console.log(element);
 			this.createFromTiledObject(element, this.beers);
 		}, this);
 	}
@@ -189,7 +190,6 @@ export default class extends Phaser.State {
 		let result = this.findObjectsByType('award', this.map, 'objectsLayer');
 
 		result.forEach(function(element){
-			console.log(element);
 			this.createFromTiledObject(element, this.awards);
 		}, this);
 	}
