@@ -15,9 +15,16 @@ export default class extends Phaser.State {
 
 		let banner = this.game.add.sprite(
 			200,
-			50,
+			20,
 			'startLogo')
-		banner.scale.setTo(0.3)
+		banner.scale.setTo(0.25)
+
+		// start button
+		let start = this.game.add.sprite(
+			350,
+			100,
+			'start')
+		start.scale.setTo(0.9)
 
 		// setup player
 		this.player = this.game.add.sprite(100, 200, 'player')
@@ -26,12 +33,12 @@ export default class extends Phaser.State {
 		this.game.camera.follow(this.player)
 
 		// show hint
-		let hint = this.game.add.text(
-			55,
-			155,
+		let intro = this.game.add.text(
+			20,
+			170,
 			'Press space to jump',
 			Object.assign(config.text.md, ({ boundsAlignH: "center" })))
-		hint.setTextBounds(0, 30, config.gameWidth, 30);
+		intro.setTextBounds(0, 30, config.gameWidth, 30);
 
 		// init keys
 		this.keys = this.game.input.keyboard.addKeys({
@@ -40,6 +47,10 @@ export default class extends Phaser.State {
 
 		this.player.standDimensions = {width: this.player.width, height: this.player.height}
 		this.player.anchor.setTo(0.5, 1)
+		start.inputEnabled = true
+		start.events.onInputDown.add(() => {
+			this.game.state.start('Game')
+		})
 	}
 
 	update () {
