@@ -59,7 +59,7 @@ export default class extends Phaser.State {
 
 	update() {
 		if (this.keys.space.isDown) {
-			this.state.start('Game')
+			this.state.start('Intro')
 		}
 	}
 
