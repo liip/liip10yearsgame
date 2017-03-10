@@ -208,12 +208,12 @@ export default class extends Phaser.State {
 	collect(player, collectable) {
 		// show +500 notice
 		let oneUp = this.game.add.text(
-			this.player.x,
-			this.player.y,
+			collectable.x,
+			collectable.y,
 			'+' + config.coinValue,
 			makeGreen(config.text.xl)
 			)
-		oneUp.fixedToCamera = true
+		// oneUp.fixedToCamera = true
 		// destroy it shortly thereafter
 		setTimeout(() => {
 			oneUp.destroy()
