@@ -207,6 +207,13 @@ export default class extends Phaser.State {
 
 	collect(player, collectable) {
 		// show +500 notice
+		console.log(collectable);
+		if(collectable.type === 'beer') {
+			this.player.body.velocity.x += 100
+		} else if(collectable.type === 'coffee') {
+			this.player.body.velocity.x -= 100
+		}
+
 		let oneUp = this.game.add.text(
 			collectable.x,
 			collectable.y,
