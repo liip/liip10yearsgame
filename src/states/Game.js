@@ -103,7 +103,6 @@ export default class extends Phaser.State {
 	getCurrentYear(playerPositionX) {
 		const pixelsPerYear = this.mapWidthInPixels / this.years
 		let relativeYear = Math.floor(playerPositionX / pixelsPerYear);
-		console.log(relativeYear);
 		if(relativeYear > this.years - 1) {
 			relativeYear = this.years - 1;
 		}
