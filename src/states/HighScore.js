@@ -18,12 +18,12 @@ export default class extends Phaser.State {
 		const logo = this.game.add.sprite(margin, 100, 'liipLogo')
 		logo.scale.setTo(0.62)
 
-		setTimeout(() => {
-			this.player = this.game.add.sprite(margin * 2, 100, 'player')
+		this.playerTimeout = setTimeout(() => {
+			this.player = this.game.add.sprite(margin, 100, 'player')
 			this.game.add.tween(logo).to({alpha: 0}, 300, Phaser.Easing.Linear.None, true)
 		}, 500)
 
-		setTimeout(() => {
+		this.moveTimeout = setTimeout(() => {
 			this.game.physics.arcade.enable(this.player)
 			this.player.body.velocity.x = config.player.speed * 2
 		}, 1000)
@@ -59,6 +59,8 @@ export default class extends Phaser.State {
 
 	update() {
 		if (this.keys.space.isDown) {
+			clearTimeout(this.playerTimeout)
+			clearTimeout(this.moveTimeout)
 			this.state.start('Intro')
 		}
 	}
