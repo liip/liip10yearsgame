@@ -1,7 +1,7 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
 import config from '../config'
-import { makeGreen } from '../utils'
+import {makeGreen} from '../utils'
 import _ from 'lodash'
 
 export default class extends Phaser.State {
@@ -39,7 +39,7 @@ export default class extends Phaser.State {
 		this.scoreLabel.fixedToCamera = true
 
 		// current position
-		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, ({ boundsAlignH: "center" })))
+		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, ({boundsAlignH: "center"})))
 		this.positionLabel.setTextBounds(0, 30, config.gameWidth, 30);
 		this.positionLabel.fixedToCamera = true
 
@@ -63,14 +63,14 @@ export default class extends Phaser.State {
 		this.soundJump = this.game.add.audio('jump')
 
 		// add objects
-		this.createBeers();
-		this.createAwards();
+		this.createBeers()
+		this.createAwards()
 	}
 
 	update() {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this)
 
-		if(this.player.alive) {
+		if (this.player.alive) {
 			if (this.keys.space.isDown) {
 				this.playerJump()
 			} else if (this.keys.down.isDown) {
@@ -87,7 +87,7 @@ export default class extends Phaser.State {
 			}
 
 			// Update position label depending on the position of the player
-			this.positionLabel.text = this.getCurrentYear(this.player.x);
+			this.positionLabel.text = this.getCurrentYear(this.player.x)
 		}
 
 		// make obejects collectable
@@ -96,17 +96,17 @@ export default class extends Phaser.State {
 
 		// restart the game if reaching the edge
 		if (this.player.x >= this.game.world.width) {
-			this.game.time.events.add(1500, this.restart, this)
+			this.game.time.events.add(1500, this.gameOver, this)
 		}
 	}
 
 	getCurrentYear(playerPositionX) {
 		const pixelsPerYear = this.mapWidthInPixels / this.years
-		let relativeYear = Math.floor(playerPositionX / pixelsPerYear);
-		if(relativeYear > this.years - 1) {
-			relativeYear = this.years - 1;
+		let relativeYear = Math.floor(playerPositionX / pixelsPerYear)
+		if (relativeYear > this.years - 1) {
+			relativeYear = this.years - 1
 		}
-		return this.startYear + relativeYear;
+		return this.startYear + relativeYear
 	}
 
 	gameOver() {
@@ -146,9 +146,10 @@ export default class extends Phaser.State {
 			// go to gameover after a few miliseconds
 			this.game.time.events.add(1500, this.gameOver, this)
 		}
+		console.log(player, blockedLayer)
 	}
 
-	updateScore (newScore) {
+	updateScore(newScore) {
 		// this.score = newScore
 		let score = parseInt(this.scoreLabel.text, 10) + newScore
 		this.scoreLabel.text = score
