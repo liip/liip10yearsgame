@@ -7,28 +7,55 @@ export default class extends Phaser.State {
   preload () {}
 
   create () {
-    const bannerText = 'Liip 10 Years Timeline Game'
-    let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText)
-    banner.font = 'Bangers'
-    banner.padding.set(10, 16)
-    banner.fontSize = 40
-    banner.fill = '#77BFA3'
-    banner.smoothed = false
-    banner.anchor.setTo(0.5)
+	this.map = this.game.add.tilemap('level1');
+	this.map.addTilesetImage('tiles_spritesheet', 'gameTiles');
 
-    this.mushroom = new Mushroom({
-      game: this,
-      x: this.world.centerX,
-      y: this.world.centerY,
-      asset: 'mushroom'
-    })
+	// create layers
+	this.backgroundLayer = this.map.createLayer('backgroundLayer')
+	this.blockedLayer = this.map.createLayer('blockedLayer')
+	this.map.setCollisionBetween(1, 100000, true, 'blockedLayer')
+	this.backgroundLayer.resizeWorld()
 
-    this.game.add.existing(this.mushroom)
+	// setup player
+	this.player = this.game.add.sprite(100, 200, 'player')
+	this.game.physics.arcade.enable(this.player)
+	this.player.body.gravity.y = 1000
+	this.game.camera.follow(this.player)
+
+	// init keys
+	// this.cursors = this.game.input.keyboard.createCursorKeys()
+	this.keys = this.game.input.keyboard.addKeys({
+		'space': Phaser.KeyCode.SPACEBAR
+	})
+
+	var playerDuckImg = this.game.cache.getImage('playerDuck');
+	this.player.duckedDimensions = {width: playerDuckImg.width, height: playerDuckImg.height};
+	this.player.standDimensions = {width: this.player.width, height: this.player.height};
+	this.player.anchor.setTo(0.5, 1);
+
+	// make the player move sideways continuously
+	this.player.body.velocity.x = 120;
+  }
+
+  update () {
+	this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this)
+
+	// this.player.body.velocity.x = 300; 
+	if (this.keys.space.isDown) {
+		this.playerJump();
+	}
+  }
+
+  playerJump () {
+	if (this.player.body.blocked.down) {
+		this.player.body.velocity.y -= 700;
+	}
+  }
+
+  playerHit (player, blockedLayer) {
+	this.game.physics.arcade.collide(this.player, this.blockedLayer)
   }
 
   render () {
-    if (__DEV__) {
-      this.game.debug.spriteInfo(this.mushroom, 32, 32)
-    }
   }
 }

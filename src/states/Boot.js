@@ -11,8 +11,7 @@ export default class extends Phaser.State {
   preload () {
     WebFont.load({
       google: {
-      	// @todo add liip font
-        families: ['Bangers']
+        families: ['Open Sans']
       },
       active: this.fontsLoaded
     })
@@ -22,12 +21,23 @@ export default class extends Phaser.State {
 
     this.load.image('loaderBg', './assets/images/loader-bg.png')
     this.load.image('loaderBar', './assets/images/loader-bar.png')
+
+	this.load.image('player', './assets/images/player.png')    
+	this.load.image('playerDuck', './assets/images/player_duck.png')    
+	this.load.image('playerDead', './assets/images/player_dead.png')    
+
+	this.load.image('goldCoin', './assets/images/goldCoin.png')    
+	this.load.audio('coin', './assets/audio/coin.wav')    
+
+	this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
+	this.load.image('gameTiles', 'assets/images/tiles_spritesheet.png');
+
   }
 
   create () {
   	this.scale.pageAlignHorizontally = true
 	this.scale.pageAlignVertically = true
-	this.scale.setScreenSize(true)
+	// this.scale.setScreenSize(true)
 
 	this.game.physics.startSystem(Phaser.Physics.ARCADE)
   }
