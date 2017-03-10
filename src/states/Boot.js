@@ -25,6 +25,7 @@ export default class extends Phaser.State {
 		this.load.image('playerDead', './assets/images/player_dead.png')
 
 		this.load.image('liipLogo', './assets/images/liip_logo.png')
+		this.load.image('liipLogoSmall', './assets/images/liip_logo_small.png')
 
 		this.load.image('beer', './assets/images/beer.png')
 		this.load.image('award', './assets/images/award.png')
