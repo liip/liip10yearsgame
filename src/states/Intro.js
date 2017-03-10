@@ -3,6 +3,9 @@ import config from '../config'
 import { makeGreen } from '../utils'
 
 export default class extends Phaser.State {
+	preload() {
+		// this.state.start('HighScore')
+	}
 	create () {
 		this.map = this.game.add.tilemap('liip')
 		this.map.addTilesetImage('tiles_spritesheet', 'gameTiles')

@@ -8,7 +8,6 @@ export default class extends Phaser.State {
 	}
 
 	preload() {
-		// this.state.start('HighScore')
 	}
 
 	create() {
@@ -103,9 +102,9 @@ export default class extends Phaser.State {
 		const startYear = 2007
 		const pixelsPerYear = this.mapWidthInPixels / years
 
-		for(let i = 0; i < years; i++) {
+		for (let i = 0; i < years; i++) {
 			let currentYear = startYear + i
-			if(playerPositionX > (pixelsPerYear * i)) {
+			if (playerPositionX > (pixelsPerYear * i)) {
 				this.positionLabel.text = currentYear.toString()
 			}
 		}
@@ -152,7 +151,7 @@ export default class extends Phaser.State {
 
 	updateScore (newScore) {
 		// this.score = newScore
-		let score = parseInt(this.scoreLabel.text) + newScore
+		let score = parseInt(this.scoreLabel.text, 10) + newScore
 		this.scoreLabel.text = score
 	}
 

@@ -32,7 +32,7 @@ export default class extends Phaser.State {
 		this.load.tilemap('liip', 'assets/tilemaps/liip.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.image('gameTiles', 'assets/images/tiles_spritesheet.png')
 
-		this.load.image('replay', 'assets/images/replay.jpg')
+		this.load.image('replay', 'assets/images/replay.png ')
 
 		this.load.audio('coin', 'assets/audio/coin.wav')
 		this.load.audio('ouch', 'assets/audio/ouch.wav')
