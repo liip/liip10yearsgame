@@ -23,8 +23,18 @@
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 </data>
  </layer>
- <objectgroup name="objectLayer">
-  <object id="27" name="beer" type="beer" gid="7" x="267.186" y="198.273" width="50" height="50"/>
-  <object id="28" name="award" type="award" gid="9" x="1434.8" y="243.573" width="50" height="50"/>
+ <objectgroup name="objectsLayer">
+  <object id="27" name="beer" type="beer" gid="7" x="267.186" y="198.273" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="28" name="award" type="award" gid="9" x="1434.8" y="243.573" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
