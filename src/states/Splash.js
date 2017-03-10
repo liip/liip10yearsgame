@@ -1,5 +1,4 @@
 import Phaser from 'phaser'
-import { centerGameObjects } from '../utils'
 import config from '../config'
 
 export default class extends Phaser.State {
@@ -22,7 +21,7 @@ export default class extends Phaser.State {
 	}
 
 	create () {
-		this.state.start('Game')
+		this.state.start('Intro')
 	}
 
 }
