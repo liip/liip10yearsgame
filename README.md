@@ -1,6 +1,23 @@
 # Liip 10 years timeline game
 
-# Setup
+# Running it
+
+```cd <to the folder>```
+
+then:
+
+```
+git pull
+npm run dev
+```
+
+If you get an error, try:
+
+```npm install```
+
+then rerun it.
+
+# Initial Setup
 
 ```npm install```
 
