@@ -21,6 +21,7 @@ export default class extends Phaser.State {
 
 		this.logo = this.game.add.sprite(20, 30, 'liipLogo')
 		this.logo.scale.setTo(0.2)
+		this.logo.fixedToCamera = true
 
 		// setup player
 		this.player = this.game.add.sprite(100, 200, 'player')
@@ -31,6 +32,7 @@ export default class extends Phaser.State {
 		// score
 		this.scoreLabel = game.add.text(config.gameWidth-70, 30, 'score: 0', { font: '14px Open Sans', fill: '#414141' })
 		this.score = 0
+		this.scoreLabel.fixedToCamera = true
 
 		// init keys
 		// this.cursors = this.game.input.keyboard.createCursorKeys()
