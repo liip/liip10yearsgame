@@ -15,7 +15,7 @@ export default class extends Phaser.State {
 
 		let welcome = this.game.add.text(
 			0, 100,
-			'0% loaded',
+			'loading',
 			Object.assign(config.text.lg, { boundsAlignH: 'center', boundsAlignV: 'middle' }))
 		welcome.setTextBounds(0, 100, config.gameWidth, 100)
 

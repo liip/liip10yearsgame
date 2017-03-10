@@ -1,6 +1,7 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
 import config from '../config'
+import { makeGreen } from '../utils'
 
 export default class extends Phaser.State {
 	init() {
@@ -12,6 +13,7 @@ export default class extends Phaser.State {
 	create() {
 		this.map = this.game.add.tilemap('liip')
 		this.map.addTilesetImage('tiles_spritesheet', 'gameTiles')
+		this.mapWidthInPixels = this.map.widthInPixels;
 
 		// create layers
 		this.backgroundLayer = this.map.createLayer('backgroundLayer')
@@ -19,7 +21,7 @@ export default class extends Phaser.State {
 		this.map.setCollisionBetween(1, 100000, true, 'blockedLayer')
 		this.backgroundLayer.resizeWorld()
 
-		this.logo = this.game.add.sprite(20, 30, 'liipLogo')
+		this.logo = this.game.add.sprite(20, 35, 'liipLogo')
 		this.logo.scale.setTo(0.2)
 		this.logo.fixedToCamera = true
 
@@ -30,7 +32,7 @@ export default class extends Phaser.State {
 		this.game.camera.follow(this.player)
 
 		// score
-		this.scoreLabel = this.game.add.text(config.gameWidth - 70, 30, '0', config.text.md)
+		this.scoreLabel = this.game.add.text(config.gameWidth - 70, 30, '0', makeGreen(config.text.xl))
 		this.scoreLabel.fixedToCamera = true
 
 		// current position
@@ -97,18 +99,15 @@ export default class extends Phaser.State {
 	}
 
 	updatePositionLabel(playerPositionX) {
-		if(playerPositionX > 3000) {
-			this.positionLabel.text = '2017'
-		} else if(playerPositionX > 2500) {
-			this.positionLabel.text = '2016'
-		} else if(playerPositionX > 2000) {
-			this.positionLabel.text = '2015'
-		} else if(playerPositionX > 1500) {
-			this.positionLabel.text = '2014'
-		} else if(playerPositionX > 1000) {
-			this.positionLabel.text = '2013'
-		} else if(playerPositionX > 500) {
-			this.positionLabel.text = '2012'
+		const years = 11
+		const startYear = 2007
+		const pixelsPerYear = this.mapWidthInPixels / years
+
+		for(let i = 0; i < years; i++) {
+			let currentYear = startYear + i
+			if(playerPositionX > (pixelsPerYear * i)) {
+				this.positionLabel.text = currentYear.toString()
+			}
 		}
 	}
 
@@ -122,7 +121,7 @@ export default class extends Phaser.State {
 
 	playerJump() {
 		if (this.player.body.blocked.down) {
-			this.soundJump.play();
+			this.soundJump.play()
 			this.player.body.velocity.y -= 900
 		}
 	}
