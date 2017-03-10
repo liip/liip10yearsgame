@@ -26,13 +26,23 @@
         {
          "draworder":"topdown",
          "height":6,
-         "name":"objectLayer",
+         "name":"objectsLayer",
          "objects":[
                 {
                  "gid":7,
                  "height":50,
                  "id":27,
                  "name":"beer",
+                 "properties":
+                    {
+                     "sprite":"beer",
+                     "type":"beer"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "type":"string"
+                    },
                  "rotation":0,
                  "type":"beer",
                  "visible":true,
@@ -45,6 +55,16 @@
                  "height":50,
                  "id":28,
                  "name":"award",
+                 "properties":
+                    {
+                     "sprite":"award",
+                     "type":"award"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "type":"string"
+                    },
                  "rotation":0,
                  "type":"award",
                  "visible":true,

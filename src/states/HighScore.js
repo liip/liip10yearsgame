@@ -8,7 +8,6 @@ import {centerGameObjects} from '../utils'
 export default class extends Phaser.State {
 	init() {
 		this.stage.backgroundColor = '#fff'
-		this.highScores = null
 	}
 
 	preload() {
@@ -16,25 +15,32 @@ export default class extends Phaser.State {
 	}
 
 	create() {
+		this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 100, 'liipLogo')
+
+		const player = this.game.add.sprite(this.game.world.centerX - 300, this.game.world.centerY, 'player')
+		this.game.physics.arcade.enable(player)
+		this.game.add.text(100, 100, 'High Scores:', config.text.xl)
+
+		// centerGameObjects([logo, player])
+		setTimeout(() => {
+			player.body.velocity.x = config.player.speed * 2
+		}, 500)
+
 		axios.get(config.backendDomain + '/scores')
 			.then(({data}) => data)
 			.then(winners => _(winners)
 				.map((score, winner) => [score, winner])
 				.sort((a, b) => b[0] - a[0]).value())
 			.then(winners => {
-				this.highScores = this.game.add.text(300, 300, `score: ${winners}`, config.hud)
+				winners.map(([score, w], i) => {
+					const text = this.game.add.text(100, 300 + i * 40, `Person:\t${w}\tScore:\t${score}`, config.text.xl)
+					text.setShadow(-1, 1, 'rgba(0,0,0,0.5)', 0)
+				})
 			})
 			.catch(console.warn)
-
-		const winners = ['Levente 10000', 'Rita 1000'].join(' | ')
-		const logo = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY - 100, 'liipLogo')
-		const player = this.game.add.sprite(this.game.world.centerX - 300, this.game.world.centerY, 'player')
-		centerGameObjects([logo, player])
-		this.game.add.text(300, 300, 'High Scores:', config.text.md)
 	}
 
 	render() {
 	}
-
 
 }
