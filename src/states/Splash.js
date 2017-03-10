@@ -12,12 +12,9 @@ export default class extends Phaser.State {
 		this.logo = this.game.add.sprite(300, 50, 'liipLogo')
 		this.logo.scale.setTo(0.5)
 
-		let welcome = this.game.add.text(50, 30, 'Welcome', {
-			font: '26px Liip Etica Bd',
-			fill: config.css.liipGreen
-		})
+		let welcome = this.game.add.text(50, 30, 'Welcome', Object.assign(config.text.lg, { boundsAlignH: "center" }))
 
-		centerGameObjects([this.logo, this.loaderBg, this.loaderBar])
+		// centerGameObjects([this.loaderBg, this.loaderBar])
 
 		this.load.setPreloadSprite(this.loaderBar)
 	}
