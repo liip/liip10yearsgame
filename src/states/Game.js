@@ -26,7 +26,7 @@ export default class extends Phaser.State {
 		this.logo.fixedToCamera = true
 
 		// setup player
-		this.player = this.game.add.sprite(100, 200, 'player')
+		this.player = this.game.add.sprite(100, 250, 'player')
 		this.game.physics.arcade.enable(this.player)
 		this.player.body.gravity.y = config.player.weight
 		this.game.camera.follow(this.player)
