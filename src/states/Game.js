@@ -11,7 +11,7 @@ export default class extends Phaser.State {
 	}
 
 	create() {
-		this.map = this.game.add.tilemap('level1')
+		this.map = this.game.add.tilemap('liip')
 		this.map.addTilesetImage('tiles_spritesheet', 'gameTiles')
 
 		// create layers
@@ -38,7 +38,7 @@ export default class extends Phaser.State {
 		this.scoreLabel.fixedToCamera = true
 
 		// current position
-		var positionLabelstyle = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center" };
+		let positionLabelstyle = { font: "bold 32px Arial", fill: "#000", boundsAlignH: "center" };
 		this.positionLabel = game.add.text(0, 0, '2007', positionLabelstyle)
 		this.positionLabel.setTextBounds(0, 30, config.gameWidth, 30);
 		this.positionLabel.fixedToCamera = true
@@ -113,7 +113,7 @@ export default class extends Phaser.State {
 
 	playerJump() {
 		if (this.player.body.blocked.down) {
-			this.player.body.velocity.y -= 700
+			this.player.body.velocity.y -= 900
 		}
 	}
 
