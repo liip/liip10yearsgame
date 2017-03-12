@@ -26,7 +26,6 @@ export default class extends Phaser.State {
 
 		this.load.image('liipLogo', './assets/images/liip_logo.png')
 		this.load.image('startLogo', './assets/images/start_logo.png')
-		this.load.image('introScreen', './assets/images/intro_screen.png')
 		this.load.image('liipLogoSmall', './assets/images/liip_logo_small.png')
 
 		this.load.image('beer', './assets/images/beer.png')
@@ -37,6 +36,7 @@ export default class extends Phaser.State {
 		this.load.image('gameTiles', 'assets/images/tiles_spritesheet.png')
 
 		this.load.image('replay', 'assets/images/replay.png')
+		this.load.image('start', 'assets/images/start.png')
 
 		this.load.audio('coin', 'assets/audio/coin.wav')
 		this.load.audio('ouch', 'assets/audio/ouch.wav')
