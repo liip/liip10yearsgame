@@ -54,15 +54,22 @@ export default class extends Phaser.State {
 
 		// score
 		let scoreLabelStyle = {
-			font: "20px 'Lucida Console', Monaco, monospace", // we need a monospaced font here to avoid "jumping" of text
-			color: config.css.liipGreen,
-			align: "right",
+			font: "23px Ubuntu Mono", // we need a monospaced font here to avoid "jumping" of text
+			color: '#000',
+			align: "left",
 			boundsAlignV: "top",
 			boundsAlignH: "right"
 		}
-		this.scoreLabel = this.game.add.text(0, 0, '0', scoreLabelStyle);
-		this.scoreLabel.setTextBounds(0, 30, this.game.width - 30, 30);
+		this.scoreLabel = this.game.add.text(0, 0, '0', makeGreen(scoreLabelStyle));
+		this.scoreLabel.setTextBounds(0, 30, this.game.width - 100, 30);
 		this.scoreLabel.fixedToCamera = true
+
+		let highscore = this.loadScore()
+		if (highscore) {
+			let highscoreLabel = this.game.add.text(0, 0, ' / ' + highscore, scoreLabelStyle);
+			highscoreLabel.setTextBounds(0, 30, this.game.width - 30, 30);
+			highscoreLabel.fixedToCamera = true
+		}
 
 		// current position
 		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, {boundsAlignH: "center"}))
@@ -70,12 +77,13 @@ export default class extends Phaser.State {
 		this.positionLabel.fixedToCamera = true
 
 		// mute button
+		/*
 		this.muteBtn = this.game.add.text(this.game.width - 120, 35, 'mute', makeGreen(config.text.md))
 		this.muteBtn.fixedToCamera = true
 		this.muteBtn.inputEnabled = true
 		this.muteBtn.events.onInputDown.add(() => {
 			this.game.sound.mute = !this.game.sound.mute
-		})
+		})*/
 
 		// init input (keyboard or tap on mobile)
 		this.input = new Input({ game: this.game })
@@ -133,6 +141,7 @@ export default class extends Phaser.State {
 			this.player.die()
 			// go to gameover after a few milliseconds
 			this.game.time.events.add(1500, this.gameOver, this)
+			this.saveScore()
 		}
 	}
 
@@ -218,6 +227,21 @@ export default class extends Phaser.State {
 		this.updateScore(config.points.coin)
 		// remove sprite
 		collectable.destroy()
+	}
+
+	/**
+	 * Save score to local storage
+	 */
+	saveScore() {
+		console.log(parseInt(this.scoreLabel.text, 10))
+		localStorage.setItem('highscore', parseInt(this.scoreLabel.text, 10))
+	}
+
+	/**
+	 * Load score from local storage
+	 */
+	loadScore() {
+		return localStorage.getItem('highscore')
 	}
 
 	collectTimelineObject(player, collectable) {
