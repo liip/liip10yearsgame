@@ -1,7 +1,7 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
 import config from '../config'
-import {makeGreen,findObjectsByType} from '../utils'
+import {makeGreen,findObjectsByType,createFromTiledObject} from '../utils'
 import _ from 'lodash'
 import Player from '../sprites/Player'
 
@@ -129,21 +129,13 @@ export default class extends Phaser.State {
 		this.scoreLabel.text = score
 	}
 
-	createFromTiledObject(element, group) {
-		let sprite = group.create(element.x, element.y, element.properties.sprite)
-		// copy all properties to the sprite
-		Object.keys(element.properties).forEach(key => {
-			sprite[key] = element.properties[key]
-		})
-	}
-
 	createBeers() {
 		this.beers = this.game.add.group();
 		this.beers.enableBody = true;
 		let result = findObjectsByType('beer', this.map, 'objectsLayer');
 
 		result.forEach((element) => {
-			this.createFromTiledObject(element, this.beers)
+			createFromTiledObject(element, this.beers)
 		})
 	}
 
@@ -153,7 +145,7 @@ export default class extends Phaser.State {
 		let result = findObjectsByType('award', this.map, 'objectsLayer')
 
 		result.forEach((element) => {
-			this.createFromTiledObject(element, this.awards)
+			createFromTiledObject(element, this.awards)
 		})
 	}
 
@@ -163,7 +155,7 @@ export default class extends Phaser.State {
 		let result = findObjectsByType('coffee', this.map, 'objectsLayer')
 
 		result.forEach((element) => {
-			this.createFromTiledObject(element, this.coffees)
+			createFromTiledObject(element, this.coffees)
 		})
 	}
 
@@ -194,8 +186,5 @@ export default class extends Phaser.State {
 		this.updateScore(config.coinValue)
 		// remove sprite
 		collectable.destroy()
-	}
-
-	render() {
 	}
 }

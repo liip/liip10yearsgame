@@ -27,3 +27,16 @@ export const findObjectsByType = (type, map, layerName) => {
 		})
 		.value()
 }
+
+/**
+ * Create sprite groups from tiled objects
+ * @param {object} element
+ * @param {string} group
+ */
+export const createFromTiledObject = (element, group) => {
+	let sprite = group.create(element.x, element.y, element.properties.sprite)
+	// copy all properties to the sprite
+	Object.keys(element.properties).forEach(key => {
+		sprite[key] = element.properties[key]
+	})
+}
