@@ -50,7 +50,7 @@ export default class extends Phaser.Sprite {
 	* @todo  consider initial speed here
 	*/
 	speedUp() {
-		this.body.velocity.x += confing.player.speedBonus
+		this.body.velocity.x += config.player.speedBonus
 	}
 
 	/**
