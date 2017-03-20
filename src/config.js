@@ -19,7 +19,7 @@ const cheerTexts = [
 
 const text = {
 	sm: {
-		font: '14px Open Sans',
+		font: '14px Liip Etica Bd',
 		fill: css.webBlack
 	},
 	md: {
