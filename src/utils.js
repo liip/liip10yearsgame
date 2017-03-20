@@ -48,3 +48,12 @@ export const createFromTiledObject = (element, group) => {
 		sprite[key] = element.properties[key]
 	})
 }
+
+/**
+ * Test if device supports touch
+ * @return {Boolean}
+ */
+export const isTouchDevice = () => {
+  return 'ontouchstart' in window        // works on most browsers
+      || navigator.maxTouchPoints;       // works on IE10/11 and Surface
+}
