@@ -4,6 +4,7 @@ import config from '../config'
 import {makeGreen,findObjectsByType,createFromTiledObject} from '../utils'
 import _ from 'lodash'
 import Player from '../sprites/Player'
+import Input from '../Input'
 
 export default class extends Phaser.State {
 	init() {
@@ -56,11 +57,8 @@ export default class extends Phaser.State {
 			this.game.sound.mute = !this.game.sound.mute
 		})
 
-		// init keys
-		this.keys = this.game.input.keyboard.addKeys({
-			space: Phaser.KeyCode.SPACEBAR,
-			down: Phaser.KeyCode.DOWN
-		})
+		// init input (keyboard or tap on mobile)
+		this.input = new Input({ game: this.game })
 
 		// load sounds
 		this.soundCoin = this.game.add.audio('coin')
@@ -76,17 +74,11 @@ export default class extends Phaser.State {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this)
 
 		if (this.player.alive) {
-			if (this.keys.space.isDown) {
+			if (this.input.shouldJump()) {
 				this.player.jump()
-			} else if (this.keys.down.isDown) {
-				this.player.duck()
 			}
 
 			this.updateScore(5)
-
-			if (!this.keys.down.isDown && this.player.isDucked) {
-				this.player.stopDucking()
-			}
 
 			// Update position label depending on the position of the player
 			this.positionLabel.text = this.getCurrentYear(this.player.x)
