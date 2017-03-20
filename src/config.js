@@ -42,8 +42,8 @@ export default {
 	css,
 	backendDomain: 'http://localhost:3002',
 	player: {
-		speed: 300,
-		weight: 2000
+		speed: 280,
+		weight: 2300
 	},
 	coinValue: 500,
 	backGround: css.webWhite
