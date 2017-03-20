@@ -10,6 +10,8 @@ import HighScore from './states/HighScore'
 
 import config from './config'
 
+import './extensions'
+
 class Game extends Phaser.Game {
 
   constructor () {
