@@ -118,7 +118,7 @@ export default class extends Phaser.State {
 			this.soundOuch.play()
 			// kill player
 			this.player.die()
-			// go to gameover after a few miliseconds
+			// go to gameover after a few milliseconds
 			this.game.time.events.add(1500, this.gameOver, this)
 		}
 	}
