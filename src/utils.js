@@ -18,37 +18,6 @@ export const makeGreen = (textConfig) => {
 	return conf
 }
 
-/**
- * Find map objects by type
- * @param {string} type
- * @param {object} map
- * @param {string} layerName
- * @return {array}
- */
-export const findObjectsByType = (type, map, layerName) => {
-	return _
-		.chain(map.objects[layerName])
-		.filter(element => element.properties.type === type)
-		.map(element => {
-			element.y -= map.tileHeight
-			return element
-		})
-		.value()
-}
-
-/**
- * Create sprite groups from tiled objects
- * @param {object} element
- * @param {string} group
- */
-export const createFromTiledObject = (element, group) => {
-	let sprite = group.create(element.x, element.y, element.properties.sprite)
-	// copy all properties to the sprite
-	Object.keys(element.properties).forEach(key => {
-		sprite[key] = element.properties[key]
-	})
-}
-
 export const getRandomCheer = () => {
 	return config.cheerTexts[Math.floor(Math.random() * config.cheerTexts.length)];
 }

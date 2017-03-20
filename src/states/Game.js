@@ -1,8 +1,7 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
 import config from '../config'
-import {makeGreen,findObjectsByType,createFromTiledObject,getRandomCheer} from '../utils'
-import _ from 'lodash'
+import {makeGreen,getRandomCheer} from '../utils'
 import Player from '../sprites/Player'
 import Input from '../Input'
 
@@ -32,8 +31,7 @@ export default class extends Phaser.State {
 		this.backgroundLayer.resizeWorld()
 
 		// add objects
-		this.createBeers()
-		this.createCoffees()
+		this.addObjectsLayer()
 
 		// add timeline layer
 		this.addTimelineLayer()
@@ -95,8 +93,7 @@ export default class extends Phaser.State {
 		}
 
 		// make objects collectable
-		this.game.physics.arcade.overlap(this.player, this.beers, this.collect, null, this)
-		this.game.physics.arcade.overlap(this.player, this.coffees, this.collect, null, this)
+		this.game.physics.arcade.overlap(this.player, this.objectsLayer, this.collect, null, this)
 
 		// make timeline objects collectable
 		this.game.physics.arcade.overlap(this.player, this.timelineLayer, this.collectTimelineObject, null, this)
@@ -142,23 +139,17 @@ export default class extends Phaser.State {
 		this.scoreLabel.text = score
 	}
 
-	createBeers() {
-		this.beers = this.game.add.group()
-		this.beers.enableBody = true
-		let result = findObjectsByType('beer', this.map, 'objectsLayer')
+	addObjectsLayer() {
+		this.objectsLayer = this.game.add.group()
+		this.objectsLayer.enableBody = true
+		let objects = this.map.objects['objectsLayer']
 
-		result.forEach((element) => {
-			createFromTiledObject(element, this.beers)
-		})
-	}
-
-	createCoffees() {
-		this.coffees = this.game.add.group()
-		this.coffees.enableBody = true
-		let result = findObjectsByType('coffee', this.map, 'objectsLayer')
-
-		result.forEach((element) => {
-			createFromTiledObject(element, this.coffees)
+		objects.forEach((object) => {
+			let sprite = this.objectsLayer.create(object.x, object.y, object.properties.sprite)
+			// copy all properties to the sprite
+			Object.keys(object.properties).forEach(key => {
+				sprite[key] = object.properties[key]
+			})
 		})
 	}
 
