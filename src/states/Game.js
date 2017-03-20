@@ -9,6 +9,7 @@ export default class extends Phaser.State {
 	init() {
 		this.years = 11
 		this.startYear = 2007
+		this.game.sound.mute = false
 	}
 
 	preload() {
@@ -46,6 +47,14 @@ export default class extends Phaser.State {
 		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, ({boundsAlignH: "center"})))
 		this.positionLabel.setTextBounds(0, 30, config.gameWidth, 30)
 		this.positionLabel.fixedToCamera = true
+
+		// mute button
+		this.muteBtn = this.game.add.text(config.gameWidth - 120, 35, 'mute', makeGreen(config.text.md))
+		this.muteBtn.fixedToCamera = true
+		this.muteBtn.inputEnabled = true
+		this.muteBtn.events.onInputDown.add(() => {
+			this.game.sound.mute = !this.game.sound.mute
+		})
 
 		// init keys
 		this.keys = this.game.input.keyboard.addKeys({
