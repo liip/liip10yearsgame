@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 import config from '../config'
 import { makeGreen, centerGameObjects, isTouchDevice } from '../utils'
+import Input from '../Input'
 
 export default class extends Phaser.State {
 	create () {
@@ -43,10 +44,8 @@ export default class extends Phaser.State {
 			Object.assign(config.text.md, ({ boundsAlignH: "center" })))
 		intro.setTextBounds(0, 30, this.game.width, 30);
 
-		// init keys
-		this.keys = this.game.input.keyboard.addKeys({
-			space: Phaser.KeyCode.SPACEBAR,
-		})
+		// init input (keyboard or tap on mobile)
+		this.input = new Input({ game: this.game })
 
 		this.player.standDimensions = {width: this.player.width, height: this.player.height}
 		this.player.anchor.setTo(0.5, 1)
@@ -58,7 +57,7 @@ export default class extends Phaser.State {
 
 	update () {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this)
-		if (this.keys.space.isDown) {
+		if (this.input.shouldJump()) {
 			this.state.start('Game')
 		}
 	}
