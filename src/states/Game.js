@@ -3,6 +3,7 @@ import Phaser from 'phaser'
 import config from '../config'
 import {makeGreen} from '../utils'
 import _ from 'lodash'
+import Player from '../sprites/Player'
 
 export default class extends Phaser.State {
 	init() {
@@ -29,10 +30,13 @@ export default class extends Phaser.State {
 		this.logo.fixedToCamera = true
 
 		// setup player
-		this.player = this.game.add.sprite(0, 250, 'player')
-		this.game.physics.arcade.enable(this.player)
-		this.player.body.gravity.y = config.player.weight
-		this.game.camera.follow(this.player)
+		this.player = new Player({
+			game: this.game,
+			x: 0,
+			y: 250,
+			asset: 'player'
+		})
+		this.player.enable()
 
 		// score
 		this.scoreLabel = this.game.add.text(config.gameWidth - 70, 30, '0', makeGreen(config.text.xl))
@@ -49,18 +53,9 @@ export default class extends Phaser.State {
 			down: Phaser.KeyCode.DOWN
 		})
 
-		let playerDuckImg = this.game.cache.getImage('playerDuck')
-		this.player.duckedDimensions = {width: playerDuckImg.width, height: playerDuckImg.height}
-		this.player.standDimensions = {width: this.player.width, height: this.player.height}
-		this.player.anchor.setTo(0.5, 1)
-
-		// make the player move sideways continuously
-		this.player.body.velocity.x = config.player.speed
-
 		// load sounds
 		this.soundCoin = this.game.add.audio('coin')
 		this.soundOuch = this.game.add.audio('ouch')
-		this.soundJump = this.game.add.audio('jump')
 
 		// add objects
 		this.createBeers()
@@ -73,18 +68,15 @@ export default class extends Phaser.State {
 
 		if (this.player.alive) {
 			if (this.keys.space.isDown) {
-				this.playerJump()
+				this.player.jump()
 			} else if (this.keys.down.isDown) {
-				this.playerDuck()
+				this.player.duck()
 			}
 
 			this.updateScore(5)
 
 			if (!this.keys.down.isDown && this.player.isDucked) {
-				// change image and update the body size for the physics engine
-				this.player.loadTexture('player')
-				this.player.body.setSize(this.player.standDimensions.width, this.player.standDimensions.height)
-				this.player.isDucked = false
+				this.player.stopDucking()
 			}
 
 			// Update position label depending on the position of the player
@@ -119,32 +111,13 @@ export default class extends Phaser.State {
 		this.game.state.start('Game')
 	}
 
-	playerJump() {
-		if (this.player.body.blocked.down) {
-			this.soundJump.play()
-			this.player.body.velocity.y -= 900
-		}
-	}
-
-	playerDuck() {
-		//change image and update the body size for the physics engine
-		this.player.loadTexture('playerDuck')
-		this.player.body.setSize(this.player.duckedDimensions.width, this.player.duckedDimensions.height)
-		//we use this to keep track whether it's ducked or not
-		this.player.isDucked = true
-	}
-
 	playerHit(player, blockedLayer) {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this)
 
 		if (player.body.blocked.right) {
 			this.soundOuch.play()
-			// set to dead (this doesn't affect rendering)
-			this.player.alive = false
-			// stop moving to the right
-			this.player.body.velocity.x = 0
-			// change sprite image
-			this.player.loadTexture('playerDead')
+			// kill player
+			this.player.die()
 			// go to gameover after a few miliseconds
 			this.game.time.events.add(1500, this.gameOver, this)
 		}
@@ -208,9 +181,9 @@ export default class extends Phaser.State {
 	collect(player, collectable) {
 		// show +500 notice
 		if(collectable.type === 'beer') {
-			this.player.body.velocity.x += 100
+			this.player.speedUp()
 		} else if(collectable.type === 'coffee') {
-			this.player.body.velocity.x -= 100
+			this.player.slowDown()
 		}
 
 		let oneUp = this.game.add.text(
