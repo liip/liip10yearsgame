@@ -120,7 +120,7 @@ export default class extends Phaser.State {
 	}
 
 	gameOver() {
-		this.game.state.start('HighScore')
+		this.game.state.start('GameOver', false, false)
 	}
 
 	restart() {
