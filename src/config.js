@@ -44,7 +44,8 @@ export default {
 	player: {
 		speed: 280,
 		weight: 2300,
-		jump: 950
+		jump: 950,
+		speedBonus: 100
 	},
 	coinValue: 500,
 	backGround: css.webWhite
