@@ -53,7 +53,15 @@ export default class extends Phaser.State {
 		this.player.enable()
 
 		// score
-		this.scoreLabel = this.game.add.text(this.game.width - 70, 30, '0', makeGreen(config.text.xl))
+		let scoreLabelStyle = {
+			font: "20px 'Lucida Console', Monaco, monospace", // we need a monospaced font here to avoid "jumping" of text
+			color: config.css.liipGreen,
+			align: "right",
+			boundsAlignV: "top",
+			boundsAlignH: "right"
+		}
+		this.scoreLabel = this.game.add.text(0, 0, '0', scoreLabelStyle);
+		this.scoreLabel.setTextBounds(16, 16, this.game.width - 70, 30);
 		this.scoreLabel.fixedToCamera = true
 
 		// current position
@@ -178,13 +186,13 @@ export default class extends Phaser.State {
 	}
 
 	collect(player, collectable) {
-		// show +500 notice
 		if(collectable.type === 'beer') {
 			this.player.speedUp()
 		} else if(collectable.type === 'coffee') {
 			this.player.slowDown()
 		}
 
+		// show +500 notice
 		let oneUp = this.game.add.text(
 			collectable.x,
 			collectable.y,
