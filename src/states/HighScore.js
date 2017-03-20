@@ -45,7 +45,7 @@ export default class extends Phaser.State {
 			space: Phaser.KeyCode.SPACEBAR,
 		})
 
-		axios.get(config.backendDomain + '/scores')
+		/*axios.get(config.backendDomain + '/scores')
 			.then(({data}) => data)
 			.then(winners => _(winners)
 				.map((score, winner) => [score, winner])
@@ -57,7 +57,7 @@ export default class extends Phaser.State {
 					text.setShadow(-1, 1, 'rgba(0,0,0,0.5)', 0)
 				})
 			})
-			.catch(console.warn)
+			.catch(console.warn)*/
 	}
 
 	update() {
