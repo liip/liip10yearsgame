@@ -41,7 +41,9 @@ export default {
 	css,
 	backendDomain: 'http://localhost:3002',
 	player: {
-		speed: 280,
+		speed: isPortrait
+			? 200
+			: 280,
 		minSpeed: 280,
 		maxSpeed: 800,
 		speedBonus: 50,
