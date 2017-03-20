@@ -14,9 +14,13 @@ export default class extends Phaser.State {
 	}
 
 	preload() {
+		// load sounds
+		this.soundCoin = this.game.add.audio('coin')
+		this.soundOuch = this.game.add.audio('ouch')
 	}
 
 	create() {
+		// create map
 		this.map = this.game.add.tilemap('liip')
 		this.map.addTilesetImage('tiles_spritesheet', 'gameTiles')
 		this.mapWidthInPixels = this.map.widthInPixels
@@ -26,6 +30,14 @@ export default class extends Phaser.State {
 		this.blockedLayer = this.map.createLayer('blockedLayer')
 		this.map.setCollisionBetween(1, 200000, true, 'blockedLayer', true)
 		this.backgroundLayer.resizeWorld()
+
+		// add objects
+		this.createBeers()
+		this.createAwards()
+		this.createCoffees()
+
+		// add timeline layer
+		this.addTimelineLayer()
 
 		this.logo = this.game.add.sprite(20, 35, 'liipLogoSmall')
 		this.logo.scale.setTo(0.5)
@@ -59,15 +71,6 @@ export default class extends Phaser.State {
 
 		// init input (keyboard or tap on mobile)
 		this.input = new Input({ game: this.game })
-
-		// load sounds
-		this.soundCoin = this.game.add.audio('coin')
-		this.soundOuch = this.game.add.audio('ouch')
-
-		// add objects
-		this.createBeers()
-		this.createAwards()
-		this.createCoffees()
 	}
 
 	update() {
@@ -157,6 +160,20 @@ export default class extends Phaser.State {
 
 		result.forEach((element) => {
 			createFromTiledObject(element, this.coffees)
+		})
+	}
+
+	addTimelineLayer() {
+		this.timelineLayer = this.game.add.group()
+		this.timelineLayer.enableBody = true
+		let timelineObjects = this.map.objects['timelineLayer']
+
+		timelineObjects.forEach((timelineTextObject) => {
+			let positionX = timelineTextObject.x + 35
+			let positionY = timelineTextObject.y - 25
+			let text = timelineTextObject.properties.text
+			let textObject = this.game.add.text(positionX, positionY, text, Object.assign(config.text.md))
+			textObject.angle = 90
 		})
 	}
 
