@@ -34,6 +34,13 @@ const text = {
 	xl: {
 		font: '26px Liip Etica Bd',
 		fill: css.webBlack,
+	},
+	score: {
+		font: '23px Ubuntu Mono', // we need a monospaced font here to avoid jiggling text
+		color: css.webBlack,
+		align: 'left',
+		boundsAlignV: 'top',
+		boundsAlignH: 'right'
 	}
 }
 

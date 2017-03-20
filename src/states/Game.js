@@ -53,20 +53,14 @@ export default class extends Phaser.State {
 		this.player.enable()
 
 		// score
-		let scoreLabelStyle = {
-			font: "23px Ubuntu Mono", // we need a monospaced font here to avoid "jumping" of text
-			color: '#000',
-			align: "left",
-			boundsAlignV: "top",
-			boundsAlignH: "right"
-		}
-		this.scoreLabel = this.game.add.text(0, 0, '0', makeGreen(scoreLabelStyle));
+		this.scoreLabel = this.game.add.text(0, 0, '0', makeGreen(config.text.score));
 		this.scoreLabel.setTextBounds(0, 30, this.game.width - 100, 30);
 		this.scoreLabel.fixedToCamera = true
 
+		// if user had a previous highscore, show it
 		let highscore = this.loadScore()
 		if (highscore) {
-			let highscoreLabel = this.game.add.text(0, 0, ' / ' + highscore, scoreLabelStyle);
+			let highscoreLabel = this.game.add.text(0, 0, ' / ' + highscore, config.text.score);
 			highscoreLabel.setTextBounds(0, 30, this.game.width - 30, 30);
 			highscoreLabel.fixedToCamera = true
 		}
