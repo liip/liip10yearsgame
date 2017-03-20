@@ -9,3 +9,21 @@ export const makeGreen = (textConfig) => {
 	conf.fill = config.css.liipGreen
 	return conf
 }
+
+/**
+ * Find map objects by type
+ * @param {string} type
+ * @param {object} map
+ * @param {string} layerName
+ * @return {array}
+ */
+export const findObjectsByType = (type, map, layerName) => {
+	return _
+		.chain(map.objects[layerName])
+		.filter(element => element.properties.type === type)
+		.map(element => {
+			element.y -= map.tileHeight
+			return element
+		})
+		.value()
+}
