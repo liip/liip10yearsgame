@@ -16,16 +16,21 @@ export default class extends Phaser.State {
 
 		let banner = this.game.add.image(
 			this.game.width / 2,
-			80,
+			100,
 			'startLogo')
-		banner.scale.setTo(0.25, 0.25)
+		banner.scale.setTo(0.35)
 
 		// start button
-		let start = this.game.add.image(
+		let start = this.game.add.button(
 			this.game.width / 2,
-			140,
-			'start')
-		start.scale.setTo(0.8)
+			180,
+			'start',
+			() => { this.game.state.start('Game') },
+			this,
+			1,
+			0,
+			1)
+		start.scale.setTo(0.7)
 		centerGameObjects([banner, start])
 
 		// setup player
@@ -39,9 +44,9 @@ export default class extends Phaser.State {
 			: 'Press space'
 		let intro = this.game.add.text(
 			0,
-			170,
-			`${howToJump} to jump`,
-			Object.assign(config.text.md, ({ boundsAlignH: "center" })))
+			230,
+			`${howToJump} to jump`.toUpperCase(),
+			Object.assign(config.text.lg, ({ boundsAlignH: "center" })))
 		intro.setTextBounds(0, 30, this.game.width, 30);
 
 		// init input (keyboard or tap on mobile)
@@ -49,10 +54,6 @@ export default class extends Phaser.State {
 
 		this.player.standDimensions = {width: this.player.width, height: this.player.height}
 		this.player.anchor.setTo(0.5, 1)
-		start.inputEnabled = true
-		start.events.onInputDown.add(() => {
-			this.game.state.start('Game')
-		})
 	}
 
 	update () {

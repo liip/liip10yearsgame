@@ -7,8 +7,8 @@ export default class extends Phaser.State {
 	preload () {
 		let loading = this.game.add.text(
 			0, 0,
-			'loading',
-			Object.assign(config.text.lg, { boundsAlignH: 'center', boundsAlignV: 'middle' }))
+			'loading'.toUpperCase(),
+			Object.assign(config.text.xl, { boundsAlignH: 'center', boundsAlignV: 'middle' }))
 		loading.setTextBounds(0, 100, this.game.width, 100)
 
 		this.load.image('player', './assets/images/player.png')
@@ -26,8 +26,8 @@ export default class extends Phaser.State {
 		this.load.tilemap('liip', 'assets/tilemaps/liip.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.image('gameTiles', 'assets/images/tiles_spritesheet.png')
 
-		this.load.image('replay', 'assets/images/replay.png')
-		this.load.image('start', 'assets/images/start.png')
+		this.load.spritesheet('replay', 'assets/images/replay.png', 140, 140)
+		this.load.spritesheet('start', 'assets/images/start.png', 140, 140)
 
 		this.load.audio('coin', 'assets/audio/coin.wav')
 		this.load.audio('ouch', 'assets/audio/ouch.wav')

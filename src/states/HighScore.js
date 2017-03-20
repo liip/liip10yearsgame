@@ -28,14 +28,17 @@ export default class extends Phaser.State {
 			this.player.body.velocity.x = config.player.speed * 2
 		}, 1000)
 
-		const replay = this.game.add.sprite(this.game.width / 2, this.game.height - margin - 10, 'replay')
-		replay.inputEnabled = true
-		replay.events.onInputDown.add(() => {
-			// logo.alpha = 0
-			this.game.state.start('Game')
-		})
-		replay.scale.setTo(0.61)
-		replay.anchor.setTo(0.5)
+		let replay = this.game.add.button(
+			this.game.width / 2,
+			this.game.height - margin - 10,
+			'replay',
+			() => { this.game.state.start('Game') },
+			this,
+			1,
+			0,
+			1)
+		replay.scale.setTo(0.7)
+		centerGameObjects([replay])
 
 		// init keys
 		this.keys = this.game.input.keyboard.addKeys({
