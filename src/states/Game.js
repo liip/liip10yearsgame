@@ -40,16 +40,16 @@ export default class extends Phaser.State {
 		this.player.enable()
 
 		// score
-		this.scoreLabel = this.game.add.text(config.gameWidth - 70, 30, '0', makeGreen(config.text.xl))
+		this.scoreLabel = this.game.add.text(this.game.width - 70, 30, '0', makeGreen(config.text.xl))
 		this.scoreLabel.fixedToCamera = true
 
 		// current position
 		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, ({boundsAlignH: "center"})))
-		this.positionLabel.setTextBounds(0, 30, config.gameWidth, 30)
+		this.positionLabel.setTextBounds(0, 30, this.game.width, 30)
 		this.positionLabel.fixedToCamera = true
 
 		// mute button
-		this.muteBtn = this.game.add.text(config.gameWidth - 120, 35, 'mute', makeGreen(config.text.md))
+		this.muteBtn = this.game.add.text(this.game.width - 120, 35, 'mute', makeGreen(config.text.md))
 		this.muteBtn.fixedToCamera = true
 		this.muteBtn.inputEnabled = true
 		this.muteBtn.events.onInputDown.add(() => {

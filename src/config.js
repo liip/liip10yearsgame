@@ -30,12 +30,11 @@ const text = {
 }
 
 const isPortrait = screen.orientation.type.includes('portrait')
-const {gameWidth, gameHeight} = isPortrait
-	? {gameWidth: 400, gameHeight: 760}
-	: {gameWidth: 760, gameHeight: 400}
+const { gameHeight } = isPortrait
+	? { gameHeight: 760 }
+	: { gameHeight: 400 }
 
 export default {
-	gameWidth,
 	gameHeight,
 	localStorageName: 'liip10yearsgame',
 	text,

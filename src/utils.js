@@ -1,9 +1,17 @@
 import config from './config'
 
-
+/**
+ * Center objects on screen
+ * @param {array} objects
+ */
 export const centerGameObjects = (objects) =>
   objects.map(object => object.anchor.setTo(0.5))
 
+/**
+ * Make a text config object green
+ * @param {object} textConfig
+ * @return {object}
+ */
 export const makeGreen = (textConfig) => {
 	let conf = Object.assign({}, textConfig)
 	conf.fill = config.css.liipGreen

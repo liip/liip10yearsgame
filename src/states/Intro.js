@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import config from '../config'
-import { makeGreen } from '../utils'
+import { makeGreen, centerGameObjects } from '../utils'
 
 export default class extends Phaser.State {
 	create () {
@@ -13,32 +13,32 @@ export default class extends Phaser.State {
 		this.map.setCollisionBetween(1, 100000, true, 'blockedLayer')
 		this.backgroundLayer.resizeWorld()
 
-		let banner = this.game.add.sprite(
-			200,
-			20,
+		let banner = this.game.add.image(
+			this.game.width / 2,
+			80,
 			'startLogo')
-		banner.scale.setTo(0.25)
+		banner.scale.setTo(0.25, 0.25)
 
 		// start button
-		let start = this.game.add.sprite(
-			350,
-			100,
+		let start = this.game.add.image(
+			this.game.width / 2,
+			140,
 			'start')
 		start.scale.setTo(0.8)
+		centerGameObjects([banner, start])
 
 		// setup player
 		this.player = this.game.add.sprite(100, 200, 'player')
 		this.game.physics.arcade.enable(this.player)
 		this.player.body.gravity.y = config.player.weight
-		this.game.camera.follow(this.player)
 
 		// show hint
 		let intro = this.game.add.text(
-			20,
+			0,
 			170,
 			'Press space to jump',
 			Object.assign(config.text.md, ({ boundsAlignH: "center" })))
-		intro.setTextBounds(0, 30, config.gameWidth, 30);
+		intro.setTextBounds(0, 30, this.game.width, 30);
 
 		// init keys
 		this.keys = this.game.input.keyboard.addKeys({
