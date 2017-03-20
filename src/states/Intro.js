@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import config from '../config'
-import { makeGreen, centerGameObjects } from '../utils'
+import { makeGreen, centerGameObjects, isTouchDevice } from '../utils'
 
 export default class extends Phaser.State {
 	create () {
@@ -33,10 +33,13 @@ export default class extends Phaser.State {
 		this.player.body.gravity.y = config.player.weight
 
 		// show hint
+		let howToJump = isTouchDevice()
+			? 'Tap your screen'
+			: 'Press space'
 		let intro = this.game.add.text(
 			0,
 			170,
-			'Press space to jump',
+			`${howToJump} to jump`,
 			Object.assign(config.text.md, ({ boundsAlignH: "center" })))
 		intro.setTextBounds(0, 30, this.game.width, 30);
 
