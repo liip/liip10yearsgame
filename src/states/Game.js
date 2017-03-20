@@ -27,7 +27,8 @@ export default class extends Phaser.State {
 		// create layers
 		this.backgroundLayer = this.map.createLayer('backgroundLayer')
 		this.blockedLayer = this.map.createLayer('blockedLayer')
-		this.map.setCollisionBetween(1, 200000, true, 'blockedLayer', true)
+		// this.game.world.width may cause problems with collisions, keep in mind
+		this.map.setCollisionBetween(1, this.game.world.width, true, 'blockedLayer', true)
 		this.backgroundLayer.resizeWorld()
 
 		// add objects
