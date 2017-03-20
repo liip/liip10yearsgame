@@ -39,18 +39,16 @@ export default class extends Phaser.Sprite {
 
 	/**
 	* Slow down x speed
-	* @todo  consider initial speed here
 	*/
 	slowDown() {
-		this.body.velocity.x -= 100
+		this.body.velocity.x = config.player.speed - 100
 	}
 
 	/**
 	* Speed up x speed
-	* @todo  consider initial speed here
 	*/
 	speedUp() {
-		this.body.velocity.x += 100
+		this.body.velocity.x = config.player.speed + 100
 	}
 
 	/**
