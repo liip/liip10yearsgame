@@ -7,10 +7,8 @@ export default class extends Phaser.Sprite {
 		this.anchor.setTo(0.5, 1)
 		this.game.add.existing(this)
 
-		let playerDuckImg = this.game.cache.getImage('playerDuck')
-		this.duckedDimensions = { width: playerDuckImg.width, height: playerDuckImg.height }
-		this.standDimensions = { width: this.width, height: this.height }
-		this.anchor.setTo(0.5, 1)
+		this.animations.add('walk')
+		this.animations.add('dead')
 
 		this.jumpSound = this.game.add.audio('jump')
 	}
@@ -23,6 +21,7 @@ export default class extends Phaser.Sprite {
 		this.body.gravity.y = config.player.weight
 		this.body.velocity.x = config.player.speed
 		this.game.camera.follow(this)
+		this.animations.play('walk', 15, true)
 	}
 
 	/**
@@ -35,6 +34,7 @@ export default class extends Phaser.Sprite {
 		this.body.velocity.x = 0
 		// change sprite image
 		this.loadTexture('playerDead')
+		this.animations.play('dead', 15, false)
 	}
 
 	/**
@@ -71,26 +71,5 @@ export default class extends Phaser.Sprite {
 		  this.jumpSound.play()
 		  this.body.velocity.y -= config.player.jump
 		}
-	}
-
-	/**
-	* Player duck
-	*/
-	duck() {
-		// change image and update the body size for the physics engine
-		this.loadTexture('playerDuck')
-		this.body.setSize(this.duckedDimensions.width, this.duckedDimensions.height)
-		//we use this to keep track whether it's ducked or not
-		this.isDucked = true
-	}
-
-	/**
-	* Stop ducking
-	*/
-	stopDucking() {
-		// change image and update the body size for the physics engine
-		this.loadTexture('player')
-		this.body.setSize(this.standDimensions.width, this.standDimensions.height)
-		this.isDucked = false
 	}
 }

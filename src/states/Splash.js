@@ -11,10 +11,6 @@ export default class extends Phaser.State {
 			Object.assign(config.text.xl, { boundsAlignH: 'center', boundsAlignV: 'middle' }))
 		loading.setTextBounds(0, 100, this.game.width, 100)
 
-		this.load.image('player', './assets/images/player.png')
-		this.load.image('playerDuck', './assets/images/player_duck.png')
-		this.load.image('playerDead', './assets/images/player_dead.png')
-
 		this.load.image('liipLogo', './assets/images/liip_logo.png')
 		this.load.image('startLogo', './assets/images/start_logo.png')
 		this.load.image('liipLogoSmall', './assets/images/liip_logo_small.png')
@@ -28,6 +24,9 @@ export default class extends Phaser.State {
 
 		this.load.spritesheet('replay', 'assets/images/replay.png', 140, 140)
 		this.load.spritesheet('start', 'assets/images/start.png', 140, 140)
+
+		this.load.spritesheet('player', 'assets/images/hero-normal.png', 90, 70, 4)
+		this.load.spritesheet('playerDead', 'assets/images/hero-dead.png', 90, 70, 3)
 
 		this.load.audio('coin', 'assets/audio/coin.wav')
 		this.load.audio('ouch', 'assets/audio/ouch.wav')
