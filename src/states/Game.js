@@ -89,7 +89,7 @@ export default class extends Phaser.State {
 				this.player.jump()
 			}
 
-			this.updateScore(5)
+			this.addToScore(1)
 
 			// Update position label depending on the position of the player
 			this.positionLabel.text = this.getCurrentYear(this.player.x)
@@ -125,8 +125,6 @@ export default class extends Phaser.State {
 	}
 
 	playerHit(player, blockedLayer) {
-		this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this)
-
 		if (player.body.blocked.right) {
 			this.soundOuch.play()
 			// kill player
@@ -136,7 +134,7 @@ export default class extends Phaser.State {
 		}
 	}
 
-	updateScore(newScore) {
+	addToScore(newScore) {
 		// this.score = newScore
 		let score = parseInt(this.scoreLabel.text, 10) + newScore
 		this.scoreLabel.text = score
@@ -215,7 +213,7 @@ export default class extends Phaser.State {
 		this.soundCoin.play()
 		// update score
 		// @todo different bonuses per collectable?
-		this.updateScore(config.points.coin)
+		this.addToScore(config.points.coin)
 		// remove sprite
 		collectable.destroy()
 	}
@@ -243,7 +241,7 @@ export default class extends Phaser.State {
 		// play audio
 		this.soundCoin.play()
 		// update score
-		this.updateScore(points)
+		this.addToScore(points)
 		// remove sprite
 		collectable.destroy()
 	}
