@@ -9,6 +9,7 @@ export default class extends Phaser.State {
 	init() {
 		this.years = 11
 		this.startYear = 2007
+		this.game.sound.mute = false
 	}
 
 	preload() {
@@ -47,6 +48,14 @@ export default class extends Phaser.State {
 		this.positionLabel.setTextBounds(0, 30, config.gameWidth, 30)
 		this.positionLabel.fixedToCamera = true
 
+		// mute button
+		this.muteBtn = this.game.add.text(config.gameWidth - 120, 35, 'mute', makeGreen(config.text.md))
+		this.muteBtn.fixedToCamera = true
+		this.muteBtn.inputEnabled = true
+		this.muteBtn.events.onInputDown.add(() => {
+			this.game.sound.mute = !this.game.sound.mute
+		})
+
 		// init keys
 		this.keys = this.game.input.keyboard.addKeys({
 			space: Phaser.KeyCode.SPACEBAR,
@@ -84,9 +93,9 @@ export default class extends Phaser.State {
 		}
 
 		// make obejects collectable
-		this.game.physics.arcade.overlap(this.player, this.beers, this.collect, null, this);
-		this.game.physics.arcade.overlap(this.player, this.awards, this.collect, null, this);
-		this.game.physics.arcade.overlap(this.player, this.coffees, this.collect, null, this);
+		this.game.physics.arcade.overlap(this.player, this.beers, this.collect, null, this)
+		this.game.physics.arcade.overlap(this.player, this.awards, this.collect, null, this)
+		this.game.physics.arcade.overlap(this.player, this.coffees, this.collect, null, this)
 
 		// restart the game if reaching the edge
 		if (this.player.x >= this.game.world.width) {
@@ -118,7 +127,7 @@ export default class extends Phaser.State {
 			this.soundOuch.play()
 			// kill player
 			this.player.die()
-			// go to gameover after a few miliseconds
+			// go to gameover after a few milliseconds
 			this.game.time.events.add(1500, this.gameOver, this)
 		}
 	}
@@ -130,9 +139,9 @@ export default class extends Phaser.State {
 	}
 
 	createBeers() {
-		this.beers = this.game.add.group();
-		this.beers.enableBody = true;
-		let result = findObjectsByType('beer', this.map, 'objectsLayer');
+		this.beers = this.game.add.group()
+		this.beers.enableBody = true
+		let result = findObjectsByType('beer', this.map, 'objectsLayer')
 
 		result.forEach((element) => {
 			createFromTiledObject(element, this.beers)
