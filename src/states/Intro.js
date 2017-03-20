@@ -24,7 +24,7 @@ export default class extends Phaser.State {
 			350,
 			100,
 			'start')
-		start.scale.setTo(0.9)
+		start.scale.setTo(0.8)
 
 		// setup player
 		this.player = this.game.add.sprite(100, 200, 'player')
