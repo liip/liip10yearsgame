@@ -34,7 +34,10 @@ export default class extends Phaser.State {
 		this.addObjectsLayer()
 
 		// add timeline layer
-		this.addTimelineLayer()
+		this.addTimelineObjectsLayer()
+
+		// add timeline layer
+		this.addYearLabelLayer()
 
 		this.logo = this.game.add.sprite(20, 35, 'liipLogoSmall')
 		this.logo.scale.setTo(0.5)
@@ -96,7 +99,7 @@ export default class extends Phaser.State {
 		this.game.physics.arcade.overlap(this.player, this.objectsLayer, this.collect, null, this)
 
 		// make timeline objects collectable
-		this.game.physics.arcade.overlap(this.player, this.timelineLayer, this.collectTimelineObject, null, this)
+		this.game.physics.arcade.overlap(this.player, this.timelineObjectsLayer, this.collectTimelineObject, null, this)
 
 		// restart the game if reaching the edge
 		if (this.player.x >= this.game.world.width) {
@@ -145,7 +148,7 @@ export default class extends Phaser.State {
 		let objects = this.map.objects['objectsLayer']
 
 		objects.forEach((object) => {
-			let sprite = this.objectsLayer.create(object.x, object.y, object.properties.sprite)
+			let sprite = this.objectsLayer.create(object.x, object.y - 50, object.properties.sprite)
 			// copy all properties to the sprite
 			Object.keys(object.properties).forEach(key => {
 				sprite[key] = object.properties[key]
@@ -153,16 +156,16 @@ export default class extends Phaser.State {
 		})
 	}
 
-	addTimelineLayer() {
-		this.timelineLayer = this.game.add.group()
-		this.timelineLayer.enableBody = true
+	addTimelineObjectsLayer() {
+		this.timelineObjectsLayer = this.game.add.group()
+		this.timelineObjectsLayer.enableBody = true
 		let timelineObjects = this.map.objects['timelineLayer']
 
 		timelineObjects.forEach((timelineObject) => {
 			let positionX = timelineObject.x
-			let positionY = timelineObject.y
+			let positionY = timelineObject.y - 50
 			let text = timelineObject.properties.text
-			let sprite = this.timelineLayer.create(positionX, positionY, timelineObject.properties.sprite)
+			let sprite = this.timelineObjectsLayer.create(positionX, positionY, timelineObject.properties.sprite)
 			let labelPositionX = Math.floor(sprite.x + sprite.width / 2)
 			let labelPositionY = this.game.height - 20
 			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: "center"}))
@@ -172,6 +175,20 @@ export default class extends Phaser.State {
 				sprite[key] = timelineObject.properties[key]
 			})
 			sprite.label = label
+		})
+	}
+
+	addYearLabelLayer() {
+		this.yearLabelLayer = this.game.add.group()
+		this.yearLabelLayer.enableBody = true
+		let yearObjects = this.map.objects['yearLayer']
+
+		yearObjects.forEach((yearObject) => {
+			let text = yearObject.properties.year
+			let labelPositionX = yearObject.x
+			let labelPositionY = this.game.height - 10
+			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: "center"}))
+			label.anchor.set(0.5);
 		})
 	}
 

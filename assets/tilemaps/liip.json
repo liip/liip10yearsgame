@@ -7,7 +7,7 @@
          "name":"backgroundLayer",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":440,
          "x":0,
          "y":0
@@ -32,7 +32,7 @@
                  "gid":2,
                  "height":50,
                  "id":32,
-                 "name":"",
+                 "name":"2007",
                  "properties":
                     {
                      "year":"2007"
@@ -52,7 +52,7 @@
                  "gid":2,
                  "height":50,
                  "id":33,
-                 "name":"",
+                 "name":"2008",
                  "properties":
                     {
                      "year":"2008"
@@ -72,7 +72,7 @@
                  "gid":2,
                  "height":50,
                  "id":34,
-                 "name":"",
+                 "name":"2009",
                  "properties":
                     {
                      "year":"2009"
@@ -92,7 +92,7 @@
                  "gid":2,
                  "height":50,
                  "id":35,
-                 "name":"",
+                 "name":"2010",
                  "properties":
                     {
                      "year":"2010"
@@ -112,7 +112,7 @@
                  "gid":2,
                  "height":50,
                  "id":36,
-                 "name":"",
+                 "name":"2011",
                  "properties":
                     {
                      "year":"2011"
@@ -132,7 +132,7 @@
                  "gid":2,
                  "height":50,
                  "id":37,
-                 "name":"",
+                 "name":"2012",
                  "properties":
                     {
                      "year":"2012"
@@ -152,7 +152,7 @@
                  "gid":2,
                  "height":50,
                  "id":38,
-                 "name":"",
+                 "name":"2013",
                  "properties":
                     {
                      "year":"2013"
@@ -172,7 +172,7 @@
                  "gid":2,
                  "height":50,
                  "id":39,
-                 "name":"",
+                 "name":"2014",
                  "properties":
                     {
                      "year":"2014"
@@ -192,7 +192,7 @@
                  "gid":2,
                  "height":50,
                  "id":40,
-                 "name":"",
+                 "name":"2015",
                  "properties":
                     {
                      "year":"2015"
@@ -212,7 +212,7 @@
                  "gid":2,
                  "height":50,
                  "id":41,
-                 "name":"",
+                 "name":"2016",
                  "properties":
                     {
                      "year":"2016"
@@ -232,7 +232,7 @@
                  "gid":2,
                  "height":50,
                  "id":42,
-                 "name":"",
+                 "name":"2017",
                  "properties":
                     {
                      "year":"2017"
@@ -250,7 +250,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "width":440,
          "x":0,
          "y":0
@@ -268,7 +268,7 @@
                  "properties":
                     {
                      "sprite":"award",
-                     "text":"Best of Swiss Web",
+                     "text":"Swiss Web Award",
                      "type":"award"
                     },
                  "propertytypes":
@@ -281,8 +281,8 @@
                  "type":"",
                  "visible":true,
                  "width":50,
-                 "x":650,
-                 "y":250
+                 "x":1300,
+                 "y":200
                 }, 
                 {
                  "gid":14,
@@ -305,8 +305,8 @@
                  "type":"",
                  "visible":true,
                  "width":50,
-                 "x":1600,
-                 "y":150
+                 "x":1050,
+                 "y":200
                 }, 
                 {
                  "gid":13,
@@ -316,7 +316,7 @@
                  "properties":
                     {
                      "sprite":"office",
-                     "text":"Friboug office",
+                     "text":"New ZH office",
                      "type":"office"
                     },
                  "propertytypes":
@@ -329,8 +329,170 @@
                  "type":"",
                  "visible":true,
                  "width":50,
-                 "x":1850,
+                 "x":2350,
                  "y":300
+                }, 
+                {
+                 "gid":13,
+                 "height":50,
+                 "id":51,
+                 "name":"",
+                 "properties":
+                    {
+                     "sprite":"office",
+                     "text":"Z\u00fcrich office"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "text":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":50,
+                 "x":650,
+                 "y":250
+                }, 
+                {
+                 "gid":13,
+                 "height":50,
+                 "id":52,
+                 "name":"",
+                 "properties":
+                    {
+                     "sprite":"office",
+                     "text":"Bern office"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "text":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":50,
+                 "x":750,
+                 "y":300
+                }, 
+                {
+                 "gid":13,
+                 "height":50,
+                 "id":53,
+                 "name":"",
+                 "properties":
+                    {
+                     "sprite":"office",
+                     "text":"Fribourg office"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "text":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":50,
+                 "x":550,
+                 "y":300
+                }, 
+                {
+                 "gid":14,
+                 "height":50,
+                 "id":54,
+                 "name":"",
+                 "properties":
+                    {
+                     "sprite":"people",
+                     "text":"25 Liipers",
+                     "type":"people"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "text":"string",
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":50,
+                 "x":1700,
+                 "y":250
+                }, 
+                {
+                 "gid":14,
+                 "height":50,
+                 "id":55,
+                 "name":"",
+                 "properties":
+                    {
+                     "sprite":"people",
+                     "text":"32 Liipers",
+                     "type":"people"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "text":"string",
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":50,
+                 "x":3450,
+                 "y":200
+                }, 
+                {
+                 "gid":15,
+                 "height":50,
+                 "id":56,
+                 "name":"",
+                 "properties":
+                    {
+                     "sprite":"award",
+                     "text":"Swiss Web Award",
+                     "type":"award"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "text":"string",
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":50,
+                 "x":1950,
+                 "y":200
+                }, 
+                {
+                 "gid":15,
+                 "height":50,
+                 "id":57,
+                 "name":"",
+                 "properties":
+                    {
+                     "sprite":"award",
+                     "text":"Swiss Web Award",
+                     "type":"award"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "text":"string",
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":50,
+                 "x":2800,
+                 "y":250
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -348,7 +510,7 @@
                  "gid":19,
                  "height":50,
                  "id":46,
-                 "name":"",
+                 "name":"beer",
                  "properties":
                     {
                      "sprite":"beer",
@@ -365,6 +527,28 @@
                  "width":50,
                  "x":1250,
                  "y":250
+                }, 
+                {
+                 "gid":20,
+                 "height":50,
+                 "id":58,
+                 "name":"",
+                 "properties":
+                    {
+                     "sprite":"coffee",
+                     "type":"coffee"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":50,
+                 "x":3000,
+                 "y":300
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -373,7 +557,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":49,
+ "nextobjectid":61,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":50,
@@ -381,7 +565,7 @@
         {
          "columns":6,
          "firstgid":1,
-         "image":"..\/images\/tiles_spritesheet.png",
+         "image":"..\/images\/tiles_spritesheet1.png",
          "imageheight":200,
          "imagewidth":300,
          "margin":0,
