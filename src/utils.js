@@ -49,6 +49,10 @@ export const createFromTiledObject = (element, group) => {
 	})
 }
 
+export const getRandomCheer = () => {
+	return config.cheerTexts[Math.floor(Math.random() * config.cheerTexts.length)];
+}
+
 /**
  * Test if device supports touch
  * @return {Boolean}

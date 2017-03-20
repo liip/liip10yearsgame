@@ -1,7 +1,7 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
 import config from '../config'
-import {makeGreen,findObjectsByType,createFromTiledObject} from '../utils'
+import {makeGreen,findObjectsByType,createFromTiledObject,getRandomCheer} from '../utils'
 import _ from 'lodash'
 import Player from '../sprites/Player'
 import Input from '../Input'
@@ -33,7 +33,6 @@ export default class extends Phaser.State {
 
 		// add objects
 		this.createBeers()
-		this.createAwards()
 		this.createCoffees()
 
 		// add timeline layer
@@ -61,11 +60,11 @@ export default class extends Phaser.State {
 			boundsAlignH: "right"
 		}
 		this.scoreLabel = this.game.add.text(0, 0, '0', scoreLabelStyle);
-		this.scoreLabel.setTextBounds(16, 16, this.game.width - 70, 30);
+		this.scoreLabel.setTextBounds(0, 30, this.game.width - 30, 30);
 		this.scoreLabel.fixedToCamera = true
 
 		// current position
-		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, ({boundsAlignH: "center"})))
+		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, {boundsAlignH: "center"}))
 		this.positionLabel.setTextBounds(0, 30, this.game.width, 30)
 		this.positionLabel.fixedToCamera = true
 
@@ -95,10 +94,12 @@ export default class extends Phaser.State {
 			this.positionLabel.text = this.getCurrentYear(this.player.x)
 		}
 
-		// make obejects collectable
+		// make objects collectable
 		this.game.physics.arcade.overlap(this.player, this.beers, this.collect, null, this)
-		this.game.physics.arcade.overlap(this.player, this.awards, this.collect, null, this)
 		this.game.physics.arcade.overlap(this.player, this.coffees, this.collect, null, this)
+
+		// make timeline objects collectable
+		this.game.physics.arcade.overlap(this.player, this.timelineLayer, this.collectTimelineObject, null, this)
 
 		// restart the game if reaching the edge
 		if (this.player.x >= this.game.world.width) {
@@ -151,16 +152,6 @@ export default class extends Phaser.State {
 		})
 	}
 
-	createAwards() {
-		this.awards = this.game.add.group()
-		this.awards.enableBody = true
-		let result = findObjectsByType('award', this.map, 'objectsLayer')
-
-		result.forEach((element) => {
-			createFromTiledObject(element, this.awards)
-		})
-	}
-
 	createCoffees() {
 		this.coffees = this.game.add.group()
 		this.coffees.enableBody = true
@@ -176,12 +167,20 @@ export default class extends Phaser.State {
 		this.timelineLayer.enableBody = true
 		let timelineObjects = this.map.objects['timelineLayer']
 
-		timelineObjects.forEach((timelineTextObject) => {
-			let positionX = timelineTextObject.x + 35
-			let positionY = timelineTextObject.y - 25
-			let text = timelineTextObject.properties.text
-			let textObject = this.game.add.text(positionX, positionY, text, Object.assign(config.text.md))
-			textObject.angle = 90
+		timelineObjects.forEach((timelineObject) => {
+			let positionX = timelineObject.x
+			let positionY = timelineObject.y
+			let text = timelineObject.properties.text
+			let sprite = this.timelineLayer.create(positionX, positionY, timelineObject.properties.sprite)
+			let labelPositionX = Math.floor(sprite.x + sprite.width / 2)
+			let labelPositionY = this.game.height - 20
+			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: "center"}))
+			label.anchor.set(0.5);
+			// copy all properties to the sprite
+			Object.keys(timelineObject.properties).forEach(key => {
+				sprite[key] = timelineObject.properties[key]
+			})
+			sprite.label = label
 		})
 	}
 
@@ -196,10 +195,9 @@ export default class extends Phaser.State {
 		let oneUp = this.game.add.text(
 			collectable.x,
 			collectable.y,
-			'+' + config.coinValue,
+			'+' + config.points.coin,
 			makeGreen(config.text.xl)
 			)
-		// oneUp.fixedToCamera = true
 		// destroy it shortly thereafter
 		setTimeout(() => {
 			oneUp.destroy()
@@ -209,7 +207,35 @@ export default class extends Phaser.State {
 		this.soundCoin.play()
 		// update score
 		// @todo different bonuses per collectable?
-		this.updateScore(config.coinValue)
+		this.updateScore(config.points.coin)
+		// remove sprite
+		collectable.destroy()
+	}
+
+	collectTimelineObject(player, collectable) {
+		let points = 0;
+		if(collectable.type === 'award') {
+			points = config.points.award
+		}
+
+		collectable.label.destroy()
+
+		// show notice
+		let cheer = this.game.add.text(
+			collectable.x,
+			collectable.y,
+			getRandomCheer(),
+			makeGreen(config.text.xl)
+		)
+		// destroy it shortly thereafter
+		setTimeout(() => {
+			cheer.destroy()
+		}, 800)
+
+		// play audio
+		this.soundCoin.play()
+		// update score
+		this.updateScore(points)
 		// remove sprite
 		collectable.destroy()
 	}

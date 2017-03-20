@@ -9,6 +9,14 @@ const css = {
 	orange: '#F8C026'
 }
 
+const cheerTexts = [
+	'Yay!',
+	'Wow!',
+	'Phew!',
+	'Boom!',
+	'Awesome!'
+]
+
 const text = {
 	sm: {
 		font: '14px Open Sans',
@@ -29,6 +37,11 @@ const text = {
 	}
 }
 
+const points = {
+	coin: 500,
+	award: 1000,
+}
+
 const isPortrait = screen.orientation.type.includes('portrait')
 const { gameHeight } = isPortrait
 	? { gameHeight: 760 }
@@ -39,6 +52,8 @@ export default {
 	localStorageName: 'liip10yearsgame',
 	text,
 	css,
+	points,
+	cheerTexts,
 	backendDomain: 'http://localhost:3002',
 	player: {
 		speed: isPortrait
@@ -50,6 +65,5 @@ export default {
 		weight: 2300,
 		jump: 950
 	},
-	coinValue: 500,
 	backGround: css.webWhite
 }
