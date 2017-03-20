@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "7"
+before_deploy: 'npm run deploy'
+deploy:
+  provider: heroku
+  api_key:
+    secure: O6RxzAuVBFcxGm5vZvkxefYaO5uNzC9VPOpm8XvJDdBAfSdAXzqEOW+l/q6vmLLqyCuHMij6riF++kFB1K74mUNmk/9sh7mG8IlhDdAm91inaDIfwFXaUxo7J0DNhkJlQs8n5DdPqEl2Lyn+VITkdxJOux+4mXIGZQahjlEb2+mTRgsNLP3CDHet6sQSg9hoP28gg9HeBYr1+lOUJ+yfBodNby8isIMQf4ETPaSTcFCtNjS1qjS6RHZTsf0GvJHx5tOZlVwRmz0rEJ1lVj2c+YPNXbOIQbQCQBrqgxFJiqojSrNW9ctDP/IKWN6qJw4RWu9xxmKEjRp3oqu7E03ghxedNyhteT6Kd1KDIVXRn/Up26fLe7zvEJw8387qbSbl3UynTGdVDR1PZbokShONdKggvLYQdZhoB8hIEnG07YInHKXp69C8CfPpKjCF3Vg9hp0t+rdMkCVjA54f7Ux1NXdPX7GkNVGMPOkz5nqXp7zLQAVRA5B6AFYni/p3H7JaS181HhFwvJqCs5DLHGUiG3YKk75NvbIh+pm99JrQlkpSaJsqQJ+JXQrYkGexE1n99f98XxGzYnpd9N+w+Q+jE4WTnAe3bPDYQXPZv5IVElQ5cQNhFbUVoXeEgZXhhkPK/4G3xLvAN9RU0H05gdbxg5g6mOJ6PKlOVVFLbnTqRwk=
+  app: l10y
+  skip_cleanup: true
+  on:
+    branch: master
