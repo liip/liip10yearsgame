@@ -69,5 +69,6 @@ export default {
 		weight: 2300,
 		jump: 950
 	},
-	backGround: css.webWhite
+	backGround: css.webWhite,
+	startYear: '2007'
 }

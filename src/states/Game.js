@@ -8,8 +8,6 @@ import _ from 'lodash'
 
 export default class extends Phaser.State {
 	init() {
-		this.years = 11
-		this.startYear = 2007
 		this.game.sound.mute = false
 	}
 
@@ -23,7 +21,6 @@ export default class extends Phaser.State {
 		// create map
 		this.map = this.game.add.tilemap('liip')
 		this.map.addTilesetImage('tiles_spritesheet', 'gameTiles')
-		this.mapWidthInPixels = this.map.widthInPixels
 
 		// create layers
 		this.backgroundLayer = this.map.createLayer('backgroundLayer')
@@ -118,12 +115,12 @@ export default class extends Phaser.State {
 	}
 
 	getCurrentYear(playerPositionX) {
-		const pixelsPerYear = this.mapWidthInPixels / this.years
-		let relativeYear = Math.floor(playerPositionX / pixelsPerYear)
-		if (relativeYear > this.years - 1) {
-			relativeYear = this.years - 1
+		for(let i = this.yearPositions.length - 1; i >= 0; i--) {
+			if(playerPositionX >= this.yearPositions[i].x) {
+				return this.yearPositions[i].year
+			}
 		}
-		return this.startYear + relativeYear
+		return config.startYear
 	}
 
 	gameOver() {
@@ -200,6 +197,7 @@ export default class extends Phaser.State {
 		this.yearLabelLayer = this.game.add.group()
 		this.yearLabelLayer.enableBody = true
 		let yearObjects = this.map.objects['yearLayer']
+		this.yearPositions = []
 
 		yearObjects.forEach((yearObject) => {
 			let text = yearObject.properties.year
@@ -211,6 +209,7 @@ export default class extends Phaser.State {
 			let labelPositionY = yearObject.y
 			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: 'center'}))
 			label.anchor.set(0.5)
+			this.yearPositions.push({year: text, x: yearObject.x})
 		})
 	}
 
