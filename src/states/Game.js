@@ -128,7 +128,7 @@ export default class extends Phaser.State {
 	}
 
 	playerHit(player, blockedLayer) {
-		if (player.body.blocked.right) {
+		if (player.body.blocked.right && this.player.alive) {
 			this.soundOuch.play()
 			// kill player
 			this.player.die()
