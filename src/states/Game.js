@@ -185,8 +185,8 @@ export default class extends Phaser.State {
 			let text = timelineObject.properties.text
 			let sprite = this.timelineObjectsLayer.create(positionX, positionY, timelineObject.properties.sprite)
 			let labelPositionX = Math.floor(sprite.x + sprite.width / 2)
-			let labelPositionY = this.game.height - 20
-			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: "center"}))
+			let labelPositionY = timelineObject.y + 20
+			let label = this.game.add.text(labelPositionX, labelPositionY, text, makeGreen(Object.assign(config.text.md, {align: "center"})))
 			label.anchor.set(0.5);
 			// copy all properties to the sprite
 			Object.keys(timelineObject.properties).forEach(key => {
@@ -204,7 +204,7 @@ export default class extends Phaser.State {
 		yearObjects.forEach((yearObject) => {
 			let text = yearObject.properties.year
 			let labelPositionX = yearObject.x
-			let labelPositionY = this.game.height - 10
+			let labelPositionY = config.groundPosition + 40
 			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: "center"}))
 			label.anchor.set(0.5);
 		})

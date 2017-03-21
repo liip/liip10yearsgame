@@ -50,12 +50,10 @@ const points = {
 }
 
 const isPortrait = window.innerHeight > window.innerWidth
-const { gameHeight } = isPortrait
-	? { gameHeight: 760 }
-	: { gameHeight: 400 }
 
 export default {
-	gameHeight,
+	gameHeight: window.innerHeight,
+	groundPosition: 350,
 	localStorageName: 'liip10yearsgame',
 	text,
 	css,
