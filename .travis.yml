@@ -1,12 +1,3 @@
 language: node_js
 node_js:
 - '7'
-before_deploy: npm run deploy
-deploy:
-  provider: heroku
-  api_key:
-    secure: ouwhtyFYhJ6A08d+Hj/isoS05M5QymxOJM5nvsbnOUuWbV2l+1y/jeEncUIkHSAclidsjgfRxAJTeEdSWpBWA1FEg9GniQgt6/OBi4ENL2TvtCgJFz9IQvlT6ottyRr2aVPoSX23aK07urb6456U5qIb/V40RjZDjwffN1z9jO7ZNB/VO8X6Y8IOvi4/iHBYURgj4MBdtRCrXihJi3seVZLQ33kJWHJNPAThzc8Pq9gYAg4aqa4rGrrlKYaPwUMzKU0t3t5liJve7ngDjYjRdEybsGONMAqcouQvYMF/kaDTXRzwXqqybHvJNiYYazUAKtqMxCx6Oawqacht3hS6FXn+0k/720EIsluW5h5IFmaF2P35fb289Rg7ez7kIS30FktSgY8/wuWB6qu2Q+krIZ86k2giOetqkeMQM2PLi7qz/qwKE8JgxTG/JwiFm5ztNNp6EUd4nEodNqFzoTF9XvgIDWwPLhflffAsMOKDZvC0yo5xCUVX/rrM1+uIucwzplc4SXZIY6Mp93fiYfLlLPwfOnxqFWa8AphahGFc3MX3mVFkhi5LWUHIVtY5jP+8XdU8Un/GEconw6qVa0v79uOuS/kgR2Zs5kuvssjwp4XR6rCl0j1d7Jl4GuTEqkaP9Q6uUv2NuDIUu/4rEEZxNoHGoNh4rEOOf3YCkKt1DAI=
-  app: l10y
-  skip_cleanup: true
-  on:
-    branch: master
