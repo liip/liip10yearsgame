@@ -49,7 +49,7 @@ const points = {
 	award: 1000,
 }
 
-const isPortrait = true
+const isPortrait = window.screen.orientation.type.includes('portrait')
 const { gameHeight } = isPortrait
 	? { gameHeight: 760 }
 	: { gameHeight: 400 }
