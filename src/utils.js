@@ -19,7 +19,7 @@ export const makeGreen = (textConfig) => {
 }
 
 export const getRandomCheer = () => {
-	return config.cheerTexts[Math.floor(Math.random() * config.cheerTexts.length)];
+	return config.cheerTexts[Math.floor(Math.random() * config.cheerTexts.length)]
 }
 
 /**
@@ -27,6 +27,6 @@ export const getRandomCheer = () => {
  * @return {Boolean}
  */
 export const isTouchDevice = () => {
-  return 'ontouchstart' in window        // works on most browsers
-      || navigator.maxTouchPoints;       // works on IE10/11 and Surface
+	return 'ontouchstart' in window // works on most browsers
+		|| navigator.maxTouchPoints // works on IE10/11 and Surface
 }
