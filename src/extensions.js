@@ -1,3 +1,5 @@
+/*eslint semi: ["error", "always"]*/
+/* global Phaser */
 /**
  * Make phaser's setCollisionBetween perform better
  * http://www.thebotanistgame.com/blog/2015/07/24/optimizing-giant-maps-lots-of-collisions.html
