@@ -30,6 +30,9 @@ export default class extends Phaser.State {
 		}
 
 		this.game.physics.startSystem(Phaser.Physics.ARCADE)
+
+		// improve font rendering (Source: https://github.com/photonstorm/phaser/issues/2370)
+		this.game.renderer.renderSession.roundPixels = true
 	}
 
 	render() {
