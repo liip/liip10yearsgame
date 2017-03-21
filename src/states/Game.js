@@ -59,19 +59,19 @@ export default class extends Phaser.State {
 		})
 		this.player.enable()
 
-		// score
-		this.scoreLabel = this.game.add.text(0, 0, '0', makeGreen(config.text.score));
-		this.scoreLabel.setTextBounds(0, 30, this.game.width - 100, 30);
-		this.infoLabels.add(this.scoreLabel)
-
-
+		// score / highscore
+		let scoreOffset = 0
 		// if user had a previous highscore, show it
 		let highscore = this.loadScore()
 		if (highscore) {
 			let highscoreLabel = this.game.add.text(0, 0, ' / ' + highscore, config.text.score);
 			highscoreLabel.setTextBounds(0, 30, this.game.width - 30, 30);
 			this.infoLabels.add(highscoreLabel)
+			scoreOffset = highscoreLabel.width;
 		}
+		this.scoreLabel = this.game.add.text(0, 0, '0', makeGreen(config.text.score));
+		this.scoreLabel.setTextBounds(0, 30, this.game.width - (30 + scoreOffset), 30);
+		this.infoLabels.add(this.scoreLabel)
 
 		// current position
 		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, {boundsAlignH: "center"}))
