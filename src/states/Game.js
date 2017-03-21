@@ -217,25 +217,40 @@ export default class extends Phaser.State {
 			this.player.slowDown()
 		}
 
-		// show +500 notice
-		let oneUp = this.game.add.text(
-			collectable.x,
-			collectable.y,
-			'+' + config.points.coin,
-			makeGreen(config.text.xl)
-			)
-		// destroy it shortly thereafter
-		setTimeout(() => {
-			oneUp.destroy()
-		}, 500)
+		this.showNotice(collectable.x, collectable.y, '+' + config.points.coin)
 
 		// play audio
 		this.soundCoin.play()
 		// update score
-		// @todo different bonuses per collectable?
 		this.addToScore(config.points.coin)
 		// remove sprite
 		collectable.destroy()
+	}
+
+	collectTimelineObject(player, collectable) {
+		let points = 0
+		if(collectable.type === 'award') {
+			points = config.points.award
+		}
+
+		this.showNotice(collectable.x, collectable.y, getRandomCheer())
+
+		// play audio
+		this.soundCoin.play()
+		// update score
+		this.addToScore(points)
+		// remove sprite
+		collectable.label.destroy()
+		collectable.destroy()
+	}
+
+	showNotice(x, y, text) {
+		// show notice
+		let notice = this.game.add.text(x, y, text, makeGreen(config.text.xl))
+		// destroy it shortly thereafter
+		setTimeout(() => {
+			notice.destroy()
+		}, 800)
 	}
 
 	/**
@@ -250,33 +265,5 @@ export default class extends Phaser.State {
 	 */
 	loadScore() {
 		return localStorage.getItem('highscore')
-	}
-
-	collectTimelineObject(player, collectable) {
-		let points = 0
-		if(collectable.type === 'award') {
-			points = config.points.award
-		}
-
-		collectable.label.destroy()
-
-		// show notice
-		let cheer = this.game.add.text(
-			collectable.x,
-			collectable.y,
-			getRandomCheer(),
-			makeGreen(config.text.xl)
-		)
-		// destroy it shortly thereafter
-		setTimeout(() => {
-			cheer.destroy()
-		}, 800)
-
-		// play audio
-		this.soundCoin.play()
-		// update score
-		this.addToScore(points)
-		// remove sprite
-		collectable.destroy()
 	}
 }
