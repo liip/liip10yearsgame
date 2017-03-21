@@ -152,9 +152,7 @@ export default class extends Phaser.State {
 		objects.forEach((object) => {
 			let sprite = this.objectsLayer.create(object.x, object.y - 50, object.properties.sprite)
 			// copy all properties to the sprite
-			Object.keys(object.properties).forEach(key => {
-				sprite[key] = object.properties[key]
-			})
+			_.assign(sprite, object.properties)
 		})
 	}
 
