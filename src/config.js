@@ -49,7 +49,7 @@ const points = {
 	award: 1000,
 }
 
-const isPortrait = window.innerHeight < window.innerWidth
+const isPortrait = window.innerHeight > window.innerWidth
 const { gameHeight } = isPortrait
 	? { gameHeight: 760 }
 	: { gameHeight: 400 }
