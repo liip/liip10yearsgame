@@ -4,6 +4,7 @@ import config from '../config'
 import {makeGreen,getRandomCheer} from '../utils'
 import Player from '../sprites/Player'
 import Input from '../Input'
+import _ from 'lodash'
 
 export default class extends Phaser.State {
 	init() {
@@ -40,9 +41,14 @@ export default class extends Phaser.State {
 		// add timeline layer
 		this.addYearLabelLayer()
 
-		this.logo = this.game.add.sprite(20, 35, 'liipLogoSmall')
-		this.logo.scale.setTo(0.5)
-		this.logo.fixedToCamera = true
+		// this group holds all sprites/labels that should be fixed to camera
+		this.infoLabels = this.game.add.group()
+		this.infoLabels.fixedToCamera = true
+
+
+		let logo = this.game.add.sprite(20, 35, 'liipLogoSmall')
+		logo.scale.setTo(0.5)
+		this.infoLabels.add(logo)
 
 		// setup player
 		this.player = new Player({
@@ -56,20 +62,21 @@ export default class extends Phaser.State {
 		// score
 		this.scoreLabel = this.game.add.text(0, 0, '0', makeGreen(config.text.score));
 		this.scoreLabel.setTextBounds(0, 30, this.game.width - 100, 30);
-		this.scoreLabel.fixedToCamera = true
+		this.infoLabels.add(this.scoreLabel)
+
 
 		// if user had a previous highscore, show it
 		let highscore = this.loadScore()
 		if (highscore) {
 			let highscoreLabel = this.game.add.text(0, 0, ' / ' + highscore, config.text.score);
 			highscoreLabel.setTextBounds(0, 30, this.game.width - 30, 30);
-			highscoreLabel.fixedToCamera = true
+			this.infoLabels.add(highscoreLabel)
 		}
 
 		// current position
 		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, {boundsAlignH: "center"}))
 		this.positionLabel.setTextBounds(0, 30, this.game.width, 30)
-		this.positionLabel.fixedToCamera = true
+		this.infoLabels.add(this.positionLabel)
 
 		// mute button
 		/*
@@ -120,6 +127,17 @@ export default class extends Phaser.State {
 	}
 
 	gameOver() {
+		// cleanup game state - remove all items
+		_(this.timelineObjectsLayer.children)
+		.merge(this.objectsLayer.children)
+		.merge(this.infoLabels.children)
+		.merge(this.yearLabelLayer.children)
+		.filter()
+		.each((item) => {
+			item.destroy()
+		})
+		// leave player
+		this.player.body.moves = false
 		this.game.state.start('GameOver', false, false)
 	}
 
@@ -224,7 +242,6 @@ export default class extends Phaser.State {
 	 * Save score to local storage
 	 */
 	saveScore() {
-		console.log(parseInt(this.scoreLabel.text, 10))
 		localStorage.setItem('highscore', parseInt(this.scoreLabel.text, 10))
 	}
 
