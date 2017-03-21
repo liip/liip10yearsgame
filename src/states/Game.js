@@ -204,6 +204,10 @@ export default class extends Phaser.State {
 		yearObjects.forEach((yearObject) => {
 			let text = yearObject.properties.year
 			let labelPositionX = yearObject.x
+			// move first year label into viewport
+			if(text === '2007') {
+				labelPositionX += 30
+			}
 			let labelPositionY = config.groundPosition + 40
 			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: 'center'}))
 			label.anchor.set(0.5)
