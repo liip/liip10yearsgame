@@ -68,8 +68,8 @@ export default class extends Phaser.Sprite {
 	*/
 	jump() {
 		if (this.body.blocked.down) {
-		  this.jumpSound.play()
-		  this.body.velocity.y -= config.player.jump
+			this.jumpSound.play()
+			this.body.velocity.y -= config.player.jump
 		}
 	}
 }

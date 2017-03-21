@@ -2,7 +2,6 @@ import Phaser from 'phaser'
 import config from '../config'
 import { centerGameObjects } from '../utils'
 import Input from '../Input'
-import Player from '../sprites/Player'
 
 export default class extends Phaser.State {
 	create () {
@@ -11,8 +10,8 @@ export default class extends Phaser.State {
 			0,
 			100,
 			'Gameover'.toUpperCase(),
-			Object.assign(config.text.xl, ({ boundsAlignH: "center" })))
-		gameOver.setTextBounds(0, 30, this.game.width, 30);
+			Object.assign(config.text.xl, ({ boundsAlignH: 'center' })))
+		gameOver.setTextBounds(0, 30, this.game.width, 30)
 
 		// replay button
 		let replay = this.game.add.button(

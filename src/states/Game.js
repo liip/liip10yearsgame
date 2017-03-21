@@ -64,17 +64,17 @@ export default class extends Phaser.State {
 		// if user had a previous highscore, show it
 		let highscore = this.loadScore()
 		if (highscore) {
-			let highscoreLabel = this.game.add.text(0, 0, ' / ' + highscore, config.text.score);
-			highscoreLabel.setTextBounds(0, 30, this.game.width - 30, 30);
+			let highscoreLabel = this.game.add.text(0, 0, ' / ' + highscore, config.text.score)
+			highscoreLabel.setTextBounds(0, 30, this.game.width - 30, 30)
 			this.infoLabels.add(highscoreLabel)
-			scoreOffset = highscoreLabel.width;
+			scoreOffset = highscoreLabel.width
 		}
-		this.scoreLabel = this.game.add.text(0, 0, '0', makeGreen(config.text.score));
-		this.scoreLabel.setTextBounds(0, 30, this.game.width - (30 + scoreOffset), 30);
+		this.scoreLabel = this.game.add.text(0, 0, '0', makeGreen(config.text.score))
+		this.scoreLabel.setTextBounds(0, 30, this.game.width - (30 + scoreOffset), 30)
 		this.infoLabels.add(this.scoreLabel)
 
 		// current position
-		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, {boundsAlignH: "center"}))
+		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, {boundsAlignH: 'center'}))
 		this.positionLabel.setTextBounds(0, 30, this.game.width, 30)
 		this.infoLabels.add(this.positionLabel)
 
@@ -186,8 +186,8 @@ export default class extends Phaser.State {
 			let sprite = this.timelineObjectsLayer.create(positionX, positionY, timelineObject.properties.sprite)
 			let labelPositionX = Math.floor(sprite.x + sprite.width / 2)
 			let labelPositionY = timelineObject.y + 20
-			let label = this.game.add.text(labelPositionX, labelPositionY, text, makeGreen(Object.assign(config.text.md, {align: "center"})))
-			label.anchor.set(0.5);
+			let label = this.game.add.text(labelPositionX, labelPositionY, text, makeGreen(Object.assign(config.text.md, {align: 'center'})))
+			label.anchor.set(0.5)
 			// copy all properties to the sprite
 			Object.keys(timelineObject.properties).forEach(key => {
 				sprite[key] = timelineObject.properties[key]
@@ -205,8 +205,8 @@ export default class extends Phaser.State {
 			let text = yearObject.properties.year
 			let labelPositionX = yearObject.x
 			let labelPositionY = config.groundPosition + 40
-			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: "center"}))
-			label.anchor.set(0.5);
+			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: 'center'}))
+			label.anchor.set(0.5)
 		})
 	}
 
@@ -253,7 +253,7 @@ export default class extends Phaser.State {
 	}
 
 	collectTimelineObject(player, collectable) {
-		let points = 0;
+		let points = 0
 		if(collectable.type === 'award') {
 			points = config.points.award
 		}
