@@ -21,22 +21,16 @@ export default class extends Phaser.State {
 			'replay',
 			() => { this.game.state.start('Game') },
 			this,
-			1,
-			0,
-			1)
+			1, 0, 1)
 		replay.scale.setTo(0.7)
 		centerGameObjects([replay])
 
 		// init input (keyboard or tap on mobile)
 		this.input = new Input({ game: this.game })
 
-		// @todo remove objects and labels
-		// @todo add replay button
+		// @todo add final score?
 	}
 
 	update () {
-		// if (this.input.shouldJump()) {
-		// 	this.state.start('Game')
-		// }
 	}
 }
