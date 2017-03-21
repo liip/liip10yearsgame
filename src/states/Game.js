@@ -208,7 +208,7 @@ export default class extends Phaser.State {
 			if(text === '2007') {
 				labelPositionX += 30
 			}
-			let labelPositionY = config.groundPosition + 40
+			let labelPositionY = yearObject.y
 			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: 'center'}))
 			label.anchor.set(0.5)
 		})

@@ -53,7 +53,6 @@ const isPortrait = window.innerHeight > window.innerWidth
 
 export default {
 	gameHeight: window.innerHeight,
-	groundPosition: 350,
 	localStorageName: 'liip10yearsgame',
 	text,
 	css,
