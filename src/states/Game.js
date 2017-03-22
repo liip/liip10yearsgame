@@ -10,6 +10,7 @@ export default class extends Phaser.State {
 	init() {
 		this.game.sound.mute = false
 		this.yearChanged = false
+		this.notices = []
 	}
 
 	preload() {
@@ -101,15 +102,29 @@ export default class extends Phaser.State {
 			this.addToScore(1)
 
 			if(this.yearChanged) {
-				if (this.positionLabel.fontSize < 80) {
+				if (this.positionLabel.alpha > 0) {
 					this.positionLabel.fontSize += 3
-					this.positionLabel.alpha -= 0.05
+					this.positionLabel.alpha = (this.positionLabel.alpha - 0.05 < 0 ? 0 : this.positionLabel.alpha - 0.05)
 				} else {
 					this.yearChanged = false
 					this.positionLabel.fontSize = 26
 					this.positionLabel.alpha = 1
 				}
 			}
+
+			// animate notices
+			this.notices = this.notices.filter((notice) => {
+				notice.y -= 1
+				let newAlpha = notice.alpha - 0.02
+				if (newAlpha < 0) {
+					// destory notice if not visible anymore
+					notice.destroy()
+					return false
+				} else {
+					notice.alpha = newAlpha
+					return true
+				}
+			})
 		}
 
 		// make objects collectable
@@ -259,10 +274,7 @@ export default class extends Phaser.State {
 	showNotice(x, y, text) {
 		// show notice
 		let notice = this.game.add.text(x, y, text, makeGreen(config.text.xl))
-		// destroy it shortly thereafter
-		setTimeout(() => {
-			notice.destroy()
-		}, 800)
+		this.notices.push(notice)
 	}
 
 	passYearBarrier(player, collectable) {
