@@ -1,5 +1,7 @@
 # Liip 10 years timeline game
 
+[![Build Status](https://travis-ci.org/liip/liip10yearsgame.svg?branch=master)](https://travis-ci.org/liip/liip10yearsgame)
+
 Jump and run through Liip's 10 year history.
 
 ## Installation
