@@ -8,8 +8,6 @@ import _ from 'lodash'
 
 export default class extends Phaser.State {
 	init() {
-		this.years = 11
-		this.startYear = 2007
 		this.game.sound.mute = false
 	}
 
@@ -23,7 +21,6 @@ export default class extends Phaser.State {
 		// create map
 		this.map = this.game.add.tilemap('liip')
 		this.map.addTilesetImage('tiles_spritesheet', 'gameTiles')
-		this.mapWidthInPixels = this.map.widthInPixels
 
 		// create layers
 		this.backgroundLayer = this.map.createLayer('backgroundLayer')
@@ -59,22 +56,22 @@ export default class extends Phaser.State {
 		})
 		this.player.enable()
 
-		// score
-		this.scoreLabel = this.game.add.text(0, 0, '0', makeGreen(config.text.score));
-		this.scoreLabel.setTextBounds(0, 30, this.game.width - 100, 30);
-		this.infoLabels.add(this.scoreLabel)
-
-
+		// score / highscore
+		let scoreOffset = 0
 		// if user had a previous highscore, show it
 		let highscore = this.loadScore()
 		if (highscore) {
-			let highscoreLabel = this.game.add.text(0, 0, ' / ' + highscore, config.text.score);
-			highscoreLabel.setTextBounds(0, 30, this.game.width - 30, 30);
+			let highscoreLabel = this.game.add.text(0, 0, ' / ' + highscore, config.text.score)
+			highscoreLabel.setTextBounds(0, 30, this.game.width - 30, 30)
 			this.infoLabels.add(highscoreLabel)
+			scoreOffset = highscoreLabel.width
 		}
+		this.scoreLabel = this.game.add.text(0, 0, '0', makeGreen(config.text.score))
+		this.scoreLabel.setTextBounds(0, 30, this.game.width - (30 + scoreOffset), 30)
+		this.infoLabels.add(this.scoreLabel)
 
 		// current position
-		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, {boundsAlignH: "center"}))
+		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, {boundsAlignH: 'center'}))
 		this.positionLabel.setTextBounds(0, 30, this.game.width, 30)
 		this.infoLabels.add(this.positionLabel)
 
@@ -118,12 +115,12 @@ export default class extends Phaser.State {
 	}
 
 	getCurrentYear(playerPositionX) {
-		const pixelsPerYear = this.mapWidthInPixels / this.years
-		let relativeYear = Math.floor(playerPositionX / pixelsPerYear)
-		if (relativeYear > this.years - 1) {
-			relativeYear = this.years - 1
+		for(let i = this.yearPositions.length - 1; i >= 0; i--) {
+			if(playerPositionX >= this.yearPositions[i].x) {
+				return this.yearPositions[i].year
+			}
 		}
-		return this.startYear + relativeYear
+		return config.startYear
 	}
 
 	gameOver() {
@@ -187,9 +184,9 @@ export default class extends Phaser.State {
 			let text = timelineObject.properties.text
 			let sprite = this.timelineObjectsLayer.create(positionX, positionY, timelineObject.properties.sprite)
 			let labelPositionX = Math.floor(sprite.x + sprite.width / 2)
-			let labelPositionY = this.game.height - 20
-			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: "center"}))
-			label.anchor.set(0.5);
+			let labelPositionY = timelineObject.y + 20
+			let label = this.game.add.text(labelPositionX, labelPositionY, text, makeGreen(Object.assign(config.text.md, {align: 'center'})))
+			label.anchor.set(0.5)
 			// copy all properties to the sprite
 			Object.keys(timelineObject.properties).forEach(key => {
 				sprite[key] = timelineObject.properties[key]
@@ -202,13 +199,19 @@ export default class extends Phaser.State {
 		this.yearLabelLayer = this.game.add.group()
 		this.yearLabelLayer.enableBody = true
 		let yearObjects = this.map.objects['yearLayer']
+		this.yearPositions = []
 
 		yearObjects.forEach((yearObject) => {
 			let text = yearObject.properties.year
 			let labelPositionX = yearObject.x
-			let labelPositionY = this.game.height - 10
-			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: "center"}))
-			label.anchor.set(0.5);
+			// move first year label into viewport
+			if(text === '2007') {
+				labelPositionX += 30
+			}
+			let labelPositionY = yearObject.y
+			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: 'center'}))
+			label.anchor.set(0.5)
+			this.yearPositions.push({year: text, x: yearObject.x})
 		})
 	}
 
@@ -219,25 +222,40 @@ export default class extends Phaser.State {
 			this.player.slowDown()
 		}
 
-		// show +500 notice
-		let oneUp = this.game.add.text(
-			collectable.x,
-			collectable.y,
-			'+' + config.points.coin,
-			makeGreen(config.text.xl)
-			)
-		// destroy it shortly thereafter
-		setTimeout(() => {
-			oneUp.destroy()
-		}, 500)
+		this.showNotice(collectable.x, collectable.y, '+' + config.points.coin)
 
 		// play audio
 		this.soundCoin.play()
 		// update score
-		// @todo different bonuses per collectable?
 		this.addToScore(config.points.coin)
 		// remove sprite
 		collectable.destroy()
+	}
+
+	collectTimelineObject(player, collectable) {
+		let points = 0
+		if(collectable.type === 'award') {
+			points = config.points.award
+		}
+
+		this.showNotice(collectable.x, collectable.y, getRandomCheer())
+
+		// play audio
+		this.soundCoin.play()
+		// update score
+		this.addToScore(points)
+		// remove sprite
+		collectable.label.destroy()
+		collectable.destroy()
+	}
+
+	showNotice(x, y, text) {
+		// show notice
+		let notice = this.game.add.text(x, y, text, makeGreen(config.text.xl))
+		// destroy it shortly thereafter
+		setTimeout(() => {
+			notice.destroy()
+		}, 800)
 	}
 
 	/**
@@ -252,33 +270,5 @@ export default class extends Phaser.State {
 	 */
 	loadScore() {
 		return localStorage.getItem('highscore')
-	}
-
-	collectTimelineObject(player, collectable) {
-		let points = 0;
-		if(collectable.type === 'award') {
-			points = config.points.award
-		}
-
-		collectable.label.destroy()
-
-		// show notice
-		let cheer = this.game.add.text(
-			collectable.x,
-			collectable.y,
-			getRandomCheer(),
-			makeGreen(config.text.xl)
-		)
-		// destroy it shortly thereafter
-		setTimeout(() => {
-			cheer.destroy()
-		}, 800)
-
-		// play audio
-		this.soundCoin.play()
-		// update score
-		this.addToScore(points)
-		// remove sprite
-		collectable.destroy()
 	}
 }

@@ -49,13 +49,10 @@ const points = {
 	award: 1000,
 }
 
-const isPortrait = screen.orientation.type.includes('portrait')
-const { gameHeight } = isPortrait
-	? { gameHeight: 760 }
-	: { gameHeight: 400 }
+const isPortrait = window.innerHeight > window.innerWidth
 
 export default {
-	gameHeight,
+	gameHeight: window.innerHeight,
 	localStorageName: 'liip10yearsgame',
 	text,
 	css,
@@ -72,5 +69,6 @@ export default {
 		weight: 2300,
 		jump: 950
 	},
-	backGround: css.webWhite
+	backGround: css.webWhite,
+	startYear: '2007'
 }

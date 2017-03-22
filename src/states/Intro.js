@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import config from '../config'
-import { makeGreen, centerGameObjects, isTouchDevice } from '../utils'
+import { centerGameObjects, isTouchDevice } from '../utils'
 import Input from '../Input'
 
 export default class extends Phaser.State {
@@ -46,8 +46,8 @@ export default class extends Phaser.State {
 			0,
 			230,
 			`${howToJump} to jump`.toUpperCase(),
-			Object.assign(config.text.lg, ({ boundsAlignH: "center" })))
-		intro.setTextBounds(0, 30, this.game.width, 30);
+			Object.assign(config.text.lg, ({ boundsAlignH: 'center' })))
+		intro.setTextBounds(0, 30, this.game.width, 30)
 
 		// init input (keyboard or tap on mobile)
 		this.input = new Input({ game: this.game })

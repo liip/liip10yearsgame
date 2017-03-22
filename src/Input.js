@@ -17,7 +17,7 @@ export default class {
 		// add handling for tapping
 		this.game.input.onDown.add(() => {
 			this.jump = true
-		});
+		})
 
 	}
 
