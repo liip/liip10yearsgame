@@ -103,9 +103,11 @@ export default class extends Phaser.State {
 			if(this.yearChanged) {
 				if (this.positionLabel.fontSize < 80) {
 					this.positionLabel.fontSize += 3
+					this.positionLabel.alpha -= 0.05
 				} else {
 					this.yearChanged = false
 					this.positionLabel.fontSize = 26
+					this.positionLabel.alpha = 1
 				}
 			}
 		}
