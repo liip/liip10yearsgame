@@ -38,7 +38,7 @@ const text = {
 	score: {
 		font: '23px Ubuntu Mono', // we need a monospaced font here to avoid jiggling text
 		color: css.webBlack,
-		align: 'left',
+		align: 'right',
 		boundsAlignV: 'top',
 		boundsAlignH: 'right'
 	}
@@ -70,5 +70,7 @@ export default {
 		jump: 950
 	},
 	backGround: css.webWhite,
-	startYear: '2007'
+	startYear: '2007',
+	infoLabelsPadding: 30,
+	tileSize: 50
 }
