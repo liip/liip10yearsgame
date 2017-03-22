@@ -1,7 +1,9 @@
 language: node_js
 node_js:
 - '7'
-before_deploy: npm run deploy
+before_deploy:
+  - npm run deploy
+  - rm .gitignore
 deploy:
   provider: pages
   skip_cleanup: true
