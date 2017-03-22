@@ -101,11 +101,11 @@ export default class extends Phaser.State {
 			this.addToScore(1)
 
 			if(this.yearChanged) {
-				if (this.yearLabelHighlight.fontSize < 80) {
-					this.yearLabelHighlight.fontSize += 3
+				if (this.positionLabel.fontSize < 80) {
+					this.positionLabel.fontSize += 3
 				} else {
 					this.yearChanged = false
-					this.yearLabelHighlight.destroy()
+					this.positionLabel.fontSize = 26
 				}
 			}
 		}
@@ -266,11 +266,8 @@ export default class extends Phaser.State {
 	passYearBarrier(player, collectable) {
 		// update year label
 		this.positionLabel.text = collectable.yearLabel
-		this.yearLabelHighlight = this.game.add.text(this.game.width / 2, config.infoLabelsPadding, collectable.yearLabel, Object.assign(config.text.xl, {boundsAlignH: 'center', boundsAlignV: 'top'}))
-		this.yearLabelHighlight.anchor.set(0.5, 0.5)
-		console.log(this.yearLabelHighlight)
-		collectable.destroy()
 		this.yearChanged = true
+		collectable.destroy()
 	}
 
 	/**
