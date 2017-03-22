@@ -3,7 +3,7 @@ node_js:
 - '7'
 before_deploy:
   - npm run deploy
-  - rm .gitignore
+  - cp .gitignore_deploy .gitignore
 deploy:
   provider: pages
   skip_cleanup: true
