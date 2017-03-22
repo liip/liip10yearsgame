@@ -1,34 +1,23 @@
 # Liip 10 years timeline game
 
-# Running it
+Jump and run through Liip's 10 year history.
 
-```cd <to the folder>```
+## Installation
 
-then:
+1. Clone this repository
+1. ```npm install```
+
+## Start local server
 
 ```
-git pull
 npm run dev
 ```
 
-If you get an error, try:
-
-```npm install```
-
-then rerun it.
-
-# Initial Setup
-
-```npm install```
-
-
-```npm run dev```
-
 This will run a server so you can run the game in a browser.
 
-Open your browser and enter localhost:3000 into the address bar.
+Open your browser and enter `localhost:3000` into the address bar.
 
-Also this will start a watch process, so you can change the source and the process will recompile and refresh the browser
+Also this will start a watch process, so you can change the source and the process will recompile and refresh the browser.
 
 
 ## Build for deployment:
@@ -43,9 +32,10 @@ This will optimize and minimize the compiled bundle.
 
 Built with [Phaser+ES6+Webpack](https://github.com/lean/phaser-es6-webpack).
 
-# Server
+## Server
 
 Required for storing `highscores`
+
 ```sh
 cd src/server
 npm i
