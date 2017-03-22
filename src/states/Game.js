@@ -9,6 +9,7 @@ import _ from 'lodash'
 export default class extends Phaser.State {
 	init() {
 		this.game.sound.mute = false
+		this.yearChanged = false
 	}
 
 	preload() {
@@ -43,7 +44,8 @@ export default class extends Phaser.State {
 		this.infoLabels.fixedToCamera = true
 
 
-		let logo = this.game.add.sprite(20, 35, 'liipLogoSmall')
+		let logo = this.game.add.sprite(config.infoLabelsPadding, config.infoLabelsPadding, 'liipLogoSmall')
+		logo.anchor.set(0, 0.5)
 		logo.scale.setTo(0.5)
 		this.infoLabels.add(logo)
 
@@ -61,18 +63,18 @@ export default class extends Phaser.State {
 		// if user had a previous highscore, show it
 		let highscore = this.loadScore()
 		if (highscore) {
-			let highscoreLabel = this.game.add.text(0, 0, ' / ' + highscore, config.text.score)
-			highscoreLabel.setTextBounds(0, 30, this.game.width - 30, 30)
-			this.infoLabels.add(highscoreLabel)
-			scoreOffset = highscoreLabel.width
+			this.highscoreLabel = this.game.add.text(this.game.width - config.infoLabelsPadding, config.infoLabelsPadding, ' / ' + highscore, config.text.score)
+			this.highscoreLabel.anchor.set(1, 0.5)
+			this.infoLabels.add(this.highscoreLabel)
+			scoreOffset = this.highscoreLabel.width
 		}
-		this.scoreLabel = this.game.add.text(0, 0, '0', makeGreen(config.text.score))
-		this.scoreLabel.setTextBounds(0, 30, this.game.width - (30 + scoreOffset), 30)
+		this.scoreLabel = this.game.add.text(this.game.width - (config.infoLabelsPadding + scoreOffset), config.infoLabelsPadding, '0', makeGreen(config.text.score))
+		this.scoreLabel.anchor.set(1, 0.5)
 		this.infoLabels.add(this.scoreLabel)
 
 		// current position
-		this.positionLabel = this.game.add.text(0, 0, '2007', Object.assign(config.text.xl, {boundsAlignH: 'center'}))
-		this.positionLabel.setTextBounds(0, 30, this.game.width, 30)
+		this.positionLabel = this.game.add.text(this.game.width / 2, config.infoLabelsPadding, '2007', Object.assign(config.text.xl, {boundsAlignH: 'center', boundsAlignV: 'top'}))
+		this.positionLabel.anchor.set(0.5, 0.5)
 		this.infoLabels.add(this.positionLabel)
 
 		// mute button
@@ -98,8 +100,14 @@ export default class extends Phaser.State {
 
 			this.addToScore(1)
 
-			// Update position label depending on the position of the player
-			this.positionLabel.text = this.getCurrentYear(this.player.x)
+			if(this.yearChanged) {
+				if (this.yearLabelHighlight.fontSize < 80) {
+					this.yearLabelHighlight.fontSize += 3
+				} else {
+					this.yearChanged = false
+					this.yearLabelHighlight.destroy()
+				}
+			}
 		}
 
 		// make objects collectable
@@ -108,31 +116,24 @@ export default class extends Phaser.State {
 		// make timeline objects collectable
 		this.game.physics.arcade.overlap(this.player, this.timelineObjectsLayer, this.collectTimelineObject, null, this)
 
+		// enable year barriers
+		this.game.physics.arcade.overlap(this.player, this.yearBarrierLayer, this.passYearBarrier, null, this)
+
 		// restart the game if reaching the edge
 		if (this.player.x >= this.game.world.width) {
 			this.game.time.events.add(1500, this.gameOver, this)
 		}
 	}
 
-	getCurrentYear(playerPositionX) {
-		for(let i = this.yearPositions.length - 1; i >= 0; i--) {
-			if(playerPositionX >= this.yearPositions[i].x) {
-				return this.yearPositions[i].year
-			}
-		}
-		return config.startYear
-	}
-
 	gameOver() {
 		// cleanup game state - remove all items
 		_(this.timelineObjectsLayer.children)
-		.merge(this.objectsLayer.children)
-		.merge(this.infoLabels.children)
-		.merge(this.yearLabelLayer.children)
-		.filter()
-		.each((item) => {
-			item.destroy()
-		})
+			.merge(this.objectsLayer.children)
+			.merge(this.infoLabels.children)
+			.filter()
+			.each((item) => {
+				item.destroy()
+			})
 		// leave player
 		this.player.body.moves = false
 		this.game.state.start('GameOver', false, false)
@@ -165,7 +166,7 @@ export default class extends Phaser.State {
 		let objects = this.map.objects['objectsLayer']
 
 		objects.forEach((object) => {
-			let sprite = this.objectsLayer.create(object.x, object.y - 50, object.properties.sprite)
+			let sprite = this.objectsLayer.create(object.x, object.y - config.tileSize, object.properties.sprite)
 			// copy all properties to the sprite
 			Object.keys(object.properties).forEach(key => {
 				sprite[key] = object.properties[key]
@@ -180,26 +181,26 @@ export default class extends Phaser.State {
 
 		timelineObjects.forEach((timelineObject) => {
 			let positionX = timelineObject.x
-			let positionY = timelineObject.y - 50
+			let positionY = timelineObject.y - config.tileSize
 			let text = timelineObject.properties.text
 			let sprite = this.timelineObjectsLayer.create(positionX, positionY, timelineObject.properties.sprite)
-			let labelPositionX = Math.floor(sprite.x + sprite.width / 2)
-			let labelPositionY = timelineObject.y + 20
+			let labelPositionX = Math.floor(sprite.width / 2)
+			let labelPositionY = config.tileSize + 20
 			let label = this.game.add.text(labelPositionX, labelPositionY, text, makeGreen(Object.assign(config.text.md, {align: 'center'})))
 			label.anchor.set(0.5)
 			// copy all properties to the sprite
 			Object.keys(timelineObject.properties).forEach(key => {
 				sprite[key] = timelineObject.properties[key]
 			})
-			sprite.label = label
+			sprite.addChild(label)
 		})
 	}
 
 	addYearLabelLayer() {
 		this.yearLabelLayer = this.game.add.group()
-		this.yearLabelLayer.enableBody = true
+		this.yearBarrierLayer = this.game.add.group()
+		this.yearBarrierLayer.enableBody = true
 		let yearObjects = this.map.objects['yearLayer']
-		this.yearPositions = []
 
 		yearObjects.forEach((yearObject) => {
 			let text = yearObject.properties.year
@@ -209,9 +210,14 @@ export default class extends Phaser.State {
 				labelPositionX += 30
 			}
 			let labelPositionY = yearObject.y
-			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: 'center'}))
+			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: 'center'}), this.yearLabelLayer)
 			label.anchor.set(0.5)
-			this.yearPositions.push({year: text, x: yearObject.x})
+			if(text !== '2007') {
+				let yearBarrier = this.yearBarrierLayer.create(yearObject.x, 0)
+				yearBarrier.scale.x = 1
+				yearBarrier.scale.y = this.game.world.height
+				yearBarrier.yearLabel = text
+			}
 		})
 	}
 
@@ -245,7 +251,6 @@ export default class extends Phaser.State {
 		// update score
 		this.addToScore(points)
 		// remove sprite
-		collectable.label.destroy()
 		collectable.destroy()
 	}
 
@@ -256,6 +261,16 @@ export default class extends Phaser.State {
 		setTimeout(() => {
 			notice.destroy()
 		}, 800)
+	}
+
+	passYearBarrier(player, collectable) {
+		// update year label
+		this.positionLabel.text = collectable.yearLabel
+		this.yearLabelHighlight = this.game.add.text(this.game.width / 2, config.infoLabelsPadding, collectable.yearLabel, Object.assign(config.text.xl, {boundsAlignH: 'center', boundsAlignV: 'top'}))
+		this.yearLabelHighlight.anchor.set(0.5, 0.5)
+		console.log(this.yearLabelHighlight)
+		collectable.destroy()
+		this.yearChanged = true
 	}
 
 	/**
