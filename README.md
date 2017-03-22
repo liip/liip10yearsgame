@@ -4,6 +4,8 @@
 
 Jump and run through Liip's 10 year history.
 
+Play the game: https://liip.github.io/liip10yearsgame/
+
 ## Installation
 
 1. Clone this repository
