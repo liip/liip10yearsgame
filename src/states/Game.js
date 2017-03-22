@@ -262,13 +262,19 @@ export default class extends Phaser.State {
 	 * Save score to local storage
 	 */
 	saveScore() {
-		localStorage.setItem('highscore', parseInt(this.scoreLabel.text, 10))
+		let previousScore = this.loadScore(),
+			currentScore = parseInt(this.scoreLabel.text, 10)
+
+		// only set score if we don't yet have one or if currentScore is greater than previous one
+		if (!previousScore || currentScore > previousScore) {
+			localStorage.setItem('highscore', currentScore)
+		}
 	}
 
 	/**
 	 * Load score from local storage
 	 */
 	loadScore() {
-		return localStorage.getItem('highscore')
+		return parseInt(localStorage.getItem('highscore'))
 	}
 }
