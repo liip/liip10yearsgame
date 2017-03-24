@@ -1,4 +1,3 @@
-/* globals __DEV__ */
 import Phaser from 'phaser'
 import config from '../config'
 import {makeGreen,getRandomCheer} from '../utils'
