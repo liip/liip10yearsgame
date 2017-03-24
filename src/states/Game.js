@@ -79,8 +79,8 @@ export default class extends Phaser.State {
 		this.infoLabels.add(this.positionLabel)
 
 		// mute button
-		this.muteBtn = this.game.add.text(this.game.width - config.infoLabelsPadding, this.game.height - config.infoLabelsPadding, (this.game.sound.mute ? 'unmute' : 'mute'), Object.assign(config.text.md, { boundsAlignH: 'right', boundsAlignV: 'bottom'}))
-		this.muteBtn.anchor.set(1, 0.5)
+		this.muteBtn = this.game.add.text(config.infoLabelsPadding, this.game.height - config.infoLabelsPadding, (this.game.sound.mute ? 'unmute' : 'mute'), Object.assign(config.text.md, { boundsAlignH: 'left', boundsAlignV: 'bottom'}))
+		this.muteBtn.anchor.set(0, 0.5)
 		this.muteBtn.inputEnabled = true
 		this.muteBtn.events.onInputDown.add(() => {
 			this.game.sound.mute = !this.game.sound.mute
@@ -90,7 +90,7 @@ export default class extends Phaser.State {
 		this.infoLabels.add(this.muteBtn)
 
 		// init input (keyboard or tap on mobile)
-		this.input = new Input({ game: this.game })
+		this.input = new Input({ game: this.game, muteBtn: this.muteBtn })
 	}
 
 	update() {
