@@ -99,6 +99,9 @@ export default class extends Phaser.State {
 	update() {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this)
 
+		// set camera focus with some x offset
+		this.camera.focusOnXY(this.player.x + (this.game.width / 4), this.player.y)
+
 		if (this.player.alive) {
 			if (this.input.shouldJump()) {
 				this.player.jump()

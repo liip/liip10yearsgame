@@ -20,7 +20,6 @@ export default class extends Phaser.Sprite {
 		this.game.physics.arcade.enable(this)
 		this.body.gravity.y = config.player.weight
 		this.body.velocity.x = config.player.speed
-		this.game.camera.follow(this)
 		this.animations.play('walk', 15, true)
 	}
 
