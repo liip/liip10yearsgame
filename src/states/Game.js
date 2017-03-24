@@ -8,7 +8,7 @@ import _ from 'lodash'
 
 export default class extends Phaser.State {
 	init() {
-		this.game.sound.mute = false
+		this.game.sound.mute = this.loadSoundMuteState()
 		this.yearChanged = false
 		this.notices = []
 	}
@@ -79,13 +79,15 @@ export default class extends Phaser.State {
 		this.infoLabels.add(this.positionLabel)
 
 		// mute button
-		/*
-		this.muteBtn = this.game.add.text(this.game.width - 120, 35, 'mute', makeGreen(config.text.md))
-		this.muteBtn.fixedToCamera = true
+		this.muteBtn = this.game.add.text(this.game.width - config.infoLabelsPadding, this.game.height - config.infoLabelsPadding, (this.game.sound.mute ? 'unmute' : 'mute'), Object.assign(config.text.md, { boundsAlignH: 'right', boundsAlignV: 'bottom'}))
+		this.muteBtn.anchor.set(1, 0.5)
 		this.muteBtn.inputEnabled = true
 		this.muteBtn.events.onInputDown.add(() => {
 			this.game.sound.mute = !this.game.sound.mute
-		})*/
+			this.saveSoundMuteState(this.game.sound.mute)
+			this.muteBtn.text = (this.game.sound.mute ? 'unmute' : 'mute')
+		})
+		this.infoLabels.add(this.muteBtn)
 
 		// init input (keyboard or tap on mobile)
 		this.input = new Input({ game: this.game })
@@ -293,7 +295,7 @@ export default class extends Phaser.State {
 
 		// only set score if we don't yet have one or if currentScore is greater than previous one
 		if (!previousScore || currentScore > previousScore) {
-			localStorage.setItem('highscore', currentScore)
+			localStorage.setItem(config.localStorageName + '-highscore', currentScore)
 		}
 	}
 
@@ -301,6 +303,20 @@ export default class extends Phaser.State {
 	 * Load score from local storage
 	 */
 	loadScore() {
-		return parseInt(localStorage.getItem('highscore'))
+		return parseInt(localStorage.getItem(config.localStorageName + '-highscore'))
+	}
+
+	/**
+	 * Save sound mute state to local storage
+	 */
+	saveSoundMuteState(mute) {
+		localStorage.setItem(config.localStorageName + '-mute', mute)
+	}
+
+	/**
+	 * Load sound mute state from local storage
+	 */
+	loadSoundMuteState() {
+		return localStorage.getItem(config.localStorageName + '-mute') == 'true';
 	}
 }
