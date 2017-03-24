@@ -31,5 +31,9 @@ export default class extends Phaser.State {
 	}
 
 	update () {
+		// Restart game on jump
+		if (this.input.shouldJump()) {
+			this.state.start('Game')
+		}
 	}
 }
