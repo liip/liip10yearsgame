@@ -147,8 +147,8 @@ export default class extends Phaser.State {
 	gameOver() {
 		// cleanup game state - remove all items
 		_(this.timelineObjectsLayer.children)
-			.merge(this.objectsLayer.children)
-			.merge(this.infoLabels.children)
+			.concat(this.objectsLayer.children)
+			.concat(this.infoLabels.children)
 			.filter()
 			.each((item) => {
 				item.destroy()
