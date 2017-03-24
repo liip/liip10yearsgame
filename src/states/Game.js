@@ -317,6 +317,6 @@ export default class extends Phaser.State {
 	 * Load sound mute state from local storage
 	 */
 	loadSoundMuteState() {
-		return localStorage.getItem(config.localStorageName + '-mute') == 'true';
+		return localStorage.getItem(config.localStorageName + '-mute') == 'true'
 	}
 }
