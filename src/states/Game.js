@@ -124,6 +124,17 @@ export default class extends Phaser.State {
 				// animate notices
 				this.notices = this.notices.filter((notice) => {
 					notice.y -= 1
+					if(notice.directionX === 'left') {
+						notice.x--
+						if(notice.x < notice.originalX - 6) {
+							notice.directionX = 'right'
+						}
+					} else {
+						notice.x++
+						if(notice.x > notice.originalX + 6) {
+							notice.directionX = 'left'
+						}
+					}
 					let newAlpha = notice.alpha - 0.02
 					if (newAlpha < 0) {
 						// destory notice if not visible anymore
@@ -286,6 +297,8 @@ export default class extends Phaser.State {
 		let notice = this.game.add.text(x, y, text, makeGreen(config.text.xl))
 
 		if(this.animationsEnabled) {
+			notice.originalX = x
+			notice.directionX = 'left'
 			this.notices.push(notice)
 		} else {
 			// destory notices after certain time
