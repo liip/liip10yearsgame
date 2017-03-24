@@ -34,7 +34,7 @@ export default class extends Phaser.State {
 		centerGameObjects([banner, start])
 
 		// setup player
-		this.player = this.game.add.sprite(100, 200, 'player')
+		this.player = this.game.add.sprite(100, 250, 'player')
 		this.game.physics.arcade.enable(this.player)
 		this.player.body.gravity.y = config.player.weight
 
@@ -57,7 +57,9 @@ export default class extends Phaser.State {
 	}
 
 	update () {
-		this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this)
+		this.game.physics.arcade.collide(this.player, this.blockedLayer, null, null, this)
+
+		// Start game on jump
 		if (this.input.shouldJump()) {
 			this.state.start('Game')
 		}
