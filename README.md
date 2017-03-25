@@ -1,6 +1,8 @@
 # Liip 10 years timeline game
 
 [![Build Status](https://travis-ci.org/liip/liip10yearsgame.svg?branch=master)](https://travis-ci.org/liip/liip10yearsgame)
+[![dependencies Status](https://david-dm.org/liip/liip10yearsgame/status.svg)](https://david-dm.org/liip/liip10yearsgame)
+[![devDependencies Status](https://david-dm.org/liip/liip10yearsgame/dev-status.svg)](https://david-dm.org/liip/liip10yearsgame?type=dev)
 
 Jump and run through Liip's 10 year history.
 
