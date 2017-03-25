@@ -27,7 +27,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "lodash": "^4.17.4",
-    "phaser-ce": "^2.7.3",
+    "phaser-ce": "^2.7.5",
     "webfontloader": "^1.6.27"
   }
 }
