@@ -20,7 +20,7 @@ export default class extends Phaser.Sprite {
 		this.game.physics.arcade.enable(this)
 		this.body.gravity.y = config.player.weight
 		this.body.velocity.x = config.player.speed
-		this.animations.play('walk', 9, true)
+		this.animations.play('walk', 18, true)
 	}
 
 	/**
@@ -33,7 +33,7 @@ export default class extends Phaser.Sprite {
 		this.body.velocity.x = 0
 		// change sprite image
 		this.loadTexture('playerDead')
-		this.animations.play('dead', 26, true)
+		this.animations.play('dead', 13.5, true)
 	}
 
 	/**
