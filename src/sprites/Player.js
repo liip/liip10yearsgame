@@ -33,7 +33,7 @@ export default class extends Phaser.Sprite {
 		this.body.velocity.x = 0
 		// change sprite image
 		this.loadTexture('playerDead')
-		this.animations.play('dead', 13, true)
+		this.animations.play('dead', 26, true)
 	}
 
 	/**
