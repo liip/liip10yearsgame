@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="440" height="8" tilewidth="50" tileheight="50" backgroundcolor="#f5f5f7" nextobjectid="69">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="50" tileheight="50" tilecount="24" columns="6">
-  <image source="../images/tiles_spritesheet.png" width="300" height="200"/>
+  <image source="../../../../../Google Drive/Marketing/Projects/Liip Game/Assets/images/tiles_spritesheet.png" width="300" height="200"/>
  </tileset>
  <layer name="backgroundLayer" width="440" height="8">
   <data encoding="csv">
@@ -184,13 +184,7 @@
     <property name="type" value="beer"/>
    </properties>
   </object>
-  <object id="67" name="beer" gid="19" x="3850" y="100" width="50" height="50">
-   <properties>
-    <property name="sprite" value="beer"/>
-    <property name="type" value="beer"/>
-   </properties>
-  </object>
-  <object id="68" name="beer" gid="19" x="3850" y="50" width="50" height="50">
+  <object id="67" name="beer" gid="19" x="3850" y="150" width="50" height="50">
    <properties>
     <property name="sprite" value="beer"/>
     <property name="type" value="beer"/>

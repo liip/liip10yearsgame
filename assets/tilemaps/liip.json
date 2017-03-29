@@ -636,29 +636,7 @@
                  "visible":true,
                  "width":50,
                  "x":3850,
-                 "y":100
-                }, 
-                {
-                 "gid":19,
-                 "height":50,
-                 "id":68,
-                 "name":"beer",
-                 "properties":
-                    {
-                     "sprite":"beer",
-                     "type":"beer"
-                    },
-                 "propertytypes":
-                    {
-                     "sprite":"string",
-                     "type":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":50,
-                 "x":3850,
-                 "y":50
+                 "y":150
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -675,7 +653,7 @@
         {
          "columns":6,
          "firstgid":1,
-         "image":"..\/images\/tiles_spritesheet.png",
+         "image":"..\/..\/..\/..\/..\/Google Drive\/Marketing\/Projects\/Liip Game\/Assets\/images\/tiles_spritesheet.png",
          "imageheight":200,
          "imagewidth":300,
          "margin":0,
