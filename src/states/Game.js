@@ -8,12 +8,7 @@ import _ from 'lodash'
 export default class extends Phaser.State {
 	init() {
 		this.game.sound.mute = this.loadSoundMuteState()
-		this.yearChanged = false
-		this.notices = []
 		this.jumping = false
-
-		// enable animations only on desktop devices
-		this.animationsEnabled = this.game.device.desktop
 	}
 
 	preload() {
@@ -116,44 +111,6 @@ export default class extends Phaser.State {
 			}
 
 			this.addToScore(1)
-
-			if(this.animationsEnabled) {
-				if(this.yearChanged) {
-					if (this.positionLabel.alpha > 0) {
-						this.positionLabel.fontSize += 3
-						this.positionLabel.alpha = (this.positionLabel.alpha - 0.05 < 0 ? 0 : this.positionLabel.alpha - 0.05)
-					} else {
-						this.yearChanged = false
-						this.positionLabel.fontSize = 26
-						this.positionLabel.alpha = 1
-					}
-				}
-
-				// animate notices
-				this.notices = this.notices.filter((notice) => {
-					notice.y -= 1
-					if(notice.directionX === 'left') {
-						notice.x--
-						if(notice.x < notice.originalX - 6) {
-							notice.directionX = 'right'
-						}
-					} else {
-						notice.x++
-						if(notice.x > notice.originalX + 6) {
-							notice.directionX = 'left'
-						}
-					}
-					let newAlpha = notice.alpha - 0.02
-					if (newAlpha < 0) {
-						// destory notice if not visible anymore
-						notice.destroy()
-						return false
-					} else {
-						notice.alpha = newAlpha
-						return true
-					}
-				})
-			}
 		}
 
 		// make objects collectable
@@ -304,22 +261,23 @@ export default class extends Phaser.State {
 		// show notice
 		let notice = this.game.add.text(x, y, text, makeGreen(config.text.xl))
 
-		if(this.animationsEnabled) {
-			notice.originalX = x
-			notice.directionX = 'left'
-			this.notices.push(notice)
-		} else {
-			// destory notices after certain time
-			setTimeout(() => {
-				notice.destroy()
-			}, 800)
-		}
+		// animate notice
+		let noticeTween = this.game.add.tween(notice).to({alpha: 0, y: notice.y - 30}, 800, Phaser.Easing.Linear.None, true)
+		noticeTween.onComplete.addOnce((notice) => {
+			notice.destroy()
+		})
 	}
 
 	passYearBarrier(player, collectable) {
 		// update year label
 		this.positionLabel.text = collectable.yearLabel
-		this.yearChanged = true
+
+		// animate new year label
+		let yearTween = this.game.add.tween(this.positionLabel).to({alpha: 0, fontSize: 86}, 500, Phaser.Easing.Linear.None, true)
+		yearTween.onComplete.addOnce((positionLabel) => {
+			positionLabel.fontSize = 26
+			positionLabel.alpha = 1
+		})
 		collectable.destroy()
 	}
 
