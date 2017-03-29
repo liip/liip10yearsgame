@@ -85,7 +85,7 @@
   </object>
  </objectgroup>
  <objectgroup name="timelineLayer">
-  <object id="44" gid="15" x="1300" y="200" width="50" height="50">
+  <object id="44" gid="15" x="1450" y="200" width="50" height="50">
    <properties>
     <property name="sprite" value="award"/>
     <property name="text" value="Swiss Web Award"/>
@@ -154,7 +154,7 @@
   </object>
  </objectgroup>
  <objectgroup name="objectsLayer">
-  <object id="46" name="beer" gid="19" x="1250" y="250" width="50" height="50">
+  <object id="46" name="beer" gid="19" x="1150" y="250" width="50" height="50">
    <properties>
     <property name="sprite" value="beer"/>
     <property name="type" value="beer"/>
@@ -166,19 +166,19 @@
     <property name="type" value="coffee"/>
    </properties>
   </object>
-  <object id="64" name="beer" gid="19" x="3900" y="150" width="50" height="50">
+  <object id="64" name="beer" gid="19" x="4800" y="100" width="50" height="50">
    <properties>
     <property name="sprite" value="beer"/>
     <property name="type" value="beer"/>
    </properties>
   </object>
-  <object id="65" name="beer" gid="19" x="3800" y="150" width="50" height="50">
+  <object id="65" name="beer" gid="19" x="7400" y="100" width="50" height="50">
    <properties>
     <property name="sprite" value="beer"/>
     <property name="type" value="beer"/>
    </properties>
   </object>
-  <object id="66" name="beer" gid="19" x="3850" y="150" width="50" height="50">
+  <object id="66" name="beer" gid="19" x="5600" y="300" width="50" height="50">
    <properties>
     <property name="sprite" value="beer"/>
     <property name="type" value="beer"/>
