@@ -6,7 +6,9 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const phaserModule = path.join(__dirname, '/node_modules/phaser-ce/')
 const phaser = path.join(phaserModule, 'build/custom/phaser-split.js')
 const pixi = path.join(phaserModule, 'build/custom/pixi.js')
-const p2 = path.join(phaserModule, 'build/custom/p2.js')
+// only in debug mode
+const debug = path.join(__dirname, '/node_modules/phaser-debug/dist/phaser-debug.js')
+let p2 = path.join(phaserModule, 'build/custom/p2.js')
 
 const definePlugin = new webpack.DefinePlugin({
 	__DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
@@ -18,7 +20,7 @@ module.exports = {
 			'babel-polyfill',
 			path.resolve(__dirname, 'src/main.js')
 		],
-		vendor: ['pixi', 'p2', 'phaser', 'webfontloader']
+		vendor: ['phaser-debug', 'pixi', 'p2', 'phaser', 'webfontloader']
 	},
 	devtool: 'cheap-source-map',
 	output: {
@@ -59,7 +61,8 @@ module.exports = {
 		alias: {
 			'phaser': phaser,
 			'pixi': pixi,
-			'p2': p2
+			'p2': p2,
+			'phaser-debug' : debug
 		}
 	}
 }

@@ -7,6 +7,9 @@ export default class extends Phaser.State {
 		this.stage.backgroundColor = config.css.webWhite
 		this.fontsReady = false
 		this.fontsLoaded = this.fontsLoaded.bind(this)
+		if (Phaser.Plugin.Debug) {
+			this.game.add.plugin(Phaser.Plugin.Debug)
+		}
 	}
 
 	preload() {
