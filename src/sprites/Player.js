@@ -33,7 +33,7 @@ export default class extends Phaser.Sprite {
 		// stop moving
 		this.body.velocity.x = 0
 		// stop all animations and change sprite image
-		this.animations.stop(null, false);
+		this.animations.stop(null, false)
 		this.loadTexture('playerDead')
 		this.animations.play('dead', 13.5, true)
 	}
