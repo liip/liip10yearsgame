@@ -10,6 +10,7 @@ export default class extends Phaser.State {
 		this.game.sound.mute = this.loadSoundMuteState()
 		this.yearChanged = false
 		this.notices = []
+		this.jumping = false
 
 		// enable animations only on desktop devices
 		this.animationsEnabled = this.game.device.desktop
@@ -102,8 +103,16 @@ export default class extends Phaser.State {
 		this.camera.focusOnXY(this.player.x + (this.game.width / 4), this.player.y)
 
 		if (this.player.alive) {
+			// if player is back on ground reset to walk animation
+			if(this.jumping && this.player.body.blocked.down) {
+				this.player.loadTexture('player')
+				this.player.animations.stop('jump', true)
+				this.player.animations.play('walk', 18, true)
+				this.jumping = false
+			}
+
 			if (this.input.shouldJump()) {
-				this.player.jump()
+				this.jumping = this.player.jump()
 			}
 
 			this.addToScore(1)

@@ -9,6 +9,7 @@ export default class extends Phaser.Sprite {
 
 		this.animations.add('walk')
 		this.animations.add('dead')
+		this.animations.add('jump')
 
 		this.jumpSound = this.game.add.audio('jump')
 	}
@@ -31,7 +32,8 @@ export default class extends Phaser.Sprite {
 		this.alive = false
 		// stop moving
 		this.body.velocity.x = 0
-		// change sprite image
+		// stop all animations and change sprite image
+		this.animations.stop(null, false);
 		this.loadTexture('playerDead')
 		this.animations.play('dead', 13.5, true)
 	}
@@ -69,6 +71,12 @@ export default class extends Phaser.Sprite {
 		if (this.body.blocked.down) {
 			this.jumpSound.play()
 			this.body.velocity.y -= config.player.jump
+			// stop walking animation and change sprite image
+			this.animations.stop('walk', false)
+			this.loadTexture('playerJump')
+			this.animations.play('jump', 18, true)
+			return true
 		}
+		return false
 	}
 }
