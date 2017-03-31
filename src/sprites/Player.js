@@ -74,7 +74,7 @@ export default class extends Phaser.Sprite {
 			// stop walking animation and change sprite image
 			this.animations.stop('walk', false)
 			this.loadTexture('playerJump')
-			this.animations.play('jump', 18, true)
+			this.animations.play('jump', 8, true)
 			return true
 		}
 		return false
