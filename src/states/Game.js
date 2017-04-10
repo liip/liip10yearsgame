@@ -2,14 +2,17 @@ import Phaser from 'phaser'
 import config from '../config'
 import {makeGreen, makeYellow, getRandomCheer, isTouchDevice} from '../utils'
 import Player from '../sprites/Player'
-import Input from '../Input'
 import _ from 'lodash'
 
 export default class extends Phaser.State {
 	init() {
 		this.game.sound.mute = this.loadSoundMuteState()
 		this.skipIntro = this.loadSkipIntro()
-		this.jumping = false
+		if(this.game.device.desktop) {
+			this.jumpInput = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+		} else {
+			this.jumpInput = this.game.input.pointer1;
+		}
 	}
 
 	preload() {
@@ -105,9 +108,6 @@ export default class extends Phaser.State {
 			this.introLabel.anchor.set(0.5, 0.5)
 			this.infoLabels.add(this.introLabel)
 		}
-
-		// init input (keyboard or tap on mobile)
-		this.input = new Input({ game: this.game, muteBtn: this.muteBtn })
 	}
 
 	update() {
@@ -118,15 +118,12 @@ export default class extends Phaser.State {
 
 		if (this.player.alive) {
 			// if player is back on ground reset to walk animation
-			if(this.jumping && this.player.body.blocked.down) {
-				this.player.loadTexture('player')
-				this.player.animations.stop('jump', true)
-				this.player.animations.play('walk', 18, true)
-				this.jumping = false
+			if(this.player.isJumping) {
+				this.player.maybeLand()
 			}
 
-			if (this.input.shouldJump()) {
-				this.jumping = this.player.jump()
+			if (this.jumpInput.isDown) {
+				this.player.jump()
 				if ( ! this.skipIntro && ! this.firstJumpDone ) {
 					this.firstJumpDone = true
 					this.introLabel.text = ''

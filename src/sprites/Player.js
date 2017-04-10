@@ -62,8 +62,19 @@ export default class extends Phaser.Sprite {
 			this.animations.stop('walk', false)
 			this.loadTexture('playerJump')
 			this.animations.play('jump', 40, true)
-			return true
+			this.isJumping = true
 		}
-		return false
+	}
+
+	/**
+	 * Player land
+	 */
+	maybeLand() {
+		if (this.body.blocked.down) {
+			this.animations.stop('jump', false)
+			this.loadTexture('player')
+			this.animations.play('walk', 18, true)
+			this.isJumping = false
+		}
 	}
 }
