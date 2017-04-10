@@ -39,19 +39,6 @@ export default class extends Phaser.Sprite {
 	}
 
 	/**
-	* Slow down x speed
-	*/
-	slowDown() {
-		if(this.body.velocity.x > config.player.minSpeed) {
-			let newSpeed = this.body.velocity.x - config.player.speedBonus
-			if(newSpeed < config.player.minSpeed) {
-				newSpeed = config.player.minSpeed
-			}
-			this.body.velocity.x = newSpeed
-		}
-	}
-
-	/**
 	* Speed up x speed
 	*/
 	speedUp() {

@@ -263,11 +263,8 @@ export default class extends Phaser.State {
 	}
 
 	collect(player, collectable) {
-		if(collectable.type === 'beer') {
-			this.player.speedUp()
-		} else if(collectable.type === 'coffee') {
-			this.player.slowDown()
-		}
+		// speed up player
+		this.player.speedUp()
 
 		this.showNotice(collectable.x, collectable.y, '+' + config.points.coin, makeYellow(config.text.xl))
 
