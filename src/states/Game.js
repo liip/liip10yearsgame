@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import config from '../config'
-import {makeGreen,getRandomCheer} from '../utils'
+import {makeGreen, getRandomCheer, isTouchDevice} from '../utils'
 import Player from '../sprites/Player'
 import Input from '../Input'
 import _ from 'lodash'
@@ -8,6 +8,7 @@ import _ from 'lodash'
 export default class extends Phaser.State {
 	init() {
 		this.game.sound.mute = this.loadSoundMuteState()
+		this.skipIntro = this.loadSkipIntro()
 		this.jumping = false
 	}
 
@@ -38,6 +39,11 @@ export default class extends Phaser.State {
 		// add timeline layer
 		this.addYearLabelLayer()
 
+		if ( ! this.skipIntro ) {
+			// add intro layer
+			this.addIntroLayer()
+		}
+
 		// this group holds all sprites/labels that should be fixed to camera
 		this.infoLabels = this.game.add.group()
 		this.infoLabels.fixedToCamera = true
@@ -49,9 +55,13 @@ export default class extends Phaser.State {
 		this.infoLabels.add(logo)
 
 		// setup player
+		let playerStartPositionX = 0
+		if ( this.skipIntro ) {
+			playerStartPositionX = 3000
+		}
 		this.player = new Player({
 			game: this.game,
-			x: 0,
+			x: playerStartPositionX,
 			y: 250,
 			asset: 'player'
 		})
@@ -87,6 +97,15 @@ export default class extends Phaser.State {
 		})
 		this.infoLabels.add(this.muteBtn)
 
+		if ( ! this.skipIntro ) {
+			// add intro text
+			this.firstJumpDone = false
+			let howToJump = isTouchDevice() ? 'Tap your screen' : 'Press space'
+			this.introLabel = this.game.add.text(this.game.width / 2, 200, howToJump + ' to jump', Object.assign(config.text.xl, {boundsAlignH: 'center', boundsAlignV: 'center'}))
+			this.introLabel.anchor.set(0.5, 0.5)
+			this.infoLabels.add(this.introLabel)
+		}
+
 		// init input (keyboard or tap on mobile)
 		this.input = new Input({ game: this.game, muteBtn: this.muteBtn })
 	}
@@ -108,6 +127,10 @@ export default class extends Phaser.State {
 
 			if (this.input.shouldJump()) {
 				this.jumping = this.player.jump()
+				if ( ! this.skipIntro && ! this.firstJumpDone ) {
+					this.firstJumpDone = true
+					this.introLabel.text = ''
+				}
 			}
 
 			this.addToScore(1)
@@ -121,6 +144,11 @@ export default class extends Phaser.State {
 
 		// enable year barriers
 		this.game.physics.arcade.overlap(this.player, this.yearBarrierLayer, this.passYearBarrier, null, this)
+
+		if ( ! this.skipIntro ) {
+			// enable intro barriers
+			this.game.physics.arcade.overlap(this.player, this.introBarrierLayer, this.passIntroBarrier, null, this)
+		}
 
 		// restart the game if reaching the edge
 		if (this.player.x >= this.game.world.width) {
@@ -208,10 +236,6 @@ export default class extends Phaser.State {
 		yearObjects.forEach((yearObject) => {
 			let text = yearObject.properties.year
 			let labelPositionX = yearObject.x
-			// move first year label into viewport
-			if(text === '2007') {
-				labelPositionX += 30
-			}
 			let labelPositionY = yearObject.y
 			let label = this.game.add.text(labelPositionX, labelPositionY, text, Object.assign(config.text.md, {align: 'center'}), this.yearLabelLayer)
 			label.anchor.set(0.5)
@@ -221,6 +245,20 @@ export default class extends Phaser.State {
 				yearBarrier.scale.y = this.game.world.height
 				yearBarrier.yearLabel = text
 			}
+		})
+	}
+
+	addIntroLayer() {
+		this.introBarrierLayer = this.game.add.group()
+		this.introBarrierLayer.enableBody = true
+		let introObjects = this.map.objects['introLayer']
+
+		introObjects.forEach((introObject) => {
+			let type = introObject.properties.intro
+			let introBarrier = this.introBarrierLayer.create(introObject.x, 0)
+			introBarrier.scale.x = 1
+			introBarrier.scale.y = this.game.world.height
+			introBarrier.intro_type = type
 		})
 	}
 
@@ -281,6 +319,23 @@ export default class extends Phaser.State {
 		collectable.destroy()
 	}
 
+	passIntroBarrier(player, collectable) {
+		console.log(collectable);
+		if ( collectable.intro_type === 'jump' ) {
+			this.introLabel.text = 'Collect these items and get points (and speed up the game)'
+			this.firstJumpDone = true
+		}
+		if ( collectable.intro_type === 'objects' ) {
+			this.introLabel.text = 'Collect our achievements to get a lot of points'
+		}
+		if ( collectable.intro_type === 'timeline' ) {
+			this.introLabel.destroy()
+			this.saveSkipIntro();
+		}
+
+		collectable.destroy()
+	}
+
 	/**
 	 * Save score to local storage
 	 */
@@ -313,5 +368,19 @@ export default class extends Phaser.State {
 	 */
 	loadSoundMuteState() {
 		return localStorage.getItem(config.localStorageName + '-mute') === 'true'
+	}
+
+	/**
+	 * Save skip intro flag to local storage
+	 */
+	saveSkipIntro() {
+		localStorage.setItem(config.localStorageName + '-skip-intro', true)
+	}
+
+	/**
+	 * Load skip intro flag from local storage
+	 */
+	loadSkipIntro() {
+		return localStorage.getItem(config.localStorageName + '-skip-intro') === 'true'
 	}
 }
