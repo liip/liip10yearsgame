@@ -6,7 +6,8 @@ const css = {
 	black: '#000000',
 	webWhite: '#F7F7F5',
 	white: '#FFFFFF',
-	orange: '#F8C026'
+	orange: '#F8C026',
+	yellow: '#F8C026'
 }
 
 const cheerTexts = [

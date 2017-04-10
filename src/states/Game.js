@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import config from '../config'
-import {makeGreen, getRandomCheer, isTouchDevice} from '../utils'
+import {makeGreen, makeYellow, getRandomCheer, isTouchDevice} from '../utils'
 import Player from '../sprites/Player'
 import Input from '../Input'
 import _ from 'lodash'
@@ -269,7 +269,7 @@ export default class extends Phaser.State {
 			this.player.slowDown()
 		}
 
-		this.showNotice(collectable.x, collectable.y, '+' + config.points.coin)
+		this.showNotice(collectable.x, collectable.y, '+' + config.points.coin, makeYellow(config.text.xl))
 
 		// play audio
 		this.soundCoin.play()
@@ -285,7 +285,7 @@ export default class extends Phaser.State {
 			points = config.points.award
 		}
 
-		this.showNotice(collectable.x, collectable.y, getRandomCheer())
+		this.showNotice(collectable.x, collectable.y, getRandomCheer(), makeGreen(config.text.xl))
 
 		// play audio
 		this.soundCoin.play()
@@ -295,9 +295,9 @@ export default class extends Phaser.State {
 		collectable.destroy()
 	}
 
-	showNotice(x, y, text) {
+	showNotice(x, y, text, style) {
 		// show notice
-		let notice = this.game.add.text(x, y, text, makeGreen(config.text.xl))
+		let notice = this.game.add.text(x, y, text, style)
 
 		// animate notice
 		let noticeTween = this.game.add.tween(notice).to({alpha: 0, y: notice.y - 30}, 800, Phaser.Easing.Linear.None, true)

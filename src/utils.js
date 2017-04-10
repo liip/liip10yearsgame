@@ -18,6 +18,17 @@ export const makeGreen = (textConfig) => {
 	return conf
 }
 
+/**
+ * Make a text config object yellow
+ * @param {object} textConfig
+ * @return {object}
+ */
+export const makeYellow = (textConfig) => {
+	let conf = Object.assign({}, textConfig)
+	conf.fill = config.css.yellow
+	return conf
+}
+
 export const getRandomCheer = () => {
 	return config.cheerTexts[Math.floor(Math.random() * config.cheerTexts.length)]
 }
