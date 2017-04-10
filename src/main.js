@@ -16,10 +16,15 @@ import './extensions'
 class Game extends Phaser.Game {
 	constructor() {
 		const docElement = document.documentElement
-		const width = docElement.clientWidth > config.gameWidth ? config.gameWidth : docElement.clientWidth
-		const height = docElement.clientHeight > config.gameHeight ? config.gameHeight : docElement.clientHeight
+		const width = docElement.clientWidth
+		const height = docElement.clientHeight
+		let sizeFactor = 1
 
-		super(width, height, Phaser.CANVAS, 'content', null)
+		if ( height < config.minHeight ) {
+			sizeFactor = config.minHeight / height
+		}
+
+		super(width * sizeFactor, height * sizeFactor, Phaser.CANVAS, 'content', null)
 
 		this.state.add('Boot', BootState, false)
 		this.state.add('Splash', SplashState, false)

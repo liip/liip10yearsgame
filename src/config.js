@@ -38,6 +38,7 @@ const text = {
 	},
 	score: {
 		font: '18px Ubuntu Mono, monospace', // we need a monospaced font here to avoid jiggling text
+		fontWeight: 'bold',
 		color: css.webBlack,
 		align: 'right',
 		boundsAlignV: 'top',
@@ -65,7 +66,6 @@ let storage = (function() {
 }())
 
 export default {
-	gameHeight: window.innerHeight,
 	localStorageName: 'liip10yearsgame',
 	text,
 	css,
@@ -84,5 +84,6 @@ export default {
 	startYear: '2007',
 	infoLabelsPadding: 30,
 	tileSize: 50,
+	minHeight: 450,
 	localStorageSupported: storage
 }
