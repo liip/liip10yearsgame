@@ -18,14 +18,21 @@ export default class extends Phaser.State {
 		// create layers
 		this.backgroundLayer = this.map.createLayer('backgroundLayer')
 		this.blockedLayer = this.map.createLayer('blockedLayer')
-		this.map.setCollisionBetween(1, 100000, true, 'blockedLayer')
+		// this.game.world.width may cause problems with collisions, keep in mind
+		this.map.setCollisionBetween(1, this.game.world.width, true, 'blockedLayer', true)
 		this.backgroundLayer.resizeWorld()
 
 		let banner = this.game.add.image(
 			this.game.width / 2,
-			100,
+			110,
 			'startLogo')
-		banner.scale.setTo(0.35)
+		banner.anchor.set(0.5, 0)
+		let bannerRatio = banner.width / banner.height
+		banner.width = 700
+		if (banner.width > this.game.width ) {
+			banner.width = this.game.width - 20
+		}
+		banner.height = banner.width / bannerRatio
 
 		// start button
 		let start = this.game.add.button(
