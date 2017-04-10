@@ -16,7 +16,7 @@ export default class extends Phaser.State {
 		let gameOver = this.game.add.text(
 			0,
 			100,
-			'Gameover'.toUpperCase(),
+			'Game Over'.toUpperCase(),
 			Object.assign(config.text.xl, ({ boundsAlignH: 'center' })))
 		gameOver.setTextBounds(0, 30, this.game.width, 30)
 
