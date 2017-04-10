@@ -50,8 +50,6 @@ const points = {
 	award: 1000,
 }
 
-const isPortrait = window.innerHeight > window.innerWidth
-
 export default {
 	gameHeight: window.innerHeight,
 	localStorageName: 'liip10yearsgame',
