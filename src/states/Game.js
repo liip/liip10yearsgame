@@ -60,7 +60,7 @@ export default class extends Phaser.State {
 		// setup player
 		let playerStartPositionX = 0
 		if ( this.skipIntro ) {
-			playerStartPositionX = 3000
+			playerStartPositionX = 3100
 		}
 		this.player = new Player({
 			game: this.game,
