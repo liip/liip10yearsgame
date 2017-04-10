@@ -59,7 +59,9 @@ let storage = (function() {
 		result = storage.getItem(uid) == uid
 		storage.removeItem(uid)
 		return result && storage
-	} catch (exception) {}
+	} catch (exception) {
+		// do nothing
+	}
 }())
 
 export default {
