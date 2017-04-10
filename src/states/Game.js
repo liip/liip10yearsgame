@@ -74,7 +74,7 @@ export default class extends Phaser.State {
 		let scoreOffset = 0
 		// if user had a previous highscore, show it
 		let highscore = this.loadScore()
-		if (highscore) {
+		if (highscore > 0) {
 			this.highscoreLabel = this.game.add.text(this.game.width - config.infoLabelsPadding, config.infoLabelsPadding, ' / ' + highscore, config.text.score)
 			this.highscoreLabel.anchor.set(1, 0.5)
 			this.infoLabels.add(this.highscoreLabel)
@@ -336,9 +336,11 @@ export default class extends Phaser.State {
 		let previousScore = this.loadScore(),
 			currentScore = parseInt(this.scoreLabel.text, 10)
 
-		// only set score if we don't yet have one or if currentScore is greater than previous one
-		if (!previousScore || currentScore > previousScore) {
-			localStorage.setItem(config.localStorageName + '-highscore', currentScore)
+		if ( config.localStorageSupported ) {
+			// only set score if we don't yet have one or if currentScore is greater than previous one
+			if (!previousScore || currentScore > previousScore) {
+				localStorage.setItem(config.localStorageName + '-highscore', currentScore)
+			}
 		}
 	}
 
@@ -346,34 +348,50 @@ export default class extends Phaser.State {
 	 * Load score from local storage
 	 */
 	loadScore() {
-		return parseInt(localStorage.getItem(config.localStorageName + '-highscore'))
+		let score = 0
+		if ( config.localStorageSupported ) {
+			score = parseInt(localStorage.getItem(config.localStorageName + '-highscore'))
+		}
+		return score
 	}
 
 	/**
 	 * Save sound mute state to local storage
 	 */
 	saveSoundMuteState(mute) {
-		localStorage.setItem(config.localStorageName + '-mute', mute)
+		if ( config.localStorageSupported ) {
+			localStorage.setItem(config.localStorageName + '-mute', mute)
+		}
 	}
 
 	/**
 	 * Load sound mute state from local storage
 	 */
 	loadSoundMuteState() {
-		return localStorage.getItem(config.localStorageName + '-mute') === 'true'
+		let mute = false
+		if ( config.localStorageSupported ) {
+			mute = localStorage.getItem(config.localStorageName + '-mute') === 'true'
+		}
+		return mute
 	}
 
 	/**
 	 * Save skip intro flag to local storage
 	 */
 	saveSkipIntro() {
-		localStorage.setItem(config.localStorageName + '-skip-intro', true)
+		if ( config.localStorageSupported ) {
+			localStorage.setItem(config.localStorageName + '-skip-intro', true)
+		}
 	}
 
 	/**
 	 * Load skip intro flag from local storage
 	 */
 	loadSkipIntro() {
-		return localStorage.getItem(config.localStorageName + '-skip-intro') === 'true'
+		let skipIntro = false
+		if ( config.localStorageSupported ) {
+			skipIntro = localStorage.getItem(config.localStorageName + '-skip-intro') === 'true'
+		}
+		return skipIntro
 	}
 }

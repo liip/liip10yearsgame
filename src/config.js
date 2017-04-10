@@ -50,6 +50,18 @@ const points = {
 	award: 1000,
 }
 
+let storage = (function() {
+	let uid = new Date,
+		storage,
+		result
+	try {
+		(storage = window.localStorage).setItem(uid, uid)
+		result = storage.getItem(uid) == uid
+		storage.removeItem(uid)
+		return result && storage
+	} catch (exception) {}
+}())
+
 export default {
 	gameHeight: window.innerHeight,
 	localStorageName: 'liip10yearsgame',
@@ -69,5 +81,6 @@ export default {
 	backGround: css.webWhite,
 	startYear: '2007',
 	infoLabelsPadding: 30,
-	tileSize: 50
+	tileSize: 50,
+	localStorageSupported: storage
 }
