@@ -61,9 +61,7 @@ export default {
 	cheerTexts,
 	backendDomain: 'http://localhost:3002',
 	player: {
-		speed: isPortrait
-			? 200
-			: 280,
+		speed: 280,
 		minSpeed: 280,
 		maxSpeed: 800,
 		speedBonus: 50,
