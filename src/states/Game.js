@@ -322,11 +322,11 @@ export default class extends Phaser.State {
 	passIntroBarrier(player, collectable) {
 		console.log(collectable);
 		if ( collectable.intro_type === 'jump' ) {
-			this.introLabel.text = 'Collect these items and get points (and speed up the game)'
+			this.introLabel.text = 'Get Extra Points (and get faster)'
 			this.firstJumpDone = true
 		}
 		if ( collectable.intro_type === 'objects' ) {
-			this.introLabel.text = 'Collect our achievements to get a lot of points'
+			this.introLabel.text = 'Get Liip Achievements'
 		}
 		if ( collectable.intro_type === 'timeline' ) {
 			this.introLabel.destroy()
