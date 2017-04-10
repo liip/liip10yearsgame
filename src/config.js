@@ -20,24 +20,24 @@ const cheerTexts = [
 
 const text = {
 	sm: {
-		font: '14px Liip Etica Bd',
+		font: '14px Liip Etica Bd, sans-serif',
 		fill: css.webBlack
 	},
 	md: {
-		font: '16px Liip Etica Bd',
+		font: '16px Liip Etica Bd, sans-serif',
 		fill: css.webBlack
 	},
 	lg: {
-		font: '20px Liip Etica Bd',
+		font: '20px Liip Etica Bd, sans-serif',
 		fill: css.webBlack,
 		tabs: [80, 80, 80, 100]
 	},
 	xl: {
-		font: '26px Liip Etica Bd',
+		font: '26px Liip Etica Bd, sans-serif',
 		fill: css.webBlack,
 	},
 	score: {
-		font: '18px Ubuntu Mono', // we need a monospaced font here to avoid jiggling text
+		font: '18px Ubuntu Mono, monospace', // we need a monospaced font here to avoid jiggling text
 		color: css.webBlack,
 		align: 'right',
 		boundsAlignV: 'top',
