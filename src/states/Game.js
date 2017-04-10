@@ -9,9 +9,9 @@ export default class extends Phaser.State {
 		this.game.sound.mute = this.loadSoundMuteState()
 		this.skipIntro = this.loadSkipIntro()
 		if(this.game.device.desktop) {
-			this.jumpInput = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+			this.jumpInput = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
 		} else {
-			this.jumpInput = this.game.input.pointer1;
+			this.jumpInput = this.game.input.pointer1
 		}
 	}
 
