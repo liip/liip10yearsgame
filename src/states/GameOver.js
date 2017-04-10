@@ -1,9 +1,16 @@
 import Phaser from 'phaser'
 import config from '../config'
 import { centerGameObjects } from '../utils'
-import Input from '../Input'
 
 export default class extends Phaser.State {
+	init() {
+		if(this.game.device.desktop) {
+			this.jumpInput = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+		} else {
+			this.jumpInput = this.game.input.pointer1
+		}
+	}
+
 	create () {
 		// gameover text
 		let gameOver = this.game.add.text(
@@ -24,15 +31,12 @@ export default class extends Phaser.State {
 		replay.scale.setTo(0.7)
 		centerGameObjects([replay])
 
-		// init input (keyboard or tap on mobile)
-		this.input = new Input({ game: this.game })
-
 		// @todo add final score?
 	}
 
 	update () {
 		// Restart game on jump
-		if (this.input.shouldJump()) {
+		if (this.jumpInput.isDown) {
 			this.state.start('Game')
 		}
 	}

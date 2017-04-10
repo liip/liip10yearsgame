@@ -1,9 +1,16 @@
 import Phaser from 'phaser'
 import config from '../config'
 import { centerGameObjects, isTouchDevice } from '../utils'
-import Input from '../Input'
 
 export default class extends Phaser.State {
+	init() {
+		if(this.game.device.desktop) {
+			this.jumpInput = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+		} else {
+			this.jumpInput = this.game.input.pointer1
+		}
+	}
+
 	create () {
 		this.map = this.game.add.tilemap('liip')
 		this.map.addTilesetImage('tiles_spritesheet', 'gameTiles')
@@ -49,9 +56,6 @@ export default class extends Phaser.State {
 			Object.assign(config.text.lg, ({ boundsAlignH: 'center' })))
 		intro.setTextBounds(0, 30, this.game.width, 30)
 
-		// init input (keyboard or tap on mobile)
-		this.input = new Input({ game: this.game })
-
 		this.player.standDimensions = {width: this.player.width, height: this.player.height}
 		this.player.anchor.setTo(0.5, 1)
 	}
@@ -60,7 +64,7 @@ export default class extends Phaser.State {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer, null, null, this)
 
 		// Start game on jump
-		if (this.input.shouldJump()) {
+		if (this.jumpInput.isDown) {
 			this.state.start('Game')
 		}
 	}
