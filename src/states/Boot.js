@@ -11,11 +11,8 @@ export default class extends Phaser.State {
 
 	preload() {
 		WebFont.load({
-			google: {
-				families: ['Ubuntu Mono:700']
-			},
 			custom: {
-				families: ['Liip Etica Bd']
+				families: ['Liip Etica Bd', 'Ubuntu Mono']
 			},
 			active: this.fontsLoaded
 		})

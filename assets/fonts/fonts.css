@@ -1,6 +1,17 @@
 @font-face {
 	font-family: 'Liip Etica Bd';
-	src: url('LFT_Etica_Bold_Liip.woff') format('woff');
+	src: url('./LFT_Etica_Bold_Liip.woff') format('woff');
 	font-weight: bold;
 	font-style: normal;
+}
+@font-face {
+    font-family: 'Ubuntu Mono';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./Ubuntu_Mono-normal-700.eot'); /* IE9 Compat Modes */
+    src: url('./Ubuntu_Mono-normal-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Ubuntu_Mono_Bold-normal-700.woff2') format('woff2'), /* Super Modern Browsers */
+    url('Ubuntu_Mono_Bold-normal-700.woff') format('woff'), /* Pretty Modern Browsers */
+    url('Ubuntu_Mono-normal-700.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('Ubuntu_Mono_Bold-normal-700.svg#UbuntuMono') format('svg'); /* Legacy iOS */
 }
