@@ -114,7 +114,7 @@ export default class extends Phaser.State {
 			// add intro text
 			this.firstJumpDone = false
 			let howToJump = isTouchDevice() ? 'Tap your screen' : 'Press space'
-			this.introLabel = this.game.add.text(this.game.width / 2, 200, howToJump + ' to jump', Object.assign(config.text.xl, {boundsAlignH: 'center', boundsAlignV: 'center'}))
+			this.introLabel = this.game.add.text(this.game.width / 2, 200, howToJump + ' to jump', Object.assign(config.text.xl, {boundsAlignH: 'center', boundsAlignV: 'center', align: 'center', wordWrap: true, wordWrapWidth: this.game.width - 50}))
 			this.introLabel.anchor.set(0.5, 0.5)
 			this.infoLabels.add(this.introLabel)
 		}
