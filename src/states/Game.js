@@ -274,17 +274,12 @@ export default class extends Phaser.State {
 	}
 
 	collectTimelineObject(player, collectable) {
-		let points = 0
-		if(collectable.type === 'award') {
-			points = config.points.award
-		}
-
 		this.showNotice(collectable.x, collectable.y, getRandomCheer(), makeGreen(config.text.xl))
 
 		// play audio
 		this.soundCoin.play()
 		// update score
-		this.addToScore(points)
+		this.addToScore(config.points.achievement)
 		// remove sprite
 		collectable.destroy()
 	}

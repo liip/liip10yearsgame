@@ -47,8 +47,8 @@ const text = {
 }
 
 const points = {
-	coin: 500,
-	award: 1000,
+	coin: 150,
+	achievement: 300
 }
 
 let storage = (function() {
