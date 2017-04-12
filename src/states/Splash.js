@@ -26,7 +26,7 @@ export default class extends Phaser.State {
 
 		this.load.spritesheet('replay', './assets/images/replay.png', 140, 140)
 		this.load.spritesheet('start', './assets/images/start.png', 140, 140)
-		this.load.spritesheet('mute', './assets/images/mute.png', 51, 51)
+		this.load.spritesheet('mute', './assets/images/mute.png', 40, 40)
 
 		this.load.spritesheet('player', './assets/images/hero-normal.png', 90, 70, 9)
 		this.load.spritesheet('playerDead', './assets/images/hero-dead.png', 90, 70, 9)

@@ -108,7 +108,6 @@ export default class extends Phaser.State {
 			this,
 			muteBtnInitialFrame, muteBtnInitialFrame, muteBtnInitialFrame)
 		this.muteBtn.anchor.set(0, 1)
-		this.muteBtn.scale.setTo(0.7)
 		this.infoLabels.add(this.muteBtn)
 
 		if ( ! this.skipIntro ) {
