@@ -42,7 +42,11 @@ export default class extends Phaser.State {
 	}
 
 	fontsLoaded() {
-		this.fontsReady = true
+		//  We set a 1 second delay before setting the fontsReady flag.
+		//  For some reason if we don't the browser cannot render the text the first time it's created.
+		this.game.time.events.add(Phaser.Timer.SECOND, () => {
+			this.fontsReady = true
+		}, this)
 	}
 
 }
