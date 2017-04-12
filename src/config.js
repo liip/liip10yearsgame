@@ -65,6 +65,15 @@ let storage = (function() {
 	}
 }())
 
+const minHeight = 450
+const gameWidth = document.documentElement.clientWidth
+const gameHeight = document.documentElement.clientHeight
+let sizeFactor = 1
+
+if ( gameHeight < minHeight ) {
+	sizeFactor = minHeight / gameHeight
+}
+
 export default {
 	localStorageName: 'liip10yearsgame',
 	text,
@@ -84,6 +93,9 @@ export default {
 	startYear: '2007',
 	infoLabelsPadding: 30,
 	tileSize: 50,
-	minHeight: 450,
+	minHeight: minHeight,
+	gameWidth: gameWidth,
+	gameHeight: gameHeight,
+	sizeFactor: sizeFactor,
 	localStorageSupported: storage
 }
