@@ -90,14 +90,24 @@ export default class extends Phaser.State {
 		this.infoLabels.add(this.positionLabel)
 
 		// mute button
-		this.muteBtn = this.game.add.text(config.infoLabelsPadding, this.game.height - config.infoLabelsPadding, (this.game.sound.mute ? 'unmute' : 'mute'), Object.assign(config.text.md, { boundsAlignH: 'left', boundsAlignV: 'bottom'}))
-		this.muteBtn.anchor.set(0, 0.5)
-		this.muteBtn.inputEnabled = true
-		this.muteBtn.events.onInputDown.add(() => {
-			this.game.sound.mute = !this.game.sound.mute
-			this.saveSoundMuteState(this.game.sound.mute)
-			this.muteBtn.text = (this.game.sound.mute ? 'unmute' : 'mute')
-		})
+		let muteBtnInitialFrame = ( this.game.sound.mute ? 1 : 0 )
+		this.muteBtn = this.game.add.button(
+			config.infoLabelsPadding,
+			this.game.height - (config.infoLabelsPadding / 2),
+			'mute',
+			() => {
+				this.game.sound.mute = !this.game.sound.mute
+				this.saveSoundMuteState(this.game.sound.mute)
+				if ( this.game.sound.mute ) {
+					this.muteBtn.setFrames(1, 1, 1)
+				} else {
+					this.muteBtn.setFrames(0, 0, 0)
+				}
+			},
+			this,
+			muteBtnInitialFrame, muteBtnInitialFrame, muteBtnInitialFrame)
+		this.muteBtn.anchor.set(0, 1)
+		this.muteBtn.scale.setTo(0.7)
 		this.infoLabels.add(this.muteBtn)
 
 		if ( ! this.skipIntro ) {
