@@ -45,11 +45,3 @@ export default class extends Phaser.State {
 	}
 
 }
-
-window.addEventListener('orientationchange', (e) => {
-	if (window.orientation == 90 || window.orientation == 0) {
-		/* eslint-disable */
-		console.log(screen.orientation.angle)
-		/* eslint-enable */
-	}
-})
