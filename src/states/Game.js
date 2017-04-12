@@ -121,7 +121,7 @@ export default class extends Phaser.State {
 		}
 
 		// initialize wrong orientation overlay
-		let wrongOrientationRectangleSize = Math.max(this.game.width, this.game.height)
+		let wrongOrientationRectangleSize = Math.max(this.game.width, this.game.height) + 100
 		let wrongOrientationRectangle = this.game.add.bitmapData(wrongOrientationRectangleSize, wrongOrientationRectangleSize)
 		wrongOrientationRectangle.ctx.beginPath()
 		wrongOrientationRectangle.ctx.rect(0, 0, wrongOrientationRectangleSize, wrongOrientationRectangleSize)
