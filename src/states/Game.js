@@ -237,10 +237,10 @@ export default class extends Phaser.State {
 	}
 
 	playerHit(player, blockedLayer) {
-		if (player.body.blocked.right && this.player.alive) {
+		if (player.body.blocked.right && player.alive) {
 			this.soundOuch.play()
 			// kill player
-			this.player.die()
+			player.die()
 			this.saveScore()
 			// load game over state after a few milliseconds
 			this.game.time.events.add(1500, this.gameOver, this, 'gameover')
@@ -248,7 +248,6 @@ export default class extends Phaser.State {
 	}
 
 	addToScore(newScore) {
-		// this.score = newScore
 		let score = parseInt(this.scoreLabel.text, 10) + newScore
 		this.scoreLabel.text = score
 	}
