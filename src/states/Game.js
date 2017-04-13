@@ -113,7 +113,7 @@ export default class extends Phaser.State {
 			// add intro text
 			this.firstJumpDone = false
 			let howToJump = ( this.game.device.desktop ? 'Press space' : 'Tap your screen' )
-			this.introLabel = this.game.add.text(this.game.width / 2, 200, howToJump + ' to jump', Object.assign(config.text.xl, {boundsAlignH: 'center', boundsAlignV: 'center', align: 'center', wordWrap: true, wordWrapWidth: this.game.width - 50}))
+			this.introLabel = this.game.add.text(this.game.width / 2, 200, howToJump + ' to jump', Object.assign(config.text.xl, config.text.center, {wordWrap: true, wordWrapWidth: this.game.width - 50}))
 			this.introLabel.anchor.set(0.5, 0.5)
 			this.infoLabels.add(this.introLabel)
 		}
@@ -132,7 +132,7 @@ export default class extends Phaser.State {
 		this.wrongOrientationOverlayBackground.anchor.setTo(0.5, 0.5)
 		this.wrongOrientationLayer.add(this.wrongOrientationOverlayBackground)
 
-		this.wrongOrientationOverlayText = this.game.add.text(this.game.width / 2, this.game.height / 2, 'Please reload game to change orientation!', Object.assign(config.text.xl, {boundsAlignH: 'center', boundsAlignV: 'center', align: 'center', wordWrap: true, wordWrapWidth: this.game.width - 50}))
+		this.wrongOrientationOverlayText = this.game.add.text(this.game.width / 2, this.game.height / 2, 'Please reload game to change orientation!', Object.assign(config.text.xl, config.text.center, {wordWrap: true, wordWrapWidth: this.game.width - 50}))
 		this.wrongOrientationOverlayText.anchor.setTo(0.5, 1)
 		this.wrongOrientationLayer.add(this.wrongOrientationOverlayText)
 
