@@ -119,6 +119,9 @@ export default class extends Phaser.State {
 		}
 
 		// initialize wrong orientation overlay
+		this.wrongOrientationLayer = this.game.add.group()
+		this.wrongOrientationLayer.fixedToCamera = true
+
 		let wrongOrientationRectangleSize = Math.max(this.game.width, this.game.height) + 100
 		let wrongOrientationRectangle = this.game.add.bitmapData(wrongOrientationRectangleSize, wrongOrientationRectangleSize)
 		wrongOrientationRectangle.ctx.beginPath()
@@ -128,12 +131,12 @@ export default class extends Phaser.State {
 		this.wrongOrientationOverlayBackground = this.game.add.sprite(wrongOrientationRectangleSize / 2, wrongOrientationRectangleSize / 2, wrongOrientationRectangle)
 		this.wrongOrientationOverlayBackground.anchor.setTo(0.5, 0.5)
 		this.wrongOrientationOverlayBackground.kill()
-		this.infoLabels.add(this.wrongOrientationOverlayBackground)
+		this.wrongOrientationLayer.add(this.wrongOrientationOverlayBackground)
 
 		this.wrongOrientationOverlayText = this.game.add.text(this.game.width / 2, this.game.height / 2, 'Please reload game to change orientation!', Object.assign(config.text.xl, {boundsAlignH: 'center', boundsAlignV: 'center', align: 'center', wordWrap: true, wordWrapWidth: this.game.width - 50}))
 		this.wrongOrientationOverlayText.anchor.setTo(0.5, 0.5)
 		this.wrongOrientationOverlayText.kill()
-		this.infoLabels.add(this.wrongOrientationOverlayText)
+		this.wrongOrientationLayer.add(this.wrongOrientationOverlayText)
 
 		this.game.scale.onOrientationChange.add(() => {
 			const width = document.documentElement.clientWidth * config.sizeFactor
@@ -149,6 +152,7 @@ export default class extends Phaser.State {
 				this.wrongOrientationOverlayBackground.revive()
 				this.wrongOrientationOverlayText.reset(this.game.width / 2, this.game.height / 2)
 				this.wrongOrientationOverlayText.wordWrapWidth = this.game.width - 50
+				this.game.world.bringToTop(this.wrongOrientationLayer)
 				this.wrongOrientationOverlayText.revive()
 			}
 		}, this)
