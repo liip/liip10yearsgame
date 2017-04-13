@@ -1,13 +1,17 @@
 {
   "name": "liip10yearsgame",
   "version": "1.0.0",
-  "description": "",
-  "author": "Christof Leuenberger <christof.leuenberger@liip.ch>",
+  "description": "Jump and run through Liip's 10 year history",
+  "author": "Liip AG",
   "main": "index.js",
   "scripts": {
     "dev": "webpack",
     "deploy": "webpack --config webpack.production.config.js",
     "test": "./node_modules/.bin/eslint ./src/**.js ./src/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liip/liip10yearsgame.git"
   },
   "license": "MIT",
   "devDependencies": {
