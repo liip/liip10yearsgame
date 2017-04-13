@@ -39,7 +39,7 @@ const text = {
 	score: {
 		font: '18px Ubuntu Mono, monospace', // we need a monospaced font here to avoid jiggling text
 		fontWeight: 'bold',
-		color: css.webBlack,
+		fill: css.webBlack,
 		align: 'right',
 		boundsAlignV: 'top',
 		boundsAlignH: 'right'
