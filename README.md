@@ -25,22 +25,6 @@ Open your browser and enter `localhost:3000` into the address bar.
 
 Also this will start a watch process, so you can change the source and the process will recompile and refresh the browser.
 
-### Start highscores server
-
-Required for storing `highscores`
-
-```sh
-cd src/server
-npm i
-npm start
-```
-
-```bash
-npm run dev
-curl localhost:3002/scores
-```
-
-
 ## Build for deployment
 
 Run:
