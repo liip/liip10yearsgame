@@ -1,6 +1,5 @@
 import Phaser from 'phaser'
 import config from '../config'
-import { centerGameObjects } from '../utils'
 
 export default class extends Phaser.State {
 	init(action, finalScore, highScore) {
@@ -20,21 +19,21 @@ export default class extends Phaser.State {
 		// gameover text
 		let gameOver = this.game.add.text(
 			this.game.width / 2,
-			50,
+			this.game.height / 2 - 5,
 			text,
-			Object.assign(config.text.xl, ({ boundsAlignH: 'center' })))
-		gameOver.anchor.set(0.5, 0)
+			Object.assign(config.text.xl, config.text.center))
+		gameOver.anchor.set(0.5, 1)
 
 		// replay button
 		let replay = this.game.add.button(
 			this.game.width / 2,
-			250,
+			this.game.height / 2 + 5,
 			'replay',
 			() => { this.game.state.start('Game') },
 			this,
 			1, 0, 1)
+		replay.anchor.set(0.5, 0)
 		replay.scale.setTo(0.7)
-		centerGameObjects([replay])
 	}
 
 	update () {
