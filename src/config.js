@@ -43,6 +43,11 @@ const text = {
 		align: 'right',
 		boundsAlignV: 'top',
 		boundsAlignH: 'right'
+	},
+	center: {
+		align: 'center',
+		boundsAlignV: 'center',
+		boundsAlignH: 'center'
 	}
 }
 
