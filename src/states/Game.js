@@ -60,7 +60,7 @@ export default class extends Phaser.State {
 		// setup player
 		let playerStartPositionX = 0
 		if ( this.skipIntro ) {
-			playerStartPositionX = 3100
+			playerStartPositionX = config.startPositionAfterIntro
 		}
 		this.player = new Player({
 			game: this.game,
@@ -191,13 +191,25 @@ export default class extends Phaser.State {
 			this.game.physics.arcade.overlap(this.player, this.introBarrierLayer, this.passIntroBarrier, null, this)
 		}
 
-		// restart the game if reaching the edge
+		// show highscore of player reaches end of the world
 		if (this.player.x >= this.game.world.width) {
-			this.game.time.events.add(1500, this.gameOver, this)
+			this.player.alive = false
+			this.saveScore()
+			// load game over state after a few milliseconds
+			this.game.time.events.add(1500, this.gameOver, this, 'finished')
 		}
 	}
 
-	gameOver() {
+	gameOver(event) {
+		this.cleanupWorld()
+		// leave player
+		this.player.body.moves = false
+		let highScore = this.loadScore()
+		let currentScore = parseInt(this.scoreLabel.text, 10)
+		this.game.state.start('GameOver', false, false, event, currentScore, highScore)
+	}
+
+	cleanupWorld() {
 		// cleanup game state - remove all items
 		_(this.timelineObjectsLayer.children)
 			.concat(this.objectsLayer.children)
@@ -206,13 +218,6 @@ export default class extends Phaser.State {
 			.each((item) => {
 				item.destroy()
 			})
-		// leave player
-		this.player.body.moves = false
-		this.game.state.start('GameOver', false, false)
-	}
-
-	restart() {
-		this.game.state.start('Game')
 	}
 
 	playerHit(player, blockedLayer) {
@@ -220,9 +225,9 @@ export default class extends Phaser.State {
 			this.soundOuch.play()
 			// kill player
 			this.player.die()
-			// go to gameover after a few milliseconds
-			this.game.time.events.add(1500, this.gameOver, this)
 			this.saveScore()
+			// load game over state after a few milliseconds
+			this.game.time.events.add(1500, this.gameOver, this, 'gameover')
 		}
 	}
 

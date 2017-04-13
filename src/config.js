@@ -91,6 +91,7 @@ export default {
 	},
 	backGround: css.webWhite,
 	startYear: '2007',
+	startPositionAfterIntro: 3100,
 	infoLabelsPadding: 30,
 	tileSize: 50,
 	minHeight: minHeight,

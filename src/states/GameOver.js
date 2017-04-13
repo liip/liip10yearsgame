@@ -3,22 +3,27 @@ import config from '../config'
 import { centerGameObjects } from '../utils'
 
 export default class extends Phaser.State {
-	init() {
+	init(action, finalScore, highScore) {
 		if(this.game.device.desktop) {
 			this.jumpInput = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
 		} else {
 			this.jumpInput = this.game.input.pointer1
 		}
+		this.action = action
+		this.finalScore = finalScore
+		this.highScore = highScore
 	}
 
 	create () {
+		let text = ( this.action === 'gameover' ? 'Game Over' : 'Congratulations!' ).toUpperCase()
+		text += '\nScore: ' + this.finalScore + '\nPersonal Best: ' + this.highScore
 		// gameover text
 		let gameOver = this.game.add.text(
-			0,
-			100,
-			'Game Over'.toUpperCase(),
+			this.game.width / 2,
+			50,
+			text,
 			Object.assign(config.text.xl, ({ boundsAlignH: 'center' })))
-		gameOver.setTextBounds(0, 30, this.game.width, 30)
+		gameOver.anchor.set(0.5, 0)
 
 		// replay button
 		let replay = this.game.add.button(
@@ -30,8 +35,6 @@ export default class extends Phaser.State {
 			1, 0, 1)
 		replay.scale.setTo(0.7)
 		centerGameObjects([replay])
-
-		// @todo add final score?
 	}
 
 	update () {
