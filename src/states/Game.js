@@ -55,7 +55,6 @@ export default class extends Phaser.State {
 
 		let logo = this.game.add.sprite(config.infoLabelsPadding, config.infoLabelsPadding, 'liipLogoSmall')
 		logo.anchor.set(0, 0.5)
-		logo.scale.setTo(0.5)
 		this.infoLabels.add(logo)
 
 		// setup player
