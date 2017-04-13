@@ -141,10 +141,7 @@ export default class extends Phaser.State {
 			this.game.width / 2,
 			this.game.height / 2,
 			'replay',
-			() => {
-				this.game.state.start('Game')
-				this.game.paused = false
-			},
+			() => { window.location.reload() },
 			this,
 			1, 0, 1)
 		this.wrongOrientationOverlayReload.anchor.set(0.5, 0)
