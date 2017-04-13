@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import config from '../config'
-import {makeGreen, makeYellow, getRandomCheer, isTouchDevice} from '../utils'
+import {makeGreen, makeYellow, getRandomCheer} from '../utils'
 import Player from '../sprites/Player'
 import _ from 'lodash'
 
@@ -112,7 +112,7 @@ export default class extends Phaser.State {
 		if ( ! this.skipIntro ) {
 			// add intro text
 			this.firstJumpDone = false
-			let howToJump = isTouchDevice() ? 'Tap your screen' : 'Press space'
+			let howToJump = ( this.game.device.desktop ? 'Press space' : 'Tap your screen' )
 			this.introLabel = this.game.add.text(this.game.width / 2, 200, howToJump + ' to jump', Object.assign(config.text.xl, {boundsAlignH: 'center', boundsAlignV: 'center', align: 'center', wordWrap: true, wordWrapWidth: this.game.width - 50}))
 			this.introLabel.anchor.set(0.5, 0.5)
 			this.infoLabels.add(this.introLabel)

@@ -1,6 +1,5 @@
 import Phaser from 'phaser'
 import config from '../config'
-import { centerGameObjects, isTouchDevice } from '../utils'
 
 export default class extends Phaser.State {
 	init() {
@@ -24,9 +23,9 @@ export default class extends Phaser.State {
 
 		let banner = this.game.add.image(
 			this.game.width / 2,
-			110,
+			120,
 			'startLogo')
-		banner.anchor.set(0.5, 0)
+		banner.anchor.setTo(0.5)
 		let bannerRatio = banner.width / banner.height
 		banner.width = 700
 		if (banner.width > this.game.width ) {
@@ -37,15 +36,15 @@ export default class extends Phaser.State {
 		// start button
 		let start = this.game.add.button(
 			this.game.width / 2,
-			180,
+			190,
 			'start',
 			() => { this.game.state.start('Game') },
 			this,
 			1,
 			0,
 			1)
+		start.anchor.setTo(0.5)
 		start.scale.setTo(0.7)
-		centerGameObjects([banner, start])
 
 		// setup player
 		this.player = this.game.add.sprite(100, 250, 'player')
@@ -53,15 +52,13 @@ export default class extends Phaser.State {
 		this.player.body.gravity.y = config.player.weight
 
 		// show hint
-		let howToJump = isTouchDevice()
-			? 'Tap your screen'
-			: 'Press space'
+		let howToJump = ( this.game.device.desktop ? 'Press space' : 'Tap your screen' )
 		let intro = this.game.add.text(
-			0,
-			230,
+			this.game.width / 2,
+			260,
 			`${howToJump} to jump`.toUpperCase(),
-			Object.assign(config.text.lg, ({ boundsAlignH: 'center' })))
-		intro.setTextBounds(0, 30, this.game.width, 30)
+			Object.assign(config.text.lg, config.text.center))
+		intro.anchor.setTo(0.5, 0)
 
 		this.player.standDimensions = {width: this.player.width, height: this.player.height}
 		this.player.anchor.setTo(0.5, 1)
