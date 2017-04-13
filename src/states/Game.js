@@ -122,7 +122,7 @@ export default class extends Phaser.State {
 		this.wrongOrientationLayer = this.game.add.group()
 		this.wrongOrientationLayer.fixedToCamera = true
 
-		let wrongOrientationRectangleSize = Math.max(this.game.width, this.game.height) + 100
+		let wrongOrientationRectangleSize = Math.max(this.game.width, this.game.height) + 500
 		let wrongOrientationRectangle = this.game.add.bitmapData(wrongOrientationRectangleSize, wrongOrientationRectangleSize)
 		wrongOrientationRectangle.ctx.beginPath()
 		wrongOrientationRectangle.ctx.rect(0, 0, wrongOrientationRectangleSize, wrongOrientationRectangleSize)
@@ -130,30 +130,45 @@ export default class extends Phaser.State {
 		wrongOrientationRectangle.ctx.fill()
 		this.wrongOrientationOverlayBackground = this.game.add.sprite(wrongOrientationRectangleSize / 2, wrongOrientationRectangleSize / 2, wrongOrientationRectangle)
 		this.wrongOrientationOverlayBackground.anchor.setTo(0.5, 0.5)
-		this.wrongOrientationOverlayBackground.kill()
 		this.wrongOrientationLayer.add(this.wrongOrientationOverlayBackground)
 
 		this.wrongOrientationOverlayText = this.game.add.text(this.game.width / 2, this.game.height / 2, 'Please reload game to change orientation!', Object.assign(config.text.xl, {boundsAlignH: 'center', boundsAlignV: 'center', align: 'center', wordWrap: true, wordWrapWidth: this.game.width - 50}))
-		this.wrongOrientationOverlayText.anchor.setTo(0.5, 0.5)
-		this.wrongOrientationOverlayText.kill()
+		this.wrongOrientationOverlayText.anchor.setTo(0.5, 1)
 		this.wrongOrientationLayer.add(this.wrongOrientationOverlayText)
+
+		// reload button
+		this.wrongOrientationOverlayReload = this.game.add.button(
+			this.game.width / 2,
+			this.game.height / 2,
+			'replay',
+			() => {
+				this.game.state.start('Game')
+				this.game.paused = false
+			},
+			this,
+			1, 0, 1)
+		this.wrongOrientationOverlayReload.anchor.set(0.5, 0)
+		this.wrongOrientationOverlayReload.scale.setTo(0.7)
+		this.wrongOrientationLayer.add(this.wrongOrientationOverlayReload)
+		this.wrongOrientationLayer.callAll('kill')
 
 		this.game.scale.onOrientationChange.add(() => {
 			const width = document.documentElement.clientWidth * config.sizeFactor
 			const height = document.documentElement.clientHeight * config.sizeFactor
 			this.game.scale.setGameSize(width, height)
+			const gameCenterX = this.game.width / 2
+			const gameCenterY = this.game.height / 2
 			if ( ( this.game.scale.isLandscape && this.initialOrientation === 'landscape' ) || ( this.game.scale.isPortrait && this.initialOrientation === 'portrait' ) ) {
-				this.wrongOrientationOverlayText.kill()
-				this.wrongOrientationOverlayBackground.kill()
+				this.wrongOrientationLayer.callAll('kill')
 				this.game.paused = false
 			} else {
 				this.game.paused = true
-				this.wrongOrientationOverlayBackground.reset(this.game.width / 2, this.game.height / 2)
-				this.wrongOrientationOverlayBackground.revive()
-				this.wrongOrientationOverlayText.reset(this.game.width / 2, this.game.height / 2)
+				this.wrongOrientationOverlayBackground.reset(gameCenterX, gameCenterY)
+				this.wrongOrientationOverlayText.reset(gameCenterX, gameCenterY - 5)
 				this.wrongOrientationOverlayText.wordWrapWidth = this.game.width - 50
+				this.wrongOrientationOverlayReload.reset(gameCenterX, gameCenterY + 5)
 				this.game.world.bringToTop(this.wrongOrientationLayer)
-				this.wrongOrientationOverlayText.revive()
+				this.wrongOrientationLayer.callAll('revive')
 			}
 		}, this)
 	}
