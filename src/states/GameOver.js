@@ -5,6 +5,7 @@ export default class extends Phaser.State {
 	init(action, finalScore, highScore) {
 		if(this.game.device.desktop) {
 			this.jumpInput = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+			this.jumpInput = this.game.input.keyboard.addKey(Phaser.Keyboard.UP)
 		} else {
 			this.jumpInput = this.game.input.pointer1
 		}
