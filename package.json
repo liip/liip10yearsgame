@@ -15,6 +15,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@orange-games/phaser-input": "^2.0.5",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
     "babel-polyfill": "^6.23.0",
