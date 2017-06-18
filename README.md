@@ -36,3 +36,7 @@ This will optimize and minimize the compiled bundle.
 ## Credits
 
 Built with [Phaser+ES6+Webpack](https://github.com/lean/phaser-es6-webpack).
+
+## Joystick
+
+Paring/ adding 8bido controller is described in `/docs/NES30+FC30_Manual_V4.pdf`
