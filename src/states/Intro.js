@@ -1,14 +1,10 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser-ce'
 import config from '../config'
+import Keyboard from './../sprites/Keyboard'
 
 export default class extends Phaser.State {
 	init() {
-		if(this.game.device.desktop) {
-			this.jumpInput = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
-			this.jumpInput = this.game.input.keyboard.addKey(Phaser.Keyboard.UP)
-		} else {
-			this.jumpInput = this.game.input.pointer1
-		}
+        this.jumpInputs = Keyboard.addKeyboard(this.game)
 	}
 
 	create () {
@@ -69,7 +65,7 @@ export default class extends Phaser.State {
 		this.game.physics.arcade.collide(this.player, this.blockedLayer, null, null, this)
 
 		// Start game on jump
-		if (this.jumpInput.isDown) {
+		if (this.jumpInputs.find(e => e.isDown)) {
 			this.state.start('Game')
 		}
 	}
