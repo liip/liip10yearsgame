@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0.0" orientation="orthogonal" renderorder="right-down" width="530" height="8" tilewidth="50" tileheight="50" backgroundcolor="#f5f5f7" nextobjectid="206">
+ <tileset firstgid="1" name="tiles_spritesheet" tilewidth="50" tileheight="50" spacing="1" tilecount="24" columns="6">
+  <image source="../images/tiles_spritesheet.png" width="305" height="204"/>
+ </tileset>
+ <layer name="backgroundLayer" width="530" height="8">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,
+0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,7,0,0,0,10,10,10,10,10,10,10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,7,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,7,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,10,10,10,10,10,10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="blockedLayer" width="530" height="8">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,1,1,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,12,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,1,1,1,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,11,1,1,1,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,1,1,12,0,0,0,0,11,1,1,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,12,0,0,0,0,0,0,0,0,0,0,0,0,0,11,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,12,0,0,0,11,12,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,6,0,0,0,0,0,0,0,0,11,1,1,12,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,1,1,1,12,0,4,0,0,0,0,0,0,0,0,0,0,11,12,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,11,1,1,1,1,1,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,1,1,1,12,0,4,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,1,12,0,0,4,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,1,1,1,0,0,0,0,4,1,1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,1,1,12,0,0,1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,5,6,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,1,12,0,0,1,1,0,0,0,1,1,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,5,1,1,12,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,6,0,0,0,0,0,0,0,0,5,0,0,6,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,5,6,0,0,0,0,0,0,11,12,0,0,0,0,0,0,0,0,5,0,0,0,0,6,0,4,0,0,0,0,0,0,0,0,0,11,0,6,0,0,0,0,0,0,0,0,0,0,11,1,1,1,1,1,12,0,0,0,5,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,1,1,1,1,1,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,11,1,1,1,1,1,12,0,0,1,1,1,0,0,4,0,0,1,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,4,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,4,0,0,0,0,0,0,0,0,11,1,1,12,0,5,6,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,5,12,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1,12,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,12,0,0,11,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,2,1,1,12,0,0,11,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,2,1,1,12,0,4,0,11,1,1,1,1,1,1,1,1,1,1,1,0,0,0,6,0,0,11,1,1,1,1,1,0,0,0,6,0,0,5,1,1,2,1,1,1,1,1,1,12,0,0,0,11,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,2,1,0,0,0,0,0,6,0,5,1,1,1,1,1,1,1,1,1,0,0,6,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,1,2,1,0,0,0,0,0,0,6,0,0,0,11,1,1,1,1,1,0,1,1,1,1,12,0,0,0,0,0,0,0,11,0,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,2,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,6,0,0,4,0,11,1,2,1,1,1,12,0,0,11,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,1,0,6,0,0,0,5,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+</data>
+ </layer>
+ <objectgroup name="yearLayer">
+  <object id="32" name="2007" gid="2" x="4000" y="400" width="50" height="50">
+   <properties>
+    <property name="year" value="2007"/>
+   </properties>
+  </object>
+  <object id="33" name="2008" gid="2" x="6050" y="400" width="50" height="50">
+   <properties>
+    <property name="year" value="2008"/>
+   </properties>
+  </object>
+  <object id="34" name="2009" gid="2" x="8050" y="400" width="50" height="50">
+   <properties>
+    <property name="year" value="2009"/>
+   </properties>
+  </object>
+  <object id="35" name="2010" gid="2" x="10050" y="400" width="50" height="50">
+   <properties>
+    <property name="year" value="2010"/>
+   </properties>
+  </object>
+  <object id="36" name="2011" gid="2" x="12050" y="400" width="50" height="50">
+   <properties>
+    <property name="year" value="2011"/>
+   </properties>
+  </object>
+  <object id="37" name="2012" gid="2" x="14050" y="400" width="50" height="50">
+   <properties>
+    <property name="year" value="2012"/>
+   </properties>
+  </object>
+  <object id="38" name="2013" gid="2" x="16050" y="400" width="50" height="50">
+   <properties>
+    <property name="year" value="2013"/>
+   </properties>
+  </object>
+  <object id="39" name="2014" gid="2" x="18050" y="400" width="50" height="50">
+   <properties>
+    <property name="year" value="2014"/>
+   </properties>
+  </object>
+  <object id="40" name="2015" gid="2" x="20050" y="400" width="50" height="50">
+   <properties>
+    <property name="year" value="2015"/>
+   </properties>
+  </object>
+  <object id="41" name="2016" gid="2" x="22100" y="400" width="50" height="50">
+   <properties>
+    <property name="year" value="2016"/>
+   </properties>
+  </object>
+  <object id="42" name="2017" gid="2" x="24050" y="400" width="50" height="50">
+   <properties>
+    <property name="year" value="2017"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="introLayer">
+  <object id="86" name="intro-objects" gid="1" x="2650" y="400" width="50" height="50">
+   <properties>
+    <property name="intro" value="objects"/>
+   </properties>
+  </object>
+  <object id="87" name="intro-timeline" gid="1" x="1750" y="400" width="50" height="50">
+   <properties>
+    <property name="intro" value="timeline"/>
+   </properties>
+  </object>
+  <object id="205" name="intro-jump" gid="1" x="900" y="400" width="50" height="50">
+   <properties>
+    <property name="intro" value="jump"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="timelineLayer">
+  <object id="44" gid="15" x="5600" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="47" gid="14" x="5300" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="people"/>
+    <property name="text" value="21 Liipers"/>
+    <property name="type" value="people"/>
+   </properties>
+  </object>
+  <object id="48" gid="13" x="6600" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="New Zürich office"/>
+    <property name="type" value="office"/>
+   </properties>
+  </object>
+  <object id="51" gid="13" x="4750" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="Liip Zürich"/>
+   </properties>
+  </object>
+  <object id="52" gid="13" x="4850" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="Liip Bern"/>
+   </properties>
+  </object>
+  <object id="53" gid="13" x="4650" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="Liip Fribourg"/>
+   </properties>
+  </object>
+  <object id="55" gid="14" x="12650" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="people"/>
+    <property name="text" value="70 Liipers"/>
+    <property name="type" value="people"/>
+   </properties>
+  </object>
+  <object id="56" gid="15" x="7000" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="57" gid="15" x="7850" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="App Store Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="69" gid="13" x="3850" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="bitflux GmbH"/>
+   </properties>
+  </object>
+  <object id="70" gid="13" x="4100" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="Mediagonal AG"/>
+   </properties>
+  </object>
+  <object id="71" gid="14" x="6250" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="people"/>
+    <property name="text" value="32 Liipers"/>
+    <property name="type" value="people"/>
+   </properties>
+  </object>
+  <object id="83" gid="15" x="1750" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="91" gid="14" x="20300" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="people"/>
+    <property name="text" value="100 Liipers"/>
+    <property name="type" value="people"/>
+   </properties>
+  </object>
+  <object id="92" gid="14" x="22950" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="people"/>
+    <property name="text" value="150 Liipers"/>
+    <property name="type" value="people"/>
+   </properties>
+  </object>
+  <object id="93" gid="15" x="8500" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="94" gid="15" x="9300" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="95" gid="15" x="9900" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="97" gid="13" x="10900" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="New Fribourg office"/>
+   </properties>
+  </object>
+  <object id="98" gid="13" x="12400" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="Liip Lausanne"/>
+   </properties>
+  </object>
+  <object id="100" gid="13" x="18700" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="New Zürich office"/>
+   </properties>
+  </object>
+  <object id="101" gid="13" x="19550" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="Liip St. Gallen"/>
+   </properties>
+  </object>
+  <object id="102" gid="13" x="21400" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="New Lausanne office"/>
+   </properties>
+  </object>
+  <object id="103" gid="13" x="22350" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="office"/>
+    <property name="text" value="New Bern office"/>
+   </properties>
+  </object>
+  <object id="104" gid="15" x="12950" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="105" gid="15" x="13550" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="106" gid="15" x="14850" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="107" gid="15" x="16150" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="108" gid="15" x="17200" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="109" gid="15" x="19850" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="110" gid="15" x="18950" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="111" gid="15" x="20600" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="112" gid="15" x="21000" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="113" gid="15" x="21700" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="114" gid="15" x="22500" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="115" gid="15" x="23400" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="116" gid="15" x="24050" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+  <object id="117" gid="15" x="24300" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="award"/>
+    <property name="text" value="Swiss Web Award"/>
+    <property name="type" value="award"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="objectsLayer">
+  <object id="46" name="beer" gid="19" x="6100" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="65" name="beer" gid="19" x="14750" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="66" name="beer" gid="19" x="11600" y="350" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="67" name="beer" gid="19" x="10500" y="350" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="74" gid="20" x="5000" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="75" name="beer" gid="19" x="2650" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="76" gid="20" x="9450" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="90" name="beer" gid="19" x="7900" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="119" gid="20" x="7000" y="350" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="121" gid="20" x="12750" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="122" gid="20" x="16650" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="123" name="beer" gid="19" x="18550" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="124" gid="20" x="19550" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="125" name="beer" gid="19" x="21900" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="126" gid="19" x="24500" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="127" gid="19" x="24500" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="128" gid="19" x="24500" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="129" gid="19" x="24450" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="131" gid="19" x="24800" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="132" gid="19" x="25100" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="133" gid="19" x="25000" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="134" gid="19" x="24850" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="135" gid="19" x="24950" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="136" gid="19" x="24900" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="137" gid="19" x="24900" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="138" gid="19" x="24900" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="139" gid="19" x="25200" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="140" gid="19" x="25100" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="141" gid="19" x="25150" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="142" gid="19" x="25100" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="143" gid="19" x="25100" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="144" gid="19" x="25150" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="145" gid="19" x="25200" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="146" gid="19" x="25100" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="147" gid="19" x="25400" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="148" gid="19" x="25400" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="149" gid="19" x="25400" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="150" gid="19" x="25300" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="151" gid="19" x="25150" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="152" gid="19" x="25300" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="153" gid="19" x="25300" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="154" gid="19" x="25350" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="155" gid="19" x="25500" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="156" gid="19" x="25500" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="157" gid="19" x="25550" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="158" gid="19" x="25500" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="159" gid="19" x="25500" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="160" gid="19" x="25350" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="161" gid="19" x="25550" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="162" gid="19" x="25300" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="163" gid="19" x="25700" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="164" gid="19" x="25600" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="165" gid="19" x="25700" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="166" gid="19" x="25600" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="167" gid="19" x="25800" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="168" gid="19" x="25700" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="169" gid="19" x="25600" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="170" gid="19" x="25750" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="171" gid="19" x="25800" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="172" gid="19" x="25750" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="173" gid="19" x="25500" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="174" gid="19" x="25750" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="175" gid="19" x="25800" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="176" gid="19" x="25800" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="177" gid="19" x="25700" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="178" gid="19" x="25400" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="179" gid="19" x="24500" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="180" gid="19" x="24500" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="181" gid="19" x="24600" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="182" gid="19" x="24600" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="183" gid="19" x="24600" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="184" gid="19" x="24600" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="185" gid="19" x="24650" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="186" gid="19" x="24600" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="187" gid="19" x="24650" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="188" gid="19" x="24700" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="189" gid="19" x="24700" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="190" gid="19" x="24700" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="191" gid="19" x="24700" y="250" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="192" gid="19" x="24700" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="beer"/>
+    <property name="type" value="beer"/>
+   </properties>
+  </object>
+  <object id="193" gid="20" x="25950" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="194" gid="20" x="25950" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="195" gid="20" x="25950" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="196" gid="20" x="25950" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="197" gid="20" x="26050" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="198" gid="20" x="26050" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="199" gid="20" x="26050" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="200" gid="20" x="26050" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="201" gid="20" x="26150" y="300" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="202" gid="20" x="26150" y="150" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="203" gid="20" x="26150" y="200" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+  <object id="204" gid="20" x="26150" y="100" width="50" height="50">
+   <properties>
+    <property name="sprite" value="coffee"/>
+    <property name="type" value="coffee"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
