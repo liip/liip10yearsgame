@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import config from '../config'
-import Keyboard from '../sprites/Keyboard'
+import Keyboard from '../objects/Keyboard'
 import Phaser from 'phaser-ce'
-import Player from '../sprites/Player'
+import Player from '../objects/Player'
 import { makeGreen, makeYellow, getRandomCheer } from '../utils'
 
 export default class extends Phaser.State {

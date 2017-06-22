@@ -1,7 +1,7 @@
 import Phaser from 'phaser-ce'
 import _ from 'lodash'
 import config from '../config'
-import Keyboard from '../sprites/Keyboard'
+import Keyboard from '../objects/Keyboard'
 import { makeGreen } from '../utils'
 
 export default class extends Phaser.State {
@@ -19,7 +19,6 @@ export default class extends Phaser.State {
             110: 'Leventeas adadsadss'
         })
         this.highScores = JSON.parse(localStorage.getItem('HighScores') || todoRemove)
-        // this.highScores = JSON.parse(localStorage.getItem('HighScores') || '{}')
         this.currentScore = 200
         return this.highScores
     }

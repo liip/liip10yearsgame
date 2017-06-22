@@ -1,6 +1,6 @@
 import Phaser from 'phaser-ce'
 import config from '../config'
-import Keyboard from '../sprites/Keyboard'
+import Keyboard from '../objects/Keyboard'
 
 export default class extends Phaser.State {
     init(action, finalScore = 0, highScore = 0) {

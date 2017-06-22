@@ -10,4 +10,10 @@ export default class extends Phaser.Keyboard {
             ]
             : [game.input.pointer1]
     }
+
+    static addEnter(game) {
+        return game.device.desktop
+            ? game.input.keyboard.addKey(Phaser.Keyboard.ENTER)
+            : game.input.pointer1
+    }
 }

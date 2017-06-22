@@ -57,12 +57,15 @@ const text = {
         font: '36px Liip Etica Bd, sans-serif',
         fill: css.webBlack,
         fontWeight: 'bold',
-        width: 350,
-        padding: 8,
+        width: 150,
+        padding: 20,
         borderWidth: 1,
         borderColor: css.liipGreen,
         borderRadius: 6,
         placeHolder: 'Your Id',
+        // focusOutOnEnter: true
+        textAlign: 'center',
+        zoom: true
     }
 }
 
