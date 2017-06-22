@@ -48,7 +48,7 @@ Phaser.Tilemap.prototype.setCollisionBetween = function (start, stop, collides, 
 
 				tile.faceTop = collides;
 				tile.faceBottom = collides;
-				tile.faceLeft = collides;
+				// tile.faceLeft = collides;
 				tile.faceRight = collides;
 			}
 		}
