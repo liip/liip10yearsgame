@@ -1,6 +1,7 @@
 import Phaser from 'phaser-ce'
 import config from '../config'
 import Keyboard from '../objects/Keyboard'
+import { makeGreen } from '../utils'
 import Db from '../objects/Db'
 
 export default class extends Phaser.State {
@@ -19,15 +20,17 @@ export default class extends Phaser.State {
     create() {
         const game = this.game
         const { width, height } = game
-        const { xl, center } = config.text
+        const { lg, xl, center } = config.text
         let text = 'Congratulations!'.toUpperCase()
         text += '\nYour Score: ' + this.finalScore + '\nRequired: ' + this.db.minToGetToHighScore()
 
         // game over text
-        let gameOver = game.add.text(width / 2, height / 2 - 5, text, Object.assign(xl, center))
+        let gameOver = game.add.text(width / 2, height / 2 - 50, text, Object.assign(xl, center))
         gameOver.anchor.set(0.5, 1)
 
         const nameInput = game.add.inputField(width / 2 - 100, height / 2, config.text.inputField)
+        let typeYourId = game.add.text(width / 2 - 80, height / 2 - 40, 'Player ID Number', makeGreen(Object.assign(lg, center)))
+
         this.nameInput = nameInput
         nameInput.startFocus()
         nameInput.inputEnabled = true
