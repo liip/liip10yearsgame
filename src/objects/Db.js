@@ -5,11 +5,11 @@ export default class extends Phaser.Sprite {
     constructor(game) {
         super(game)
         const todoRemove = JSON.stringify({
-            '123': 44200,
-            '456': 444440,
-            '666': 444440,
-            '667': 4000,
-            '117': 44000,
+            '000': 0,
+            '001': 1,
+            '002': 2,
+            '003': 3,
+            '004': 4,
         })
 
         this.highScores = JSON.parse(localStorage.getItem('HighScores') || '{}')
