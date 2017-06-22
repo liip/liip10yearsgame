@@ -355,17 +355,19 @@ export default class extends Phaser.State {
     }
 
     showNotice(x, y, text, style) {
-        // show notice
-        let notice = this.game.add.text(x, y, text, style)
+        setTimeout(() => {
+            // show notice
+            let notice = this.game.add.text(x, y, text, style)
 
-        // animate notice
-        let noticeTween = this.game.add.tween(notice).to({
-            alpha: 0,
-            y: notice.y - 30
-        }, 800, Phaser.Easing.Linear.None, true)
-        noticeTween.onComplete.addOnce((notice) => {
-            notice.destroy()
-        })
+            // animate notice
+            let noticeTween = this.game.add.tween(notice).to({
+                alpha: 0,
+                y: notice.y - 30
+            }, 800, Phaser.Easing.Linear.None, true)
+            noticeTween.onComplete.addOnce((notice) => {
+                notice.destroy()
+            })
+        }, 200)
     }
 
     passYearBarrier(player, collectable) {
