@@ -31,7 +31,7 @@ export default class extends Phaser.State {
             this.player.body.velocity.x = config.player.speed * 2
         }, 1000)
 
-        let restart = game.add.button(width / 2, height / 2,
+        let restart = game.add.button(width / 2, height / 2 + 100,
             'start',
             () => game.state.start('Game'),
             this,

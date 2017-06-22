@@ -36,7 +36,7 @@ export default class extends Phaser.State {
 
     update() {
         // Restart game on jump
-        if (this.enterKey.isDown) {
+        if (this.enterKey.isDown && this.nameInput.value) {
             this.db.addPlayerScore(this.finalScore, this.nameInput.value)
             this.nameInput.destroy()
             this.state.start('HighScore')
