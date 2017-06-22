@@ -19,18 +19,15 @@ export default class extends Phaser.Sprite {
     }
 
     loadScore() {
-        // TODO remove
-        this.currentScore = 200
-        return this.highScores
+        return JSON.parse(localStorage.getItem('HighScores') || '{}')
     }
 
     isHighScoreWorthy(score, cutoff = 5) {
-        console.warn(score, this.minToGetToHighScore(cutoff))
         return score >= this.minToGetToHighScore(cutoff)
     }
 
     minToGetToHighScore(cutoff = 5) {
-        return _(this.highScores)
+        return _(this.loadScore())
             .map((score, winner) => [score, winner])
             .sort((a, b) => b[0] - a[0])
             .splice(0, cutoff)
@@ -38,12 +35,13 @@ export default class extends Phaser.Sprite {
             .value()[0][0]
     }
 
-    saveScore() {
-        localStorage.setItem('HighScores', JSON.stringify(this.highScores))
+    saveScore(highscores) {
+        localStorage.setItem('HighScores', JSON.stringify(highscores))
     }
 
     addPlayerScore(score, winnerName) {
-        this.highScores[winnerName] = score
-        this.saveScore()
+        const highScores = this.loadScore()
+        highScores[winnerName] = score
+        this.saveScore(highScores)
     }
 }
