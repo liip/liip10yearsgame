@@ -19,10 +19,10 @@ export default class extends Phaser.State {
     create() {
         const {inputField: inputFieldCss} = config
         const { width, height } = this.game
-        let text = ( this.action === 'gameover' ? 'Oops.. not enough for TOP 5' : 'Congratulations!' ).toUpperCase()
+        let text = 'Congratulations!'.toUpperCase()
         text += '\nScore: ' + this.finalScore + '\nTop Player: ' + this.highScore
 
-        // gameover text
+        // game over text
         let gameOver = this.game.add.text(
             this.game.width / 2,
             this.game.height / 2 - 5,
