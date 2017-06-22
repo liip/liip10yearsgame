@@ -4,7 +4,7 @@ import _ from 'lodash'
 export default class extends Phaser.Sprite {
     constructor(game) {
         super(game)
-        const todoRemove = JSON.stringify({
+        const initialScores = JSON.stringify({
             '000': 0,
             '001': 1,
             '002': 2,
@@ -12,10 +12,7 @@ export default class extends Phaser.Sprite {
             '004': 4,
         })
 
-        this.highScores = JSON.parse(localStorage.getItem('HighScores') || '{}')
-
-        // TODO fixme
-        this.highScores = JSON.parse(todoRemove)
+        this.highScores = JSON.parse(localStorage.getItem('HighScores') || initialScores)
     }
 
     loadScore() {
