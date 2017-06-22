@@ -13,24 +13,24 @@ export default class extends Phaser.State {
         this.action = action
         this.finalScore = finalScore
         this.highScore = highScore
-        this.db = new Db()
+        this.db = new Db(this.game)
     }
 
     create() {
-        const {inputField: inputFieldCss} = config
-        const { width, height } = this.game
+        const game = this.game
+        const { width, height } = game
         let text = 'Congratulations!'.toUpperCase()
-        text += '\nScore: ' + this.finalScore + '\nTop Player: ' + this.highScore
+        text += '\nYour Score: ' + this.finalScore + '\nRequired: ' + this.db.minToGetToHighScore()
 
         // game over text
-        let gameOver = this.game.add.text(
-            this.game.width / 2,
-            this.game.height / 2 - 5,
+        let gameOver = game.add.text(
+            game.width / 2,
+            game.height / 2 - 5,
             text,
             Object.assign(config.text.xl, config.text.center))
         gameOver.anchor.set(0.5, 1)
 
-        const nameInput = this.game.add.inputField(width / 2 - 100, height / 2, config.text.inputField)
+        const nameInput = game.add.inputField(width / 2 - 100, height / 2, config.text.inputField)
         this.nameInput = nameInput
         nameInput.startFocus()
         nameInput.inputEnabled = true

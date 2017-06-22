@@ -1,6 +1,7 @@
 import Phaser from 'phaser-ce'
 import config from '../config'
 import Keyboard from '../objects/Keyboard'
+import Db from '../objects/Db'
 
 export default class extends Phaser.State {
     init(action, finalScore = 0, highScore = 0) {
@@ -8,12 +9,14 @@ export default class extends Phaser.State {
         this.action = action
         this.finalScore = finalScore
         this.highScore = highScore
+        this.db = new Db(this.game)
     }
 
     create() {
-        let text = ( this.action === 'gameover' ? 'Oops.. not enough for TOP 5' : 'Congratulations!' ).toUpperCase()
-        text += '\nScore: ' + this.finalScore + '\nTop Player: ' + this.highScore
-        // gameover text
+        let text = 'Oops.. not enough for TOP 5'
+        text += '\nYour Score: ' + this.finalScore + '\nRequired: ' + this.db.minToGetToHighScore()
+
+        // game over text
         let gameOver = this.game.add.text(
             this.game.width / 2,
             this.game.height / 2 - 5,
@@ -26,9 +29,7 @@ export default class extends Phaser.State {
             this.game.width / 2,
             this.game.height / 2 + 5,
             'replay',
-            () => {
-                this.game.state.start('Game')
-            },
+            () =>this.game.state.start('HighScore'),
             this,
             1, 0, 1)
         replay.anchor.set(0.5, 0)
