@@ -4,7 +4,7 @@ import _ from 'lodash'
 export default class extends Phaser.Sprite {
     constructor(game) {
         super(game)
-        const initialScores = JSON.stringify({
+        this.initialScores = JSON.stringify({
             '000': 0,
             '001': 1,
             '002': 2,
@@ -12,11 +12,11 @@ export default class extends Phaser.Sprite {
             '004': 4,
         })
 
-        this.highScores = JSON.parse(localStorage.getItem('HighScores') || initialScores)
+        this.highScores = JSON.parse(localStorage.getItem('HighScores') || this.initialScores)
     }
 
     loadScore() {
-        return JSON.parse(localStorage.getItem('HighScores') || '{}')
+        return JSON.parse(localStorage.getItem('HighScores') || this.initialScores)
     }
 
     isHighScoreWorthy(score, cutoff = 5) {
