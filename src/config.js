@@ -36,6 +36,10 @@ const text = {
 		font: '26px Liip Etica Bd, sans-serif',
 		fill: css.webBlack,
 	},
+    xxl: {
+        font: '36px Liip Etica Bd, sans-serif',
+        fill: css.webBlack,
+    },
 	score: {
 		font: '18px Ubuntu Mono, monospace', // we need a monospaced font here to avoid jiggling text
 		fontWeight: 'bold',
@@ -48,7 +52,21 @@ const text = {
 		align: 'center',
 		boundsAlignV: 'center',
 		boundsAlignH: 'center'
-	}
+	},
+    inputField: {
+        font: '36px Liip Etica Bd, sans-serif',
+        fill: css.webBlack,
+        fontWeight: 'bold',
+        width: 150,
+        padding: 20,
+        borderWidth: 1,
+        borderColor: css.liipGreen,
+        borderRadius: 6,
+        placeHolder: 'Your Id',
+        focusOutOnEnter: true,
+        textAlign: 'center',
+        zoom: true
+    }
 }
 
 const points = {
