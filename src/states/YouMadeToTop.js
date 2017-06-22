@@ -1,9 +1,10 @@
 import Phaser from 'phaser-ce'
 import config from '../config'
 import Keyboard from '../objects/Keyboard'
+import Db from '../objects/Db'
 
 export default class extends Phaser.State {
-    init(action, finalScore = 0, highScore = 0) {
+    init(action, finalScore = 300, highScore = 0) {
         this.game.add.plugin(window.PhaserInput.Plugin)
 
         this.jumpInputs = Keyboard.addKeyboard(this.game)
@@ -12,6 +13,7 @@ export default class extends Phaser.State {
         this.action = action
         this.finalScore = finalScore
         this.highScore = highScore
+        this.db = new Db()
     }
 
     create() {
@@ -28,39 +30,18 @@ export default class extends Phaser.State {
             Object.assign(config.text.xl, config.text.center))
         gameOver.anchor.set(0.5, 1)
 
-        // replay button
-        let replay = this.game.add.button(
-            this.game.width / 2,
-            this.game.height / 2 + 5,
-            'replay',
-            () => this.game.state.start('Game'),
-            this,
-            1, 0, 1)
-
-        replay.anchor.set(0.5, 0)
-        replay.scale.setTo(0.7)
-
-        const nameInput = this.game.add.inputField(width / 2, height / 2, config.text.inputField)
+        const nameInput = this.game.add.inputField(width / 2 - 100, height / 2, config.text.inputField)
         this.nameInput = nameInput
         nameInput.startFocus()
         nameInput.inputEnabled = true
         nameInput.input.useHandCursor = true
-
-        nameInput.events.onInputDown.add((e) => {
-            console.log('done', e.value)
-        })
-        nameInput.events.onInputUp.add((e) => {
-            console.log('up', e)
-        })
     }
 
     update() {
         // Restart game on jump
-        if (this.jumpInputs.find(e => e.isDown)) {
-            this.state.start('HighScore')
-        }
         if (this.enterKey.isDown) {
-            console.warn(this.nameInput.value)
+            this.db.addPlayerScore(this.finalScore, this.nameInput.value)
+            this.state.start('HighScore')
         }
     }
 }

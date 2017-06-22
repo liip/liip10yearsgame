@@ -3,6 +3,7 @@ import config from '../config'
 import Keyboard from '../objects/Keyboard'
 import Phaser from 'phaser-ce'
 import Player from '../objects/Player'
+import Db from '../objects/Db'
 import { makeGreen, makeYellow, getRandomCheer } from '../utils'
 
 export default class extends Phaser.State {
@@ -11,6 +12,7 @@ export default class extends Phaser.State {
         this.skipIntro = this.loadSkipIntro()
         this.jumpInputs = Keyboard.addKeyboard(this.game)
         this.initialOrientation = this.game.scale.isLandscape ? 'landscape' : 'portrait'
+        this.db = new Db(game)
     }
 
     preload() {
@@ -223,14 +225,20 @@ export default class extends Phaser.State {
         }
     }
 
-
     gameOver(event) {
         this.cleanupWorld()
         // leave player
         this.player.body.moves = false
         let highScore = this.loadScore()
         let currentScore = parseInt(this.scoreLabel.text, 10)
-        this.game.state.start('GameOver', false, false, event, currentScore, highScore)
+        console.warn(this.db.isHighScoreWorthy(currentScore))
+        if (this.db.isHighScoreWorthy(currentScore)) {
+            this.game.state.start('YouMadeToTop', false, false, event, currentScore, highScore)
+        } else {
+            return this.game.state.start('GameOver', false, false, event, currentScore, highScore)
+        }
+
+
     }
 
     cleanupWorld() {
@@ -406,14 +414,14 @@ export default class extends Phaser.State {
      * Save score to local storage
      */
     saveScore() {
-        let previousScore = this.loadScore(),
-            currentScore = parseInt(this.scoreLabel.text, 10)
+        let previousScore = this.loadScore()
+        let currentScore = parseInt(this.scoreLabel.text, 10)
 
         if (config.localStorageSupported) {
             // only set score if we don't yet have one or if currentScore is greater than previous one
-            if (!previousScore || currentScore > previousScore) {
+            // if (!previousScore || currentScore > previousScore) {
                 localStorage.setItem(config.localStorageName + '-highscore', currentScore)
-            }
+            // }
         }
     }
 

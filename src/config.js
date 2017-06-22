@@ -63,7 +63,7 @@ const text = {
         borderColor: css.liipGreen,
         borderRadius: 6,
         placeHolder: 'Your Id',
-        // focusOutOnEnter: true
+        focusOutOnEnter: true,
         textAlign: 'center',
         zoom: true
     }
