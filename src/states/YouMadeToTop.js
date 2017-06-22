@@ -4,6 +4,8 @@ import Keyboard from '../sprites/Keyboard'
 
 export default class extends Phaser.State {
     init(action, finalScore = 0, highScore = 0) {
+        this.game.add.plugin(window.PhaserInput.Plugin)
+
         this.jumpInputs = Keyboard.addKeyboard(this.game)
         this.action = action
         this.finalScore = finalScore
@@ -11,6 +13,7 @@ export default class extends Phaser.State {
     }
 
     create() {
+        const {inputField: inputFieldCss} = config
         let text = ( this.action === 'gameover' ? 'Oops.. not enough for TOP 5' : 'Congratulations!' ).toUpperCase()
         text += '\nScore: ' + this.finalScore + '\nTop Player: ' + this.highScore
         // gameover text
@@ -31,6 +34,9 @@ export default class extends Phaser.State {
             },
             this,
             1, 0, 1)
+
+        const nameInput = this.game.add.inputField(10, 90, config.text.inputField)
+
         replay.anchor.set(0.5, 0)
         replay.scale.setTo(0.7)
     }

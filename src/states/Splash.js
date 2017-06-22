@@ -1,4 +1,4 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser-ce'
 import config from '../config'
 
 export default class extends Phaser.State {
@@ -40,7 +40,7 @@ export default class extends Phaser.State {
     }
 
     create() {
-        this.state.start('Intro')
+        this.state.start('YouMadeToTop')
     }
 
 }

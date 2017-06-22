@@ -4,19 +4,6 @@ import Keyboard from './../sprites/Keyboard'
 
 export default class extends Phaser.State {
     init() {
-        this.game.add.plugin(window.PhaserInput.Plugin)
-        const nameInput = this.game.add.inputField(10, 90, {
-            font: '38px Arial',
-            fill: '#212121',
-            fontWeight: 'bold',
-            width: 350,
-            padding: 8,
-            borderWidth: 1,
-            borderColor: '#000',
-            borderRadius: 6,
-            placeHolder: 'your name',
-        })
-
         this.jumpInputs = Keyboard.addKeyboard(this.game)
     }
 
@@ -48,13 +35,9 @@ export default class extends Phaser.State {
             this.game.width / 2,
             190,
             'start',
-            () => {
-                this.game.state.start('Game')
-            },
+            () => this.game.state.start('Game'),
             this,
-            1,
-            0,
-            1)
+            1, 0, 1)
         start.anchor.setTo(0.5)
         start.scale.setTo(0.7)
 
