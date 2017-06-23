@@ -226,7 +226,6 @@ export default class extends Phaser.State {
     }
 
     gameOver(event) {
-        this.cleanupWorld()
         // leave player
         this.player.body.moves = false
         let highScore = this.loadScore()
@@ -236,17 +235,6 @@ export default class extends Phaser.State {
         } else {
             return this.game.state.start('GameOver', true, false, event, currentScore, highScore)
         }
-
-
-    }
-
-    cleanupWorld() {
-        // cleanup game state - remove all items
-        _(this.timelineObjectsLayer.children)
-            .concat(this.objectsLayer.children)
-            .concat(this.infoLabels.children)
-            .filter()
-            .each(item => item.destroy())
     }
 
     playerHit(player, blockedLayer) {
