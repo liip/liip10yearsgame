@@ -28,7 +28,7 @@ export default class extends Phaser.State {
         let gameOver = game.add.text(width / 2, height / 2 - 50, text, Object.assign(xl, center))
         gameOver.anchor.set(0.5, 1)
 
-        const nameInput = game.add.inputField(width / 2 - 100, height / 2, config.text.inputField)
+        const nameInput = game.add.inputField(width / 2 - 100, height / 2, Object.assign(config.text.inputField, {type: window.PhaserInput.InputType.number, max: 999}))
         let typeYourId = game.add.text(width / 2 - 80, height / 2 - 40, 'Player ID Number', makeGreen(Object.assign(lg, center)))
 
         this.nameInput = nameInput
