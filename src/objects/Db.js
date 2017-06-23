@@ -38,7 +38,10 @@ export default class extends Phaser.Sprite {
 
     addPlayerScore(score, winnerName) {
         const highScores = this.loadScore()
-        highScores[winnerName] = score
-        this.saveScore(highScores)
+        // only update highscore of player if it's higher than already saved value
+        if(score > highScores[winnerName]) {
+            highScores[winnerName] = score
+            this.saveScore(highScores)
+        }
     }
 }
