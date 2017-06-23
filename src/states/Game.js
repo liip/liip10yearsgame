@@ -232,9 +232,9 @@ export default class extends Phaser.State {
         let highScore = this.loadScore()
         let currentScore = parseInt(this.scoreLabel.text, 10)
         if (this.db.isHighScoreWorthy(Number(currentScore))) {
-            this.game.state.start('YouMadeToTop', false, false, event, currentScore, highScore)
+            this.game.state.start('YouMadeToTop', true, false, event, currentScore, highScore)
         } else {
-            return this.game.state.start('GameOver', false, false, event, currentScore, highScore)
+            return this.game.state.start('GameOver', true, false, event, currentScore, highScore)
         }
 
 
