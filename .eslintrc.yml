@@ -29,7 +29,7 @@ globals:
 extends: 'eslint:recommended'
 
 rules:
-  indent: [2, 2]                      # Indent code with 2 spaces
+  indent: [2, 4]                      # Indent code with 4 spaces
   quotes: [2, single]                 # Use single quotes for strings
   linebreak-style: [2, unix]          # Favor Unix-style line endings
   semi: [2, never]                   # End lines with semicolons
