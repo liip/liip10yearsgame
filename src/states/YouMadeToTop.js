@@ -21,8 +21,8 @@ export default class extends Phaser.State {
         const game = this.game
         const { width, height } = game
         const { lg, xl, center } = config.text
-        let text = 'Congratulations!'.toUpperCase()
-        text += '\nYour Score: ' + this.finalScore + '\nRequired: ' + this.db.minToGetToHighScore()
+        let text = 'Yay! You made it to the TOP 5'
+        text += '\nYour Score: ' + this.finalScore
 
         // game over text
         let gameOver = game.add.text(width / 2, height / 2 - 50, text, Object.assign(xl, center))
