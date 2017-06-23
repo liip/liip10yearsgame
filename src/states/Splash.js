@@ -40,8 +40,7 @@ export default class extends Phaser.State {
     }
 
     create() {
-        //TODO fix me
-        this.state.start('HighScore')
+        this.state.start('Intro')
     }
 
 }
