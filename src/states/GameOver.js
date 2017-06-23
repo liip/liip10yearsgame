@@ -19,7 +19,7 @@ export default class extends Phaser.State {
         // game over text
         let gameOver = this.game.add.text(
             this.game.width / 2,
-            this.game.height / 2 - 5,
+            200,
             text,
             Object.assign(config.text.xl, config.text.center))
         gameOver.anchor.set(0.5, 1)
@@ -27,7 +27,7 @@ export default class extends Phaser.State {
         // replay button
         let replay = this.game.add.button(
             this.game.width / 2,
-            this.game.height / 2 + 5,
+            220,
             'replay',
             () =>this.game.state.start('HighScore'),
             this,

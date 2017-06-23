@@ -25,11 +25,13 @@ export default class extends Phaser.State {
         text += '\nYour Score: ' + this.finalScore
 
         // game over text
-        let gameOver = game.add.text(width / 2, height / 2 - 50, text, Object.assign(xl, center))
-        gameOver.anchor.set(0.5, 1)
+        let youMadeItText = game.add.text(width / 2, 100, text, Object.assign(xl, center))
+        youMadeItText.anchor.set(0.5, 1)
 
-        const nameInput = game.add.inputField(width / 2 - 100, height / 2, Object.assign(config.text.inputField, {type: window.PhaserInput.InputType.number, max: 999}))
-        let typeYourId = game.add.text(width / 2 - 80, height / 2 - 40, 'Player ID Number', makeGreen(Object.assign(lg, center)))
+        let typeYourId = game.add.text(width / 2, 160, 'Player ID Number', makeGreen(Object.assign(lg, center)))
+        typeYourId.anchor.set(0.5, 1)
+        const nameInput = game.add.inputField(width / 2 - 100, 170, Object.assign(config.text.inputField, {type: window.PhaserInput.InputType.number, max: 999}))
+        nameInput.anchor.set(0, 0)
 
         this.nameInput = nameInput
         nameInput.startFocus()
