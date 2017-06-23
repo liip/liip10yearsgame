@@ -35,10 +35,11 @@ export default class extends Phaser.State {
         nameInput.startFocus()
         nameInput.inputEnabled = true
         nameInput.input.useHandCursor = true
+        nameInput.blockInput = false // bubble events up (so that we can catch enterKey press event)
     }
 
     update() {
-        // Restart game on jump
+        // Show highscore after name is entered
         if (this.enterKey.isDown && this.nameInput.value) {
             this.db.addPlayerScore(this.finalScore, this.nameInput.value)
             this.nameInput.destroy()
